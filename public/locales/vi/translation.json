@@ -1,0 +1,17 @@
+{
+  "header": {
+    "title": "Chương Trình Tính Toán Biên Dạng Cánh Quạt",
+    "subTitle": "T26-06",
+    "exportPdf": "Xuất PDF / In"
+  },
+  "sidebar": {
+    "subTitle": "Thiết Kế Quạt Hướng Trục"
+  },
+  "nav": {
+    "step1": "1. Cấu hình & Mẫu quạt",
+    "step2": "2. Thông số đầu vào",
+    "step3": "3. Kích thước & Động lực",
+    "step4": "4. Mặt cắt & Đồ thị",
+    "step5": "5. Báo cáo kết quả"
+  }
+}

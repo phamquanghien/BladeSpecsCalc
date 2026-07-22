@@ -13,17 +13,19 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
   return (
     <div className="bg-dark text-white p-3 d-flex flex-column justify-content-between" style={{ width: '280px', flexShrink: 0, minHeight: '100vh' }}>
       <div>
+        {/* Brand Logo */}
         <div className="text-center mb-4">
           <div className="d-inline-flex align-items-center justify-content-center bg-primary rounded-3 p-2 mb-2">
             <i className="bi bi-fan fs-3 text-white"></i>
           </div>
-          <h6 className="fw-bold mb-0 text-white">VINACOMIN</h6>
+          <h6 className="fw-bold mb-0 text-white">HUMG - T26-06</h6>
           <small className="text-secondary" style={{ fontSize: '0.75rem' }}>
-            {t('sidebar.subTitle', 'Thiết Kế Quạt Hướng Trục')}
+            {t('sidebar.subTitle')}
           </small>
         </div>
         <hr className="border-secondary opacity-25" />
 
+        {/* Dynamic Navigation Items */}
         <div className="nav nav-pills flex-column gap-2">
           {NAV_ITEMS.map((item) => (
             <button
@@ -34,12 +36,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
               onClick={() => setActiveTab(item.id)}
             >
               <i className={`bi ${item.icon} me-2`}></i>
-              {t(item.translationKey, item.id)}
+              {t(item.translationKey)}
             </button>
           ))}
         </div>
       </div>
 
+      {/* System Status Footer */}
       <div className="p-2 bg-secondary bg-opacity-10 rounded text-center border border-secondary border-opacity-25">
         <small className="text-success d-block">
           <i className="bi bi-check-circle-fill me-1"></i> System Ready

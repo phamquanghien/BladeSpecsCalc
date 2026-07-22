@@ -1,0 +1,17 @@
+{
+  "header": {
+    "title": "Axial Fan Blade Profile Design Program",
+    "subTitle": "T26-06",
+    "exportPdf": "Export PDF / Print"
+  },
+  "sidebar": {
+    "subTitle": "Axial Fan Design"
+  },
+  "nav": {
+    "step1": "1. Config & Fan Models",
+    "step2": "2. Input Parameters",
+    "step3": "3. Dimensions & Dynamics",
+    "step4": "4. Cross-sections & Chart",
+    "step5": "5. Final Report"
+  }
+}
