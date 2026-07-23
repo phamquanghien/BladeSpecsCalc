@@ -8,10 +8,43 @@
     "subTitle": "Thiết Kế Quạt Hướng Trục"
   },
   "nav": {
-    "step1": "1. Cấu hình & Mẫu quạt",
+    "step1": "1. Mẫu quạt & Cấu hình",
     "step2": "2. Thông số đầu vào",
     "step3": "3. Kích thước & Động lực",
     "step4": "4. Mặt cắt & Đồ thị",
     "step5": "5. Báo cáo kết quả"
+  },
+  "step1": {
+    "title": "Cấu hình & Chọn Mẫu Quạt",
+    "subtitle": "Chọn mẫu quạt tiêu chuẩn hoặc tùy chỉnh thông số thiết kế bên dưới",
+    "presetTitle": "Mẫu quạt có sẵn",
+    "customTitle": "Thông số kỹ thuật chi tiết",
+    "selected": "Đã chọn",
+    "selectBtn": "Chọn mẫu này",
+    "labels": {
+      "airflow": "Lưu lượng gió định mức (Q)",
+      "staticPressure": "Áp suất tĩnh định mức (Pa)",
+      "rotationSpeed": "Số vòng quay (rot/min)",
+      "gasDensity": "Khối lượng riêng của khí (kg/m³)",
+      "bladeRingCount": "Số vành khăn (m)"
+    },
+    "calcSigmaBtn": "Tính hệ số đặc trưng (σ)",
+    "sigmaResultTitle": "Hệ số đặc trưng (Specific Speed):",
+    "formulaLabel": "Công thức tính:",
+    "dimensionlessUnit": "Đơn vị"
+  },
+  "bladeType": {
+    "type1": {
+      "name": "Quạt 2K60-N°18 ",
+      "description": "Phù hợp cho thông gió hầm mỏ đường kính trung bình, lưu lượng 46 m³/s."
+    },
+    "type2": {
+      "name": "Quạt 2K56-N°24",
+      "description": "Dành cho hệ thống thông gió chính, áp suất cao 3100 Pa."
+    },
+    "type3": {
+      "name": "Quạt 2K56-N°30",
+      "description": "Lưu lượng cực đại 92 m³/s, tốc độ quay thấp 750 vòng/phút."
+    }
   }
 }

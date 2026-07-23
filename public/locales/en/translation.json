@@ -8,10 +8,43 @@
     "subTitle": "Axial Fan Design"
   },
   "nav": {
-    "step1": "1. Config & Fan Models",
+    "step1": "1. Fan Models & Config",
     "step2": "2. Input Parameters",
     "step3": "3. Dimensions & Dynamics",
     "step4": "4. Cross-sections & Chart",
     "step5": "5. Final Report"
+  },
+  "step1": {
+    "title": "Configuration & Fan Presets",
+    "subtitle": "Select a standard fan model or customize the design parameters below",
+    "presetTitle": "Available Presets",
+    "customTitle": "Detailed Technical Parameters",
+    "selected": "Selected",
+    "selectBtn": "Select Preset",
+    "labels": {
+      "airflow": "Rated Airflow (Q)",
+      "staticPressure": "Rated Static Pressure (Pa)",
+      "rotationSpeed": "Rotational Speed (rot/min)",
+      "gasDensity": "Gas Density (kg/m³)",
+      "bladeRingCount": "Number of Blade Rings (m)"
+    },
+    "calcSigmaBtn": "Calculate Specific Speed (σ)",
+    "sigmaResultTitle": "Specific Speed (σ):",
+    "formulaLabel": "Formula:",
+    "dimensionlessUnit": "Dimensionless Unit"
+  },
+  "bladeType": {
+    "type1": {
+      "name": "Model Fan Type 2K60-N°18 ",
+      "description": "Suitable for medium mine ventilation, airflow 46 m³/s."
+    },
+    "type2": {
+      "name": "Model Fan Type 2K56-N°24",
+      "description": "Designed for main ventilation systems, high pressure 3100 Pa."
+    },
+    "type3": {
+      "name": "Model Fan Type 2K56-N°30",
+      "description": "Maximum airflow 92 m³/s, low rotational speed 750 rpm."
+    }
   }
 }
