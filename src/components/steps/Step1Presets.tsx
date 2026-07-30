@@ -42,7 +42,10 @@ export const Step1Presets: React.FC = () => {
                 {fanPresets.map((preset) => {
                     const isSelected = step1Input.id === preset.id;
                     return (
-                        <div key={preset.id} className="col-md-4">
+                        <div
+                            key={preset.id}
+                            className="col-12 col-sm-6 col-lg-4"
+                        >
                             <div
                                 className={`card h-100 shadow-sm transition-all ${
                                     isSelected
@@ -130,11 +133,14 @@ export const Step1Presets: React.FC = () => {
                     {t('step1.customTitle')}
                 </h6>
                 <div className="row g-3 mb-4">
-                    <div className="col-md-2">
-                        <label className="form-label small fw-bold text-muted">
+                    <div className="col-12 col-sm-6 col-lg-4 col-xl-2">
+                        <label
+                            className="form-label small fw-bold text-muted text-truncate w-100"
+                            title={t('step1.labels.airflow')}
+                        >
                             {t('step1.labels.airflow')}
                         </label>
-                        <div className="input-group">
+                        <div className="input-group input-group-sm flex-nowrap">
                             <input
                                 type="number"
                                 className="form-control fw-bold"
@@ -149,11 +155,14 @@ export const Step1Presets: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="col-md-3">
-                        <label className="form-label small fw-bold text-muted">
+                    <div className="col-12 col-sm-6 col-lg-4 col-xl-3">
+                        <label
+                            className="form-label small fw-bold text-muted text-truncate w-100"
+                            title={t('step1.labels.staticPressure')}
+                        >
                             {t('step1.labels.staticPressure')}
                         </label>
-                        <div className="input-group">
+                        <div className="input-group input-group-sm flex-nowrap">
                             <input
                                 type="number"
                                 className="form-control fw-bold"
@@ -167,11 +176,14 @@ export const Step1Presets: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="col-md-2">
-                        <label className="form-label small fw-bold text-muted">
+                    <div className="col-12 col-sm-6 col-lg-4 col-xl-2">
+                        <label
+                            className="form-label small fw-bold text-muted text-truncate w-100"
+                            title={t('step1.labels.rotationSpeed')}
+                        >
                             {t('step1.labels.rotationSpeed')}
                         </label>
-                        <div className="input-group">
+                        <div className="input-group input-group-sm flex-nowrap">
                             <input
                                 type="number"
                                 className="form-control fw-bold"
@@ -185,11 +197,14 @@ export const Step1Presets: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="col-md-3">
-                        <label className="form-label small fw-bold text-muted">
+                    <div className="col-12 col-sm-6 col-lg-6 col-xl-3">
+                        <label
+                            className="form-label small fw-bold text-muted text-truncate w-100"
+                            title={t('step1.labels.gasDensity')}
+                        >
                             {t('step1.labels.gasDensity')}
                         </label>
-                        <div className="input-group">
+                        <div className="input-group input-group-sm flex-nowrap">
                             <input
                                 type="number"
                                 className="form-control fw-bold"
@@ -204,11 +219,14 @@ export const Step1Presets: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="col-md-2">
-                        <label className="form-label small fw-bold text-muted">
+                    <div className="col-12 col-sm-6 col-lg-6 col-xl-2">
+                        <label
+                            className="form-label small fw-bold text-muted text-truncate w-100"
+                            title={t('step1.labels.bladeRingCount')}
+                        >
                             {t('step1.labels.bladeRingCount')}
                         </label>
-                        <div className="input-group">
+                        <div className="input-group input-group-sm flex-nowrap">
                             <input
                                 type="number"
                                 className="form-control fw-bold"
@@ -240,9 +258,9 @@ export const Step1Presets: React.FC = () => {
                                 {t('step1.sigmaResultTitle')}
                             </small>
 
-                            <div className="bg-white p-3 rounded border border-success-subtle overflow-auto">
+                            <div className="bg-white p-3 rounded border border-success-subtle overflow-x-auto">
                                 <MathFormula
-                                    fontSize="1.5rem"
+                                    fontSize="1.1rem"
                                     formula={`\\sigma = n * \\frac{\\sqrt{Q}}{\\left(2 \\frac{\\Delta p}{\\rho}\\right)^{3/4}} * 2\\sqrt{\\pi} = \\left(\\frac{${step1Input.rotationSpeed}}{60}\\right) * \\frac{\\sqrt{${step1Input.airflow}}}{\\left(2 * \\frac{${step1Input.staticPressure}}{${step1Input.gasDensity}}\\right)^{3/4}} * 2\\sqrt{\\pi} = \\mathbf{${step1Output.sigma}} \\quad [/]`}
                                 />
                             </div>
