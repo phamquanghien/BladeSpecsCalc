@@ -9,7 +9,7 @@
   },
   "nav": {
     "step1": "1. Mẫu quạt & Cấu hình",
-    "step2": "2. Thông số đầu vào",
+    "step2": "2. Kích thước & Động lực",
     "step3": "3. Kích thước & Động lực",
     "step4": "4. Mặt cắt & Đồ thị",
     "step5": "5. Báo cáo kết quả"
@@ -46,5 +46,24 @@
       "name": "Quạt 2K56-N°30",
       "description": "Lưu lượng cực đại 92 m³/s, tốc độ quay thấp 750 vòng/phút."
     }
+  },
+  "step2": {
+    "title": "Lựa chọn δ, tỷ số D<sub>f</sub>/D<sub>a</sub> và tính diện tích toàn phần của bánh công tác quạt",
+    "subtitle": "Tra cứu đồ thị tham khảo và xác định các thông số kỹ thuật đầu vào",
+    "sectionTitle1": "Thông số từ Bước 1:",
+    "fig1Title": "Hình 1: Các dạng quạt thường dùng",
+    "fig2Title": "Hình 2: Giản đồ để lựa chọn δ và tỷ số D<sub>f</sub>/D<sub>a</sub> cho dạng 2, 3 và 4; c và d cho dạng 1",
+    "fig3Title": "Hình 3: Quan hệ giữa các đại lượng δ, σ, D<sub>f</sub>/D<sub>a</sub> và hiệu suất η",
+    "sectionTitle2": "Xác nhận δ và tỷ số D<sub>f</sub>/D<sub>a</sub>",
+    "labels": {
+      "delta": "Giá trị (δ)",
+      "dfDaRatio": "Tỷ số (D<sub>f</sub>/D<sub>a</sub>)"
+    },
+    "confirmBtnText": "Xác nhận δ và tỷ số D<sub>f</sub>/D<sub>a</sub>",
+    "confirmedBtn": "Đã xác nhận giá trị",
+    "sectionTitle3":"Xác định đường kính đỉnh và chân bánh công tác (D<sub>f</sub>, D<sub>a</sub>)",
+    "tipDiameter": "Đường kính đỉnh bánh công tác (D<sub>f</sub>)",
+    "hubDiameter": "Đường kính chân bánh công tác (D<sub>a</sub>)",
+    "sectionTitle4":"Xác định diện tích toàn phần của bánh công tác quat (A<sub>m</sub>)"
   }
 }

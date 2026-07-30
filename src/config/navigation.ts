@@ -1,4 +1,3 @@
-// src/config/navigation.ts
 export interface NavItem {
   id: string;
   icon: string;

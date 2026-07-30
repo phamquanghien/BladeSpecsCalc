@@ -1,60 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import type { FanPreset } from '../../models/FanPreset';
 import { fanPresets } from '../../config/fanPresets';
 import { MathFormula } from '../common/MathFormula';
+import { useFanStore } from '../../store/useFanStore';
+import type { FanPreset } from '../../models/FanPreset';
 
-interface Step1Props {
-    formData: FanPreset;
-    setFormData: React.Dispatch<React.SetStateAction<FanPreset>>;
-}
-
-export const Step1Presets: React.FC<Step1Props> = ({
-    formData,
-    setFormData,
-}) => {
+export const Step1Presets: React.FC = () => {
     const { t } = useTranslation();
-    const [sigmaResult, setSigmaResult] = useState<number | null>(null);
 
-    // Hàm tính Hệ số đặc trưng Sigma (σ)
-    const calculateSigma = () => {
-        const { rotationSpeed, airflow, staticPressure, gasDensity } = formData;
+    // Get data and functions from the Zustand store.
+    const {
+        step1Input,
+        step1Output,
+        setStep1Input,
+        updateStep1Field,
+        computeStep1,
+    } = useFanStore();
 
-        if (staticPressure <= 0 || gasDensity <= 0) {
-            alert('Áp suất và Khối lượng riêng phải lớn hơn 0!');
-            return;
-        }
-
-        // Chuyển n từ vòng/phút (rpm) sang vòng/giây (rps)
-        const n_rps = rotationSpeed / 60;
-
-        // Tử số: sqrt(Q)
-        const numerator = Math.sqrt(airflow);
-
-        // Mẫu số: (2 * DeltaP / rho)^(3/4)
-        const denominator = Math.pow((2 * staticPressure) / gasDensity, 0.75);
-
-        // Công thức: sigma = n_rps * (sqrt(Q) / denominator) * 2 * sqrt(pi)
-        const sigma =
-            n_rps * (numerator / denominator) * 2 * Math.sqrt(Math.PI);
-
-        setSigmaResult(Number(sigma.toFixed(4)));
-    };
-    // Hàm chọn Preset -> Cập nhật toàn bộ Form
-    const handleSelectPreset = (preset: FanPreset) => {
-        setFormData(preset);
-        setSigmaResult(null); // Reset kết quả tính khi chọn preset mới
-    };
-
-    // Hàm thay đổi giá trị trong Input Form
+    // Capture input change events
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: parseFloat(value) || 0,
-        }));
-        setSigmaResult(null); // Reset kết quả tính khi thay đổi số
+        const name = e.target.name as keyof FanPreset;
+        const value = parseFloat(e.target.value) || 0;
+        updateStep1Field(name, value);
     };
+
     return (
         <div className="container-fluid p-0">
             {/* Page Title */}
@@ -71,11 +40,11 @@ export const Step1Presets: React.FC<Step1Props> = ({
 
             <div className="row g-3 mb-4">
                 {fanPresets.map((preset) => {
-                    const isSelected = formData.id === preset.id;
+                    const isSelected = step1Input.id === preset.id;
                     return (
                         <div key={preset.id} className="col-md-4">
                             <div
-                                className={`card h-100 shadow-sm cursor-pointer transition-all ${
+                                className={`card h-100 shadow-sm transition-all ${
                                     isSelected
                                         ? 'border-primary border-2 bg-primary bg-opacity-10'
                                         : 'border-light-subtle'
@@ -84,7 +53,7 @@ export const Step1Presets: React.FC<Step1Props> = ({
                                     cursor: 'pointer',
                                     transition: 'all 0.2s ease-in-out',
                                 }}
-                                onClick={() => handleSelectPreset(preset)}
+                                onClick={() => setStep1Input(preset)}
                             >
                                 <div className="card-body d-flex flex-column justify-content-between p-3">
                                     <div>
@@ -109,7 +78,6 @@ export const Step1Presets: React.FC<Step1Props> = ({
                                         </p>
                                     </div>
 
-                                    {/* Quick specs preview */}
                                     <div className="bg-white p-2 rounded border border-light-subtle small mb-3">
                                         <div className="d-flex justify-content-between">
                                             <span className="text-muted">
@@ -171,7 +139,7 @@ export const Step1Presets: React.FC<Step1Props> = ({
                                 type="number"
                                 className="form-control fw-bold"
                                 name="airflow"
-                                value={formData.airflow}
+                                value={step1Input.airflow}
                                 onChange={handleInputChange}
                                 step="0.1"
                             />
@@ -190,7 +158,7 @@ export const Step1Presets: React.FC<Step1Props> = ({
                                 type="number"
                                 className="form-control fw-bold"
                                 name="staticPressure"
-                                value={formData.staticPressure}
+                                value={step1Input.staticPressure}
                                 onChange={handleInputChange}
                             />
                             <span className="input-group-text bg-light text-muted">
@@ -208,7 +176,7 @@ export const Step1Presets: React.FC<Step1Props> = ({
                                 type="number"
                                 className="form-control fw-bold"
                                 name="rotationSpeed"
-                                value={formData.rotationSpeed}
+                                value={step1Input.rotationSpeed}
                                 onChange={handleInputChange}
                             />
                             <span className="input-group-text bg-light text-muted">
@@ -226,7 +194,7 @@ export const Step1Presets: React.FC<Step1Props> = ({
                                 type="number"
                                 className="form-control fw-bold"
                                 name="gasDensity"
-                                value={formData.gasDensity}
+                                value={step1Input.gasDensity}
                                 onChange={handleInputChange}
                                 step="0.01"
                             />
@@ -245,7 +213,7 @@ export const Step1Presets: React.FC<Step1Props> = ({
                                 type="number"
                                 className="form-control fw-bold"
                                 name="bladeRingCount"
-                                value={formData.bladeRingCount}
+                                value={step1Input.bladeRingCount || 1}
                                 onChange={handleInputChange}
                             />
                             <span className="input-group-text bg-light text-muted">
@@ -254,19 +222,20 @@ export const Step1Presets: React.FC<Step1Props> = ({
                         </div>
                     </div>
                 </div>
+
                 {/* ACTION BUTTON & RESULT DISPLAY */}
                 <div className="border-top pt-3 d-flex flex-column align-items-start gap-3">
                     <button
                         className="btn btn-primary fw-bold px-4 shadow-sm"
-                        onClick={calculateSigma}
+                        onClick={computeStep1}
                     >
                         <i className="bi bi-calculator-fill me-2"></i>
                         {t('step1.calcSigmaBtn')}
                     </button>
-                    {/* Khung hiển thị công thức và kết quả */}
-                    {sigmaResult !== null && (
+
+                    {step1Output !== null && (
                         <div className="alert alert-success w-100 mb-0 border-0 shadow-sm rounded-3 p-3">
-                            <small className="text-uppercase fw-bold text-success d-block mb-2">
+                            <small className="fw-bold text-success d-block mb-2">
                                 <i className="bi bi-check-circle-fill me-1"></i>
                                 {t('step1.sigmaResultTitle')}
                             </small>
@@ -274,7 +243,7 @@ export const Step1Presets: React.FC<Step1Props> = ({
                             <div className="bg-white p-3 rounded border border-success-subtle overflow-auto">
                                 <MathFormula
                                     fontSize="1.5rem"
-                                    formula={`\\sigma = n * \\frac{\\sqrt{Q}}{\\left(2 \\frac{\\Delta p}{\\rho}\\right)^{3/4}} * 2\\sqrt{\\pi} = \\left(\\frac{${formData.rotationSpeed}}{60}\\right) * \\frac{\\sqrt{${formData.airflow}}}{\\left(2 * \\frac{${formData.staticPressure}}{${formData.gasDensity}}\\right)^{3/4}} * 2\\sqrt{\\pi} = \\mathbf{${sigmaResult}} \\quad [/]`}
+                                    formula={`\\sigma = n * \\frac{\\sqrt{Q}}{\\left(2 \\frac{\\Delta p}{\\rho}\\right)^{3/4}} * 2\\sqrt{\\pi} = \\left(\\frac{${step1Input.rotationSpeed}}{60}\\right) * \\frac{\\sqrt{${step1Input.airflow}}}{\\left(2 * \\frac{${step1Input.staticPressure}}{${step1Input.gasDensity}}\\right)^{3/4}} * 2\\sqrt{\\pi} = \\mathbf{${step1Output.sigma}} \\quad [/]`}
                                 />
                             </div>
                         </div>

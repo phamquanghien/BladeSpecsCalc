@@ -1,10 +1,9 @@
-// src/config/fanPresets.ts
 import type { FanPreset } from '../models/FanPreset';
 
 export const fanPresets: FanPreset[] = [
   {
     id: 1,
-    nameKey: 'bladeType.type1.name', // Đã sửa lại chuẩn key JSON (dùng dấu chấm)
+    nameKey: 'bladeType.type1.name',
     descriptionKey: 'bladeType.type1.description',
     airflow: 105,
     staticPressure: 2450,

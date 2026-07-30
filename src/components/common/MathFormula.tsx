@@ -1,12 +1,12 @@
-// src/components/common/MathFormula.tsx
 import React, { useEffect, useRef } from 'react';
 import katex from 'katex';
+import 'katex/dist/katex.min.css';
 
 interface MathFormulaProps {
     formula: string;
-    displayMode?: boolean; // true: hiển thị dòng riêng (block), false: nằm chung trên dòng chữ (inline)
-    fontSize?: string; // Chỉnh kích thước chữ (mặc định '1.25rem')
-    align?: 'left' | 'center' | 'right'; // Căn lề cho công thức
+    displayMode?: boolean; // true: block, false: inline
+    fontSize?: string; // Default '1.25rem'
+    align?: 'left' | 'center' | 'right';
 }
 
 export const MathFormula: React.FC<MathFormulaProps> = ({
@@ -18,26 +18,39 @@ export const MathFormula: React.FC<MathFormulaProps> = ({
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (containerRef.current) {
-            katex.render(formula, containerRef.current, {
+        const container = containerRef.current;
+        if (!container) return;
+
+        try {
+            // Rendering KaTeX formulas
+            katex.render(formula, container, {
                 displayMode,
-                throwOnError: false, // Tránh crash ứng dụng nếu lỡ viết sai cú pháp LaTeX
+                throwOnError: false, // Avoid app crashes if you write LaTeX syntax incorrectly
             });
+        } catch (error: unknown) {
+            console.error('KaTeX rendering error:', error);
         }
+
+        // Cleanup function: Remove DOM content when unmounting or re-rendering.
+        return () => {
+            if (container) {
+                container.innerHTML = '';
+            }
+        };
     }, [formula, displayMode]);
 
-    // Xác định class căn lề
-    const alignClass =
+    // Alignment handling with Flexbox is more accurate than CSS text-align for KaTeX blocks
+    const justifyClass =
         align === 'left'
-            ? 'text-start'
+            ? 'justify-content-start'
             : align === 'right'
-              ? 'text-end'
-              : 'text-center';
+              ? 'justify-content-end'
+              : 'justify-content-center';
 
     return (
         <div
             ref={containerRef}
-            className={`my-2 overflow-auto ${alignClass}`}
+            className={`d-flex align-items-center ${justifyClass} my-2 overflow-auto`}
             style={{ fontSize }}
         />
     );

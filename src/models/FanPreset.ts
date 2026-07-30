@@ -1,4 +1,3 @@
-// src/models/FanPreset.ts
 export interface FanPreset {
   id: number;
   nameKey: string;

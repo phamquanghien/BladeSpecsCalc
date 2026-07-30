@@ -9,7 +9,7 @@
   },
   "nav": {
     "step1": "1. Fan Models & Config",
-    "step2": "2. Input Parameters",
+    "step2": "2. Dimensions & Dynamics",
     "step3": "3. Dimensions & Dynamics",
     "step4": "4. Cross-sections & Chart",
     "step5": "5. Final Report"
@@ -46,5 +46,24 @@
       "name": "Model Fan Type 2K56-N°30",
       "description": "Maximum airflow 92 m³/s, low rotational speed 750 rpm."
     }
+  },
+  "step2": {
+    "title": "Select δ, D<sub>f</sub>/D<sub>a</sub> Ratio and Calculation of Total Fan Impeller Area",
+    "subtitle": "Look up reference charts and set input technical parameters",
+    "sectionTitle1": "Parameters from Step 1:",    
+    "fig1Title": "Figure 1: Common fan configurations",
+    "fig2Title": "Figure 2: Chart for selecting δ and D<sub>f</sub>/D<sub>a</sub> ratio",
+    "fig3Title": "Figure 3: Relationship between δ, σ, D<sub>f</sub>/D<sub>a</sub> and efficiency η",
+    "sectionTitle2": "Select δ and D<sub>f</sub>/D<sub>a</sub> ratio",
+    "labels": {
+      "delta": "δ value",
+      "dfDaRatio": "Diameter ratio (D<sub>f</sub>/D<sub>a</sub>)"
+    },
+    "confirmBtnText": "Select δ and D<sub>f</sub>/D<sub>a</sub> ratio",
+    "confirmedBtn": "Values Confirmed",
+    "sectionTitle3": "Determination of Impeller Tip and Hub Diameters (D<sub>f</sub>, D<sub>a</sub>)",
+    "tipDiameter": "Impeller Tip Diameter (D<sub>f</sub>)",
+    "hubDiameter": "Impeller Hub Diameter D<sub>a</sub>",
+    "sectionTitle4": "Determine Total Impeller Area (A<sub>m</sub>)"
   }
 }
