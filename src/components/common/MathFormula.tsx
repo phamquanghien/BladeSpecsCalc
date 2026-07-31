@@ -4,16 +4,16 @@ import 'katex/dist/katex.min.css';
 
 interface MathFormulaProps {
     formula: string;
-    displayMode?: boolean; // true: block, false: inline
-    fontSize?: string; // Default '1.25rem'
-    align?: 'left' | 'center' | 'right';
+    displayMode?: boolean;
+    fontSize?: string; // Default '1.1rem'
+    align?: 'left' | 'center' | 'right' | 'responsive'; // Thêm option 'responsive'
 }
 
 export const MathFormula: React.FC<MathFormulaProps> = ({
     formula,
-    displayMode = true,
+    displayMode = false,
     fontSize = '1.25rem',
-    align = 'center',
+    align = 'responsive',
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -39,19 +39,20 @@ export const MathFormula: React.FC<MathFormulaProps> = ({
         };
     }, [formula, displayMode]);
 
-    // Alignment handling with Flexbox is more accurate than CSS text-align for KaTeX blocks
-    const justifyClass =
-        align === 'left'
-            ? 'justify-content-start'
-            : align === 'right'
-              ? 'justify-content-end'
-              : 'justify-content-center';
-
+    const getAlignClass = () => {
+        if (align === 'responsive') return 'text-start text-md-center';
+        if (align === 'center') return 'text-center';
+        if (align === 'right') return 'text-end';
+        return 'text-start';
+    };
     return (
         <div
             ref={containerRef}
-            className={`d-flex align-items-center ${justifyClass} my-2 overflow-auto`}
-            style={{ fontSize }}
+            className={`my-1 overflow-x-auto overflow-y-hidden ${getAlignClass()}`}
+            style={{
+                fontSize,
+                whiteSpace: 'nowrap',
+            }}
         />
     );
 };
