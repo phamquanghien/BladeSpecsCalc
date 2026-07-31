@@ -8,20 +8,18 @@ import type { FanPreset } from '../../models/FanPreset';
 export const Step1Presets: React.FC = () => {
     const { t } = useTranslation();
 
-    // Get data and functions from the Zustand store.
-    const {
-        step1Input,
-        step1Output,
-        setStep1Input,
-        updateStep1Field,
-        computeStep1,
-    } = useFanStore();
+    // Lấy dữ liệu và hàm từ Zustand store
+    const { step1Input, step1Output, setStep1Input, updateStep1Field } =
+        useFanStore();
 
-    // Capture input change events
+    // Bắt sự kiện thay đổi input
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const name = e.target.name as keyof FanPreset;
-        const value = parseFloat(e.target.value) || 0;
-        updateStep1Field(name, value);
+        const val = e.target.value;
+
+        // Tránh lỗi gõ số 0 hoặc xóa trống input làm gõ số tiếp theo bị đè/lỗi
+        const numericValue = val === '' ? 0 : parseFloat(val);
+        updateStep1Field(name, numericValue);
     };
 
     return (
@@ -145,7 +143,7 @@ export const Step1Presets: React.FC = () => {
                                 type="number"
                                 className="form-control fw-bold"
                                 name="airflow"
-                                value={step1Input.airflow}
+                                value={step1Input.airflow || ''}
                                 onChange={handleInputChange}
                                 step="0.1"
                             />
@@ -167,7 +165,7 @@ export const Step1Presets: React.FC = () => {
                                 type="number"
                                 className="form-control fw-bold"
                                 name="staticPressure"
-                                value={step1Input.staticPressure}
+                                value={step1Input.staticPressure || ''}
                                 onChange={handleInputChange}
                             />
                             <span className="input-group-text bg-light text-muted">
@@ -188,7 +186,7 @@ export const Step1Presets: React.FC = () => {
                                 type="number"
                                 className="form-control fw-bold"
                                 name="rotationSpeed"
-                                value={step1Input.rotationSpeed}
+                                value={step1Input.rotationSpeed || ''}
                                 onChange={handleInputChange}
                             />
                             <span className="input-group-text bg-light text-muted">
@@ -209,7 +207,7 @@ export const Step1Presets: React.FC = () => {
                                 type="number"
                                 className="form-control fw-bold"
                                 name="gasDensity"
-                                value={step1Input.gasDensity}
+                                value={step1Input.gasDensity || ''}
                                 onChange={handleInputChange}
                                 step="0.01"
                             />
@@ -231,7 +229,7 @@ export const Step1Presets: React.FC = () => {
                                 type="number"
                                 className="form-control fw-bold"
                                 name="bladeRingCount"
-                                value={step1Input.bladeRingCount || 1}
+                                value={step1Input.bladeRingCount || ''}
                                 onChange={handleInputChange}
                             />
                             <span className="input-group-text bg-light text-muted">
@@ -241,32 +239,22 @@ export const Step1Presets: React.FC = () => {
                     </div>
                 </div>
 
-                {/* ACTION BUTTON & RESULT DISPLAY */}
-                <div className="border-top pt-3 d-flex flex-column align-items-start gap-3">
-                    <button
-                        className="btn btn-primary fw-bold px-4 shadow-sm"
-                        onClick={computeStep1}
-                    >
-                        <i className="bi bi-calculator-fill me-2"></i>
-                        {t('step1.calcSigmaBtn')}
-                    </button>
+                {/* RESULT DISPLAY (Đã bỏ nút bấm thủ công, tự động cập nhật ngay khi sửa input) */}
+                {step1Output !== null && (
+                    <div className="alert alert-success w-100 mb-0 border-0 shadow-sm rounded-3 p-3 transition-all">
+                        <small className="fw-bold text-success d-block mb-2">
+                            <i className="bi bi-check-circle-fill me-1"></i>
+                            {t('step1.sigmaResultTitle')}
+                        </small>
 
-                    {step1Output !== null && (
-                        <div className="alert alert-success w-100 mb-0 border-0 shadow-sm rounded-3 p-3">
-                            <small className="fw-bold text-success d-block mb-2">
-                                <i className="bi bi-check-circle-fill me-1"></i>
-                                {t('step1.sigmaResultTitle')}
-                            </small>
-
-                            <div className="bg-white p-3 rounded border border-success-subtle overflow-x-auto">
-                                <MathFormula
-                                    fontSize="1.1rem"
-                                    formula={`\\sigma = n * \\frac{\\sqrt{Q}}{\\left(2 \\frac{\\Delta p}{\\rho}\\right)^{3/4}} * 2\\sqrt{\\pi} = \\left(\\frac{${step1Input.rotationSpeed}}{60}\\right) * \\frac{\\sqrt{${step1Input.airflow}}}{\\left(2 * \\frac{${step1Input.staticPressure}}{${step1Input.gasDensity}}\\right)^{3/4}} * 2\\sqrt{\\pi} = \\mathbf{${step1Output.sigma}} \\quad [/]`}
-                                />
-                            </div>
+                        <div className="bg-white p-3 rounded border border-success-subtle overflow-x-auto">
+                            <MathFormula
+                                fontSize="1.1rem"
+                                formula={`\\sigma = n * \\frac{\\sqrt{Q}}{\\left(2 \\frac{\\Delta p}{\\rho}\\right)^{3/4}} * 2\\sqrt{\\pi} = \\left(\\frac{${step1Input.rotationSpeed}}{60}\\right) * \\frac{\\sqrt{${step1Input.airflow}}}{\\left(2 * \\frac{${step1Input.staticPressure}}{${step1Input.gasDensity}}\\right)^{3/4}} * 2\\sqrt{\\pi} = \\mathbf{${step1Output.sigma}} \\quad [/]`}
+                            />
                         </div>
-                    )}
-                </div>
+                    </div>
+                )}
             </div>
         </div>
     );

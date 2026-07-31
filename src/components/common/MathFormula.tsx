@@ -6,7 +6,7 @@ interface MathFormulaProps {
     formula: string;
     displayMode?: boolean;
     fontSize?: string; // Default '1.1rem'
-    align?: 'left' | 'center' | 'right' | 'responsive'; // Thêm option 'responsive'
+    align?: 'left' | 'center' | 'right' | 'responsive';
 }
 
 export const MathFormula: React.FC<MathFormulaProps> = ({
@@ -22,21 +22,14 @@ export const MathFormula: React.FC<MathFormulaProps> = ({
         if (!container) return;
 
         try {
-            // Rendering KaTeX formulas
+            // KaTeX sẽ tự động ghi đè nội dung cũ mà không cần xóa innerHTML thủ công
             katex.render(formula, container, {
                 displayMode,
-                throwOnError: false, // Avoid app crashes if you write LaTeX syntax incorrectly
+                throwOnError: false, // Bỏ qua crash khi viết sai cú pháp LaTeX
             });
         } catch (error: unknown) {
             console.error('KaTeX rendering error:', error);
         }
-
-        // Cleanup function: Remove DOM content when unmounting or re-rendering.
-        return () => {
-            if (container) {
-                container.innerHTML = '';
-            }
-        };
     }, [formula, displayMode]);
 
     const getAlignClass = () => {
@@ -45,6 +38,7 @@ export const MathFormula: React.FC<MathFormulaProps> = ({
         if (align === 'right') return 'text-end';
         return 'text-start';
     };
+
     return (
         <div
             ref={containerRef}
