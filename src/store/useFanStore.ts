@@ -3,6 +3,7 @@ import type { FanPreset } from '../models/FanPreset';
 import { calculateStep1, type Step1Output } from '../math/step1';
 import { fanPresets } from '../config/fanPresets';
 import type { Step2Input } from '../models/Step2';
+import { calculateStep2, type Step2Output } from '../math/step2';
 
 interface FanStoreState {
   // Input data for Step1
@@ -12,6 +13,7 @@ interface FanStoreState {
 
   // Step 2 Input
   step2Input: Step2Input;
+  step2Output: Step2Output | null;
 
   // Actions
   setStep1Input: (input: FanPreset) => void;
@@ -28,12 +30,28 @@ const computeStep1Helper = (input: FanPreset): Step1Output | null => {
     return null;
   }
 };
+const computeStep2Helper = (step1Input: FanPreset, step2Input: Step2Input): Step2Output | null => {
+  try { 
+    return calculateStep2(step1Input, step2Input);
+  }
+  catch { 
+    return null;
+  }
+};
 
 const initialPreset = fanPresets[0];
+const initialStep2Input: Step2Input = {
+  delta: 1.65,
+  dfDaRatio: 0.56,
+  // etaI: 1.0,
+  // mu: 1.0,
+};
 
 export const useFanStore = create<FanStoreState>((set, get) => ({
   step1Input: initialPreset,
   step1Output: computeStep1Helper(initialPreset), // Tính toán luôn giá trị ban đầu
+  step2Input: initialStep2Input,
+  step2Output: computeStep2Helper(initialPreset, initialStep2Input),
 
   // Khi chọn một Preset mới -> Cập nhật input và tự động tính toán lại ngay
   setStep1Input: (input) => {
@@ -56,18 +74,12 @@ export const useFanStore = create<FanStoreState>((set, get) => ({
     });
   },
   // --- STEP 2 STATE ---
-  step2Input: {
-    delta: 1.65,      // Mặc định 1.65
-    dfDaRatio: 0.56,  // Mặc định 0.56
-    etaI: 1.0,
-    mu: 1.0,
-  },
   updateStep2Field: (fieldName, value) => {
+    const updatedStep2 = { ...get().step2Input, [fieldName]: value };
+    const { step1Input } = get();
     set({
-      step2Input: {
-        ...get().step2Input,
-        [fieldName]: value,
-      },
+      step2Input: updatedStep2,
+      step2Output: computeStep2Helper(step1Input, updatedStep2),
     });
   },
 }));

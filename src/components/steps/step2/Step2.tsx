@@ -1,5 +1,6 @@
 import React from 'react';
 import { Step2Inputs } from './Step2Inputs';
+import { Step2MathResults } from './Step2MathResults';
 
 export const Step2: React.FC = () => {
     return (
@@ -8,6 +9,7 @@ export const Step2: React.FC = () => {
             <Step2Inputs />
 
             {/* Các phần tiếp theo (Tính toán công thức Da, Df, Am, Omega, Y_lt, P_lt...) sẽ được gắn ở đây */}
+            <Step2MathResults />
         </div>
     );
 };

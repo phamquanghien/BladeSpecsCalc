@@ -249,7 +249,7 @@ export const Step1Presets: React.FC = () => {
 
                         <div className="bg-white p-3 rounded border border-success-subtle overflow-x-auto">
                             <MathFormula
-                                fontSize="1.1rem"
+                                fontSize="1.5rem"
                                 formula={`\\sigma = n * \\frac{\\sqrt{Q}}{\\left(2 \\frac{\\Delta p}{\\rho}\\right)^{3/4}} * 2\\sqrt{\\pi} = \\left(\\frac{${step1Input.rotationSpeed}}{60}\\right) * \\frac{\\sqrt{${step1Input.airflow}}}{\\left(2 * \\frac{${step1Input.staticPressure}}{${step1Input.gasDensity}}\\right)^{3/4}} * 2\\sqrt{\\pi} = \\mathbf{${step1Output.sigma}} \\quad [/]`}
                             />
                         </div>
