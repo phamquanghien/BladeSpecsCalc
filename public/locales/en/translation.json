@@ -52,7 +52,7 @@
     "subtitle": "Look up reference charts and set input technical parameters",
     "sectionTitle1": "Parameters from Step 1:",    
     "fig1Title": "Figure 1: Common fan configurations",
-    "fig2Title": "Figure 2: Chart for selecting δ and D<sub>f</sub>/D<sub>a</sub> ratio",
+    "fig2Title": "Diagram for selecting δ and the D<sub>f</sub>/D<sub>a</sub> ratio for types 2, 3, and 4; c and d for type 1",
     "fig3Title": "Figure 3: Relationship between δ, σ, D<sub>f</sub>/D<sub>a</sub> and efficiency η",
     "sectionTitle2": "Select δ and D<sub>f</sub>/D<sub>a</sub> ratio",
     "labels": {

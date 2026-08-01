@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import type { FanPreset } from '../models/FanPreset';
 import { calculateStep1, type Step1Output } from '../math/step1';
 import { fanPresets } from '../config/fanPresets';
+import type { Step2Input } from '../models/Step2';
 
 interface FanStoreState {
   // Input data for Step1
@@ -9,10 +10,13 @@ interface FanStoreState {
   // Calculation results for Step 1
   step1Output: Step1Output | null;
 
+  // Step 2 Input
+  step2Input: Step2Input;
+
   // Actions
   setStep1Input: (input: FanPreset) => void;
   updateStep1Field: (fieldName: keyof FanPreset, value: number) => void;
-  // computeStep1: () => void;
+  updateStep2Field: (fieldName: keyof Step2Input, value: number) => void;
 }
 
 // Helper function để tính toán nhanh
@@ -49,6 +53,21 @@ export const useFanStore = create<FanStoreState>((set, get) => ({
     set({
       step1Input: updatedInput,
       step1Output: computeStep1Helper(updatedInput),
+    });
+  },
+  // --- STEP 2 STATE ---
+  step2Input: {
+    delta: 1.65,      // Mặc định 1.65
+    dfDaRatio: 0.56,  // Mặc định 0.56
+    etaI: 1.0,
+    mu: 1.0,
+  },
+  updateStep2Field: (fieldName, value) => {
+    set({
+      step2Input: {
+        ...get().step2Input,
+        [fieldName]: value,
+      },
     });
   },
 }));
