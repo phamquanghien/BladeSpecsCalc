@@ -65,6 +65,8 @@
     "tipDiameter": "Đường kính đỉnh bánh công tác (D<sub>a</sub>)",
     "hubDiameter": "Đường kính chân bánh công tác (D<sub>f</sub>)",
     "sectionTitle4":"Xác định diện tích toàn phần của bánh công tác quat (A<sub>m</sub>)",
-    "resultsTitle": "Kết quả tính toán"
+    "resultsTitle": "Kết quả tính toán",
+    "am": "Diện tích toàn phần của bánh công tác quạt (A<sub>m</sub>)",
+    "omega": "Omega"
   }
 }

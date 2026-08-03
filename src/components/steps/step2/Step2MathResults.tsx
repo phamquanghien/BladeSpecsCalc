@@ -13,7 +13,7 @@ export const Step2MathResults: React.FC = () => {
 
     const { airflow: Q, staticPressure: deltaP, gasDensity: rho } = step1Input;
     const { delta, dfDaRatio } = step2Input;
-    const { da, df } = step2Output;
+    const { da, df, am, omega } = step2Output;
 
     return (
         <div className="card border-0 shadow-sm p-4 mt-4">
@@ -55,7 +55,45 @@ export const Step2MathResults: React.FC = () => {
                         <div className="bg-white p-2 rounded border overflow-x-auto mb-2">
                             <MathFormula
                                 fontSize="1.5rem"
-                                formula={`D_f = \\left(\\frac{D_f}{D_a}\\right) \\cdot D_a = ${dfDaRatio} \\cdot ${da} = \\mathbf{${formatNumber(df, decimalPlaces)}} \\quad [m]`}
+                                formula={`D_f = \\left(\\frac{D_f}{D_a}\\right) \\cdot D_a = ${dfDaRatio} \\cdot ${formatNumber(da, decimalPlaces)} = \\mathbf{${formatNumber(df, decimalPlaces)}} \\quad [m]`}
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* 3. Công thức và kết quả Am */}
+                <div className="col-12 col-lg-6">
+                    <div className="p-3 bg-light rounded border border-light-subtle h-100">
+                        <small className="fw-bold text-primary d-block mb-2">
+                            <span
+                                dangerouslySetInnerHTML={{
+                                    __html: t('step2.am'),
+                                }}
+                            />
+                        </small>
+                        <div className="bg-white p-2 rounded border overflow-x-auto mb-2">
+                            <MathFormula
+                                fontSize="1.5rem"
+                                formula={`A_m = \\frac{\\pi}{4} D_a^2 \\left[ 1 - \\left(\\frac{D_f}{D_a}\\right)^2 \\right] = A_m = \\frac{\\pi}{4} \\cdot (${formatNumber(da, decimalPlaces)})^2 \\cdot \\left[ 1 - (${dfDaRatio})^2 \\right] = \\mathbf{${formatNumber(am, decimalPlaces)}} \\quad [m^2]`}
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* 4. Công thức và kết quả Omega */}
+                <div className="col-12 col-lg-6">
+                    <div className="p-3 bg-light rounded border border-light-subtle h-100">
+                        <small className="fw-bold text-primary d-block mb-2">
+                            <span
+                                dangerouslySetInnerHTML={{
+                                    __html: t('step2.omega'),
+                                }}
+                            />
+                        </small>
+                        <div className="bg-white p-2 rounded border overflow-x-auto mb-2">
+                            <MathFormula
+                                fontSize="1.5rem"
+                                formula={`\\Omega = \\frac{1}{\\delta^2 \\sqrt{1 - \\left(\\frac{D_f}{D_a}\\right)^2}} = \\Omega = \\frac{1}{${delta}^2 \\cdot \\sqrt{1 - (${dfDaRatio})^2}} = \\mathbf{${formatNumber(omega, decimalPlaces)}} \\quad [/]`}
                             />
                         </div>
                     </div>

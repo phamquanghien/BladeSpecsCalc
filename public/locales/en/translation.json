@@ -65,6 +65,8 @@
     "tipDiameter": "Impeller Tip Diameter (D<sub>a</sub>)",
     "hubDiameter": "Impeller Hub Diameter D<sub>f</sub>",
     "sectionTitle4": "Determine Total Impeller Area (A<sub>m</sub>)",
-    "resultsTitle": "Calculation results"
+    "resultsTitle": "Calculation results",
+    "am": "Total surface area of the fan impeller (A<sub>m</sub>)",
+    "omega": "Omega"
   }
 }
