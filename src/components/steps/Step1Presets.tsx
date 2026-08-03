@@ -4,13 +4,20 @@ import { fanPresets } from '../../config/fanPresets';
 import { MathFormula } from '../common/MathFormula';
 import { useFanStore } from '../../store/useFanStore';
 import type { FanPreset } from '../../models/FanPreset';
+import { formatNumber } from '../../utils/format';
 
 export const Step1Presets: React.FC = () => {
     const { t } = useTranslation();
 
     // Lấy dữ liệu và hàm từ Zustand store
-    const { step1Input, step1Output, setStep1Input, updateStep1Field } =
-        useFanStore();
+    const {
+        step1Input,
+        step1Output,
+        setStep1Input,
+        updateStep1Field,
+        decimalPlaces,
+        setDecimalPlaces,
+    } = useFanStore();
 
     // Bắt sự kiện thay đổi input
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -130,6 +137,34 @@ export const Step1Presets: React.FC = () => {
                     <i className="bi bi-sliders me-2 text-primary"></i>
                     {t('step1.customTitle')}
                 </h6>
+                {/* Ô nhập số chữ số thập phân */}
+                <div className="d-flex align-items-center gap-2">
+                    <label
+                        htmlFor="decimalInput"
+                        className="form-label small fw-bold text-muted mb-0 text-nowrap"
+                    >
+                        Số chữ số thập phân:
+                    </label>
+                    <input
+                        id="decimalInput"
+                        type="number"
+                        className="form-control form-control-sm fw-bold text-primary text-center border-primary-subtle"
+                        style={{ width: '65px' }}
+                        min={0}
+                        max={10}
+                        value={decimalPlaces}
+                        onChange={(e) => {
+                            const val = parseInt(e.target.value, 10);
+                            if (isNaN(val)) {
+                                setDecimalPlaces(0);
+                            } else {
+                                // Khống chế người dùng chỉ nhập từ 0 đến 10
+                                const clamped = Math.min(Math.max(val, 0), 10);
+                                setDecimalPlaces(clamped);
+                            }
+                        }}
+                    />
+                </div>
                 <div className="row g-3 mb-4">
                     <div className="col-12 col-sm-6 col-lg-4 col-xl-2">
                         <label
@@ -250,7 +285,7 @@ export const Step1Presets: React.FC = () => {
                         <div className="bg-white p-3 rounded border border-success-subtle overflow-x-auto">
                             <MathFormula
                                 fontSize="1.5rem"
-                                formula={`\\sigma = n * \\frac{\\sqrt{Q}}{\\left(2 \\frac{\\Delta p}{\\rho}\\right)^{3/4}} * 2\\sqrt{\\pi} = \\left(\\frac{${step1Input.rotationSpeed}}{60}\\right) * \\frac{\\sqrt{${step1Input.airflow}}}{\\left(2 * \\frac{${step1Input.staticPressure}}{${step1Input.gasDensity}}\\right)^{3/4}} * 2\\sqrt{\\pi} = \\mathbf{${step1Output.sigma}} \\quad [/]`}
+                                formula={`\\sigma = n * \\frac{\\sqrt{Q}}{\\left(2 \\frac{\\Delta p}{\\rho}\\right)^{3/4}} * 2\\sqrt{\\pi} = \\left(\\frac{${step1Input.rotationSpeed}}{60}\\right) * \\frac{\\sqrt{${step1Input.airflow}}}{\\left(2 * \\frac{${step1Input.staticPressure}}{${step1Input.gasDensity}}\\right)^{3/4}} * 2\\sqrt{\\pi} = \\mathbf{${formatNumber(step1Output.sigma, decimalPlaces)}} \\quad [/]`}
                             />
                         </div>
                     </div>

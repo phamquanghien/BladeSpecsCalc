@@ -33,6 +33,6 @@ export const calculateStep1 = (input: Step1Input): Step1Output => {
   const sigma = n_rps * (numerator / denominator) * 2 * Math.sqrt(Math.PI);
 
   return {
-    sigma: Number(sigma.toFixed(4)),
+    sigma: Number(sigma),
   };
 };

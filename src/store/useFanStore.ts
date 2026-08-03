@@ -6,6 +6,9 @@ import type { Step2Input } from '../models/Step2';
 import { calculateStep2, type Step2Output } from '../math/step2';
 
 interface FanStoreState {
+  // Cấu hình hiển thị UI (dùng chung cho toàn bộ ứng dụng từ Bước 1 -> Bước N)
+  decimalPlaces: number;
+  setDecimalPlaces: (places: number) => void;
   // Input data for Step1
   step1Input: FanPreset;
   // Calculation results for Step 1
@@ -48,6 +51,10 @@ const initialStep2Input: Step2Input = {
 };
 
 export const useFanStore = create<FanStoreState>((set, get) => ({
+  // Mặc định là 3 chữ số thập phân
+  decimalPlaces: 3,
+  setDecimalPlaces: (places) => set({ decimalPlaces: places }),
+  
   step1Input: initialPreset,
   step1Output: computeStep1Helper(initialPreset), // Tính toán luôn giá trị ban đầu
   step2Input: initialStep2Input,

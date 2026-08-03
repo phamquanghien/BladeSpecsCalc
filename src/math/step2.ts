@@ -25,8 +25,5 @@ export const calculateStep2 = (
   // 2. Tính Df = (Df/Da) * Da
   const df = dfDaRatio * da;
 
-  return {
-    da: Number(da.toFixed(4)), // Làm tròn 4 chữ số thập phân
-    df: Number(df.toFixed(4)),
-  };
+  return { da, df };
 };
