@@ -17,10 +17,7 @@ export const Step2MathResults: React.FC = () => {
         <div className="card border-0 shadow-sm p-4 mt-4">
             <h6 className="fw-bold mb-3 text-dark border-bottom pb-2">
                 <i className="bi bi-calculator me-2 text-success"></i>
-                {t(
-                    'step2.resultsTitle',
-                    'Kết quả tính toán đường kính Da và Df',
-                )}
+                {t('step2.resultsTitle')}
             </h6>
 
             <div className="row g-3">
@@ -28,7 +25,11 @@ export const Step2MathResults: React.FC = () => {
                 <div className="col-12 col-lg-6">
                     <div className="p-3 bg-light rounded border border-light-subtle h-100">
                         <small className="fw-bold text-primary d-block mb-2">
-                            1. Đường kính đỉnh bánh công tác ($D_a$)
+                            <span
+                                dangerouslySetInnerHTML={{
+                                    __html: t('step2.tipDiameter'),
+                                }}
+                            />
                         </small>
                         <div className="bg-white p-2 rounded border overflow-x-auto mb-2">
                             <MathFormula
@@ -43,7 +44,11 @@ export const Step2MathResults: React.FC = () => {
                 <div className="col-12 col-lg-6">
                     <div className="p-3 bg-light rounded border border-light-subtle h-100">
                         <small className="fw-bold text-primary d-block mb-2">
-                            2. Đường kính chân bánh công tác ($D_f$)
+                            <span
+                                dangerouslySetInnerHTML={{
+                                    __html: t('step2.hubDiameter'),
+                                }}
+                            />
                         </small>
                         <div className="bg-white p-2 rounded border overflow-x-auto mb-2">
                             <MathFormula

@@ -62,8 +62,9 @@
     "confirmBtnText": "Xác nhận δ và tỷ số D<sub>f</sub>/D<sub>a</sub>",
     "confirmedBtn": "Đã xác nhận giá trị",
     "sectionTitle3":"Xác định đường kính đỉnh và chân bánh công tác (D<sub>f</sub>, D<sub>a</sub>)",
-    "tipDiameter": "Đường kính đỉnh bánh công tác (D<sub>f</sub>)",
-    "hubDiameter": "Đường kính chân bánh công tác (D<sub>a</sub>)",
-    "sectionTitle4":"Xác định diện tích toàn phần của bánh công tác quat (A<sub>m</sub>)"
+    "tipDiameter": "Đường kính đỉnh bánh công tác (D<sub>a</sub>)",
+    "hubDiameter": "Đường kính chân bánh công tác (D<sub>f</sub>)",
+    "sectionTitle4":"Xác định diện tích toàn phần của bánh công tác quat (A<sub>m</sub>)",
+    "resultsTitle": "Kết quả tính toán"
   }
 }
