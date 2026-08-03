@@ -67,6 +67,8 @@
     "sectionTitle4": "Determine Total Impeller Area (A<sub>m</sub>)",
     "resultsTitle": "Calculation results",
     "am": "Total surface area of the fan impeller (A<sub>m</sub>)",
-    "omega": "Omega"
+    "omega": "Omega",
+    "theoreticalSpecificWork": "Theoretical specific work (Y<sub>lt,∞</sub>) for an infinite number of blades",
+    "theoreticalPressure": "Theoretical pressure (Δp<sub>lt,∞</sub>) for an infinite number of blades"
   }
 }

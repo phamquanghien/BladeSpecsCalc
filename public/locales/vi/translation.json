@@ -67,6 +67,8 @@
     "sectionTitle4":"Xác định diện tích toàn phần của bánh công tác quat (A<sub>m</sub>)",
     "resultsTitle": "Kết quả tính toán",
     "am": "Diện tích toàn phần của bánh công tác quạt (A<sub>m</sub>)",
-    "omega": "Omega"
+    "omega": "Omega",
+    "theoreticalSpecificWork": "Công riêng lý thuyết (Y<sub>lt,∞</sub>) khi số cánh là vô hạn",
+    "theoreticalPressure": "Áp suất lý thuyết (Δp<sub>lt,∞</sub>) khi số cánh là vô hạn"
   }
 }

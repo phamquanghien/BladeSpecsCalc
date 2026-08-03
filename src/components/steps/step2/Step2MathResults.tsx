@@ -93,7 +93,44 @@ export const Step2MathResults: React.FC = () => {
                         <div className="bg-white p-2 rounded border overflow-x-auto mb-2">
                             <MathFormula
                                 fontSize="1.5rem"
-                                formula={`\\Omega = \\frac{1}{\\delta^2 \\sqrt{1 - \\left(\\frac{D_f}{D_a}\\right)^2}} = \\Omega = \\frac{1}{${delta}^2 \\cdot \\sqrt{1 - (${dfDaRatio})^2}} = \\mathbf{${formatNumber(omega, decimalPlaces)}} \\quad [/]`}
+                                formula={`\\Omega = \\frac{1}{\\delta^2 \\sqrt{1 - \\left(\\frac{D_f}{D_a}\\right)^2}} = \\frac{1}{${delta}^2 \\cdot \\sqrt{1 - (${dfDaRatio})^2}} = \\mathbf{${formatNumber(omega, decimalPlaces)}} \\quad [/]`}
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Công thức 5: Y_lt,infinity */}
+                <div className="col-12 col-lg-6">
+                    <div className="p-3 bg-light rounded border border-light-subtle h-100">
+                        <small className="fw-bold text-primary d-block mb-2">
+                            <span
+                                dangerouslySetInnerHTML={{
+                                    __html: t('step2.theoreticalSpecificWork'),
+                                }}
+                            />
+                        </small>
+                        <div className="bg-white p-2 rounded border overflow-x-auto mb-2">
+                            <MathFormula
+                                fontSize="1.5rem"
+                                formula={`Y_{lt,\\infty} = \\frac{Y}{\\eta_i\\mu\\Omega} = \\frac{\\Delta p / \\rho}{\\eta_i\\mu\\Omega}`}
+                            />
+                        </div>
+                    </div>
+                </div>
+                {/* Công thức 6: $\Delta p$_lt,infinity */}
+                <div className="col-12 col-lg-6">
+                    <div className="p-3 bg-light rounded border border-light-subtle h-100">
+                        <small className="fw-bold text-primary d-block mb-2">
+                            <span
+                                dangerouslySetInnerHTML={{
+                                    __html: t('step2.theoreticalPressure'),
+                                }}
+                            />
+                        </small>
+                        <div className="bg-white p-2 rounded border overflow-x-auto mb-2">
+                            <MathFormula
+                                fontSize="1.5rem"
+                                formula={`\\Delta p_{lt,\\infty} = \\frac{\\Delta p}{\\eta_i\\mu\\Omega} = \\frac{\\Delta p}{\\eta_i\\mu\\Omega}`}
                             />
                         </div>
                     </div>
