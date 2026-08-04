@@ -12,8 +12,8 @@ export const Step2MathResults: React.FC = () => {
     if (!step2Output) return null;
 
     const { airflow: Q, staticPressure: deltaP, gasDensity: rho } = step1Input;
-    const { delta, dfDaRatio } = step2Input;
-    const { da, df, am, omega } = step2Output;
+    const { delta, dfDaRatio, etaI, mu } = step2Input;
+    const { da, df, am, omega, yLtInfinity, pLtInfinity } = step2Output;
 
     return (
         <div className="card border-0 shadow-sm p-4 mt-4">
@@ -36,7 +36,7 @@ export const Step2MathResults: React.FC = () => {
                         <div className="bg-white p-2 rounded border overflow-x-auto mb-2">
                             <MathFormula
                                 fontSize="1.5rem"
-                                formula={`D_a = \\delta \\frac{\\sqrt{Q}}{\\left(2 \\frac{\\Delta p}{\\rho}\\right)^{1/4}} \\frac{2}{\\sqrt{\\pi}} = ${delta} \\cdot \\frac{\\sqrt{${Q}}}{\\left(2 \\cdot \\frac{${deltaP}}{${rho}}\\right)^{1/4}} \\cdot \\frac{2}{\\sqrt{\\pi}} = \\mathbf{${formatNumber(da, decimalPlaces)}} \\quad [m]`}
+                                formula={`D_a = \\delta * \\frac{\\sqrt{Q}}{\\left(2 \\frac{\\Delta p}{\\rho}\\right)^{1/4}} * \\frac{2}{\\sqrt{\\pi}} = ${delta} * \\frac{\\sqrt{${Q}}}{\\left(2 * \\frac{${deltaP}}{${rho}}\\right)^{1/4}} * \\frac{2}{\\sqrt{\\pi}} = \\mathbf{${formatNumber(da, decimalPlaces)}} \\quad [m]`}
                             />
                         </div>
                     </div>
@@ -55,7 +55,7 @@ export const Step2MathResults: React.FC = () => {
                         <div className="bg-white p-2 rounded border overflow-x-auto mb-2">
                             <MathFormula
                                 fontSize="1.5rem"
-                                formula={`D_f = \\left(\\frac{D_f}{D_a}\\right) \\cdot D_a = ${dfDaRatio} \\cdot ${formatNumber(da, decimalPlaces)} = \\mathbf{${formatNumber(df, decimalPlaces)}} \\quad [m]`}
+                                formula={`D_f = \\left(\\frac{D_f}{D_a}\\right) * D_a = ${dfDaRatio} * ${formatNumber(da, decimalPlaces)} = \\mathbf{${formatNumber(df, decimalPlaces)}} \\quad [m]`}
                             />
                         </div>
                     </div>
@@ -74,7 +74,7 @@ export const Step2MathResults: React.FC = () => {
                         <div className="bg-white p-2 rounded border overflow-x-auto mb-2">
                             <MathFormula
                                 fontSize="1.5rem"
-                                formula={`A_m = \\frac{\\pi}{4} D_a^2 \\left[ 1 - \\left(\\frac{D_f}{D_a}\\right)^2 \\right] = A_m = \\frac{\\pi}{4} \\cdot (${formatNumber(da, decimalPlaces)})^2 \\cdot \\left[ 1 - (${dfDaRatio})^2 \\right] = \\mathbf{${formatNumber(am, decimalPlaces)}} \\quad [m^2]`}
+                                formula={`A_m = \\frac{\\pi}{4} D_a^2 \\left[ 1 - \\left(\\frac{D_f}{D_a}\\right)^2 \\right] = \\frac{\\pi}{4} * (${formatNumber(da, decimalPlaces)})^2 * \\left[ 1 - (${dfDaRatio})^2 \\right] = \\mathbf{${formatNumber(am, decimalPlaces)}} \\quad [m^2]`}
                             />
                         </div>
                     </div>
@@ -93,7 +93,7 @@ export const Step2MathResults: React.FC = () => {
                         <div className="bg-white p-2 rounded border overflow-x-auto mb-2">
                             <MathFormula
                                 fontSize="1.5rem"
-                                formula={`\\Omega = \\frac{1}{\\delta^2 \\sqrt{1 - \\left(\\frac{D_f}{D_a}\\right)^2}} = \\frac{1}{${delta}^2 \\cdot \\sqrt{1 - (${dfDaRatio})^2}} = \\mathbf{${formatNumber(omega, decimalPlaces)}} \\quad [/]`}
+                                formula={`\\Omega = 1 - 0.28 * \\left(\\frac{D_f}{D_a}\\right)^2 = 1 - 0.28 * \\left(\\ ${dfDaRatio}\\right)^2  = \\mathbf{${formatNumber(omega, decimalPlaces)}} \\quad [/]`}
                             />
                         </div>
                     </div>
@@ -112,7 +112,7 @@ export const Step2MathResults: React.FC = () => {
                         <div className="bg-white p-2 rounded border overflow-x-auto mb-2">
                             <MathFormula
                                 fontSize="1.5rem"
-                                formula={`Y_{lt,\\infty} = \\frac{Y}{\\eta_i\\mu\\Omega} = \\frac{\\Delta p / \\rho}{\\eta_i\\mu\\Omega}`}
+                                formula={`Y_{lt,\\infty} = \\frac{Y}{\\eta_i\\mu\\Omega} = \\frac{\\Delta p / \\rho}{\\eta_i\\mu\\Omega} = \\frac{\\ ${deltaP} / \\ ${rho}}{\\ ${etaI}\\ *\\ ${mu}\\ *\\ ${formatNumber(omega, decimalPlaces)}} = ${formatNumber(yLtInfinity, decimalPlaces)} [J/Kg]`}
                             />
                         </div>
                     </div>
@@ -130,7 +130,7 @@ export const Step2MathResults: React.FC = () => {
                         <div className="bg-white p-2 rounded border overflow-x-auto mb-2">
                             <MathFormula
                                 fontSize="1.5rem"
-                                formula={`\\Delta p_{lt,\\infty} = \\frac{\\Delta p}{\\eta_i\\mu\\Omega} = \\frac{\\Delta p}{\\eta_i\\mu\\Omega}`}
+                                formula={`\\Delta p_{lt,\\infty} = \\frac{\\Delta p}{\\eta_i\\mu\\Omega} = \\frac{\\ ${deltaP} }{\\ ${etaI}\\ *\\ ${mu}\\ *\\ ${formatNumber(omega, decimalPlaces)}} = ${formatNumber(pLtInfinity, decimalPlaces)} [Pa]`}
                             />
                         </div>
                     </div>

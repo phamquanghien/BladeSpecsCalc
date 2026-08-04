@@ -46,15 +46,15 @@ const initialPreset = fanPresets[0];
 const initialStep2Input: Step2Input = {
   delta: 1.65,
   dfDaRatio: 0.56,
-  // etaI: 1.0,
-  // mu: 1.0,
+  etaI: 0.85,
+  mu: 0.925,
 };
 
 export const useFanStore = create<FanStoreState>((set, get) => ({
   // Mặc định là 3 chữ số thập phân
   decimalPlaces: 3,
   setDecimalPlaces: (places) => set({ decimalPlaces: places }),
-  
+
   step1Input: initialPreset,
   step1Output: computeStep1Helper(initialPreset), // Tính toán luôn giá trị ban đầu
   step2Input: initialStep2Input,
