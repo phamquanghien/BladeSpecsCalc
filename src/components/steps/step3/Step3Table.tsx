@@ -59,7 +59,7 @@ export const Step3Table: React.FC = () => {
                             </td>
                             <td className="sticky-column sticky-column-2">
                                 <MathFormula
-                                    fontSize="0.95rem"
+                                    fontSize="1rem"
                                     formula={`D_i = \\sqrt{D_{i-1}^2 - \\frac{4A_m}{m\\pi}}`}
                                 />
                             </td>
@@ -75,16 +75,16 @@ export const Step3Table: React.FC = () => {
                         </tr>
                         {/* Hàng 2: Thành phần tốc độ cm (Dùng colSpan gộp chung 1 ô) */}
                         <tr>
-                            <td className="fw-bold text-start bg-light">
+                            <td className="sticky-column sticky-column-1 fw-bold text-start">
                                 <span
                                     dangerouslySetInnerHTML={{
                                         __html: t('step3.cmFormula'),
                                     }}
                                 />
                             </td>
-                            <td className="bg-light">
+                            <td className="sticky-column sticky-column-2">
                                 <MathFormula
-                                    fontSize="0.95rem"
+                                    fontSize="1rem"
                                     formula={`c_m = \\frac{Q}{A_m}`}
                                 />
                             </td>
@@ -95,6 +95,30 @@ export const Step3Table: React.FC = () => {
                             >
                                 {formatNumber(cm, decimalPlaces)}
                             </td>
+                        </tr>
+                        {/* Hàng 3: Tốc độ vòng ui */}
+                        <tr>
+                            <td className="sticky-column sticky-column-1 fw-bold text-start">
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: t('step3.uiFormula'),
+                                    }}
+                                />
+                            </td>
+                            <td className="sticky-column sticky-column-2">
+                                <MathFormula
+                                    fontSize="1rem"
+                                    formula={`u_i = n \\cdot \\pi \\cdot D_i`}
+                                />
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-primary"
+                                >
+                                    {formatNumber(sec.ui, decimalPlaces)}
+                                </td>
+                            ))}
                         </tr>
                     </tbody>
                 </table>

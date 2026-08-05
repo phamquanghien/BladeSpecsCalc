@@ -77,6 +77,7 @@
     "column1Title": "Parameter",
     "column2Title": "Formula",
     "diFormula": "Diameter at the i-th Section (D<sub>i</sub>)",
-    "cmFormula": "Meridional velocity component of the fan (C<sub>m</sub>)"
+    "cmFormula": "Meridional velocity component of the fan (C<sub>m</sub>)",
+    "uiFormula": "Circumferential velocity at section i (u<sub>i</sub>)"
   }
 }
