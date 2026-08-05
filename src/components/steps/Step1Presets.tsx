@@ -143,7 +143,7 @@ export const Step1Presets: React.FC = () => {
                         htmlFor="decimalInput"
                         className="form-label small fw-bold text-muted mb-0 text-nowrap"
                     >
-                        Số chữ số thập phân:
+                        {t('step1.numberOfDecimal')}
                     </label>
                     <input
                         id="decimalInput"

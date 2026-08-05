@@ -31,7 +31,8 @@
     "calcSigmaBtn": "Calculate Specific Speed (σ)",
     "sigmaResultTitle": "Specific Speed (σ):",
     "formulaLabel": "Formula:",
-    "dimensionlessUnit": "Dimensionless Unit"
+    "dimensionlessUnit": "Dimensionless Unit",
+    "numberOfDecimal": "Number of displayed decimal places"
   },
   "bladeType": {
     "type1": {

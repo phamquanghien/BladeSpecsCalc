@@ -31,7 +31,8 @@
     "calcSigmaBtn": "Tính hệ số đặc trưng (σ)",
     "sigmaResultTitle": "Hệ số đặc trưng (Specific Speed):",
     "formulaLabel": "Công thức tính:",
-    "dimensionlessUnit": "Đơn vị"
+    "dimensionlessUnit": "Đơn vị",
+    "numberOfDecimal": "Số chữ số thập phân hiển thị"
   },
   "bladeType": {
     "type1": {
