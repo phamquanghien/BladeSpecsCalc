@@ -81,6 +81,10 @@
     "uiFormula": "Circumferential velocity at section i (u<sub>i</sub>)",
     "c2uiFormula": "Circumferential velocity component at section i (C<sub>2u,i</sub>)",
     "c2iFormula": "Absolute velocity component at section i (C<sub>2,i</sub>)",
-    "cinfiFormula": "Absolute velocity component at section i (C<sub>∞,i</sub>"
+    "cinfiFormula": "Absolute velocity component at section i (C<sub>∞,i</sub>",
+    "w1iFormula": "Absolute velocity component at section i (w<sub>1,i</sub>)",
+    "w2iFormula": "Absolute velocity component at section i (w<sub>2,i</sub>)",
+    "wRatioFormula": "Relative velocity ratio (w<sub>2,i</sub>/w<sub>1,i</sub>)",
+    "wInfinityFormula": "Relative velocity component (w<sub>∞,i</sub>)"
   }
 }

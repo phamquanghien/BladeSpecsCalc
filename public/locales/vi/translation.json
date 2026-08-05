@@ -81,6 +81,10 @@
     "uiFormula": "Tốc độ vòng tại các tiết diện đã chia (u<sub>i</sub>)",
     "c2uiFormula": "Thành phần tốc độ hướng quay vòng (C<sub>2u,i</sub>) của quạt",
     "c2iFormula": "Thành phần tốc độ (C<sub>2,i</sub>) của quạt",
-    "cinfiFormula": "Thành phần tốc độ (C<sub>∞,i</sub>) của quạt"
+    "cinfiFormula": "Thành phần tốc độ (C<sub>∞,i</sub>) của quạt",
+    "w1iFormula": "Thành phần tốc độ (w<sub>1,i</sub>)của quạt",
+    "w2iFormula": "Thành phần tốc độ (w<sub>2,i</sub>)của quạt",
+    "wRatioFormula": "Tỷ số tốc độ (w<sub>2,i</sub>/w<sub>1,i</sub>) của quạt",
+    "wInfinityFormula": "Thành phần tốc độ (w<sub>∞,i</sub>) của quạt"
   }
 }
