@@ -49,7 +49,7 @@ export const Step3Table: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr className="text-green">
                             <td className="sticky-column sticky-column-1 fw-bold text-start">
                                 <span
                                     dangerouslySetInnerHTML={{
@@ -91,7 +91,7 @@ export const Step3Table: React.FC = () => {
                             {/* 🟢 Gộp tất cả các cột mặt cắt làm một */}
                             <td
                                 colSpan={sections.length}
-                                className="fw-bold text-success text-center"
+                                className="fw-bold text-primary text-center"
                             >
                                 {formatNumber(cm, decimalPlaces)}
                             </td>
@@ -114,9 +114,33 @@ export const Step3Table: React.FC = () => {
                             {sections.map((sec) => (
                                 <td
                                     key={sec.sectionIndex}
-                                    className="fw-bold text-primary"
+                                    className="fw-bold text-success"
                                 >
                                     {formatNumber(sec.ui, decimalPlaces)}
+                                </td>
+                            ))}
+                        </tr>
+                        {/* Hàng 4: Thành phần tốc độ hướng quay vòng c2ui */}
+                        <tr>
+                            <td className="sticky-column sticky-column-1 fw-bold text-start">
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: t('step3.c2uiFormula'),
+                                    }}
+                                />
+                            </td>
+                            <td className="sticky-column sticky-column-2">
+                                <MathFormula
+                                    fontSize="1rem"
+                                    formula={`c_{2u,i} = \\frac{Y_{lt,\\infty}}{u_i}`}
+                                />
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-primary"
+                                >
+                                    {formatNumber(sec.c2ui, decimalPlaces)}
                                 </td>
                             ))}
                         </tr>
