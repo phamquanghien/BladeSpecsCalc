@@ -4,3 +4,11 @@ export interface Step2Input {
   etaI: number; // Hiệu suất trong màng cánh ηi (mặc định 0.85)
   mu: number;   // Hệ số tính toán μ (mặc định 0.925)
 }
+export interface Step2Output {
+  da: number;
+  df: number;
+  am: number;
+  omega: number;
+  yLtInfinity: number;
+  pLtInfinity: number;
+}

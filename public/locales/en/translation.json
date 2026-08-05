@@ -10,9 +10,9 @@
   "nav": {
     "step1": "1. Fan Models & Config",
     "step2": "2. Dimensions & Dynamics",
-    "step3": "3. Dimensions & Dynamics",
-    "step4": "4. Cross-sections & Chart",
-    "step5": "5. Final Report"
+    "step3": "3. Parameters at the i-th Blade Section",
+    "step4": "4. Strength Verification Calculation for the Axial Fan Blade",
+    "step5": "5. Calculation Results"
   },
   "step1": {
     "title": "Configuration & Fan Presets",
@@ -71,5 +71,13 @@
     "omega": "Omega",
     "theoreticalSpecificWork": "Theoretical specific work (Y<sub>lt,∞</sub>) for an infinite number of blades",
     "theoreticalPressure": "Theoretical pressure (Δp<sub>lt,∞</sub>) for an infinite number of blades"
+  }, 
+  "step3": {
+    "title": "Parameter Calculation Table by Annular Section",
+    "column1Title": "Parameter",
+    "column2Title": "Formula",
+    "row1": {
+      "title": "Diameter at the i-th Section (D<sub>i</sub>)"
+    }
   }
 }

@@ -10,9 +10,9 @@
   "nav": {
     "step1": "1. Mẫu quạt & Cấu hình",
     "step2": "2. Kích thước & Động lực",
-    "step3": "3. Kích thước & Động lực",
-    "step4": "4. Mặt cắt & Đồ thị",
-    "step5": "5. Báo cáo kết quả"
+    "step3": "3. Các chỉ số tại mặt cắt thứ i",
+    "step4": "4. Tính toán kiểm nghiệm bền cánh quạt hướng trục",
+    "step5": "5. Kết quả tính toán"
   },
   "step1": {
     "title": "Cấu hình & Chọn Mẫu Quạt",
@@ -71,5 +71,13 @@
     "omega": "Omega",
     "theoreticalSpecificWork": "Công riêng lý thuyết (Y<sub>lt,∞</sub>) khi số cánh là vô hạn",
     "theoreticalPressure": "Áp suất lý thuyết (Δp<sub>lt,∞</sub>) khi số cánh là vô hạn"
+  }, 
+  "step3": {
+    "title": "Bảng tính toán các chỉ số theo mặt cắt vành khăn",
+    "column1Title": "Thông số",
+    "column2Title": "Công thức",
+    "row1": {
+      "title": "Đường kính tại mặt cắt thứ i (D<sub>i</sub>)"
+    }
   }
 }

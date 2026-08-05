@@ -4,19 +4,23 @@ import { calculateStep1, type Step1Output } from '../math/step1';
 import { fanPresets } from '../config/fanPresets';
 import type { Step2Input } from '../models/Step2';
 import { calculateStep2, type Step2Output } from '../math/step2';
+import { calculateStep3, type Step3Output } from '../math/step3';
 
 interface FanStoreState {
-  // Cấu hình hiển thị UI (dùng chung cho toàn bộ ứng dụng từ Bước 1 -> Bước N)
+  // Cấu hình hiển thị UI
   decimalPlaces: number;
   setDecimalPlaces: (places: number) => void;
-  // Input data for Step1
+
+  // Step 1
   step1Input: FanPreset;
-  // Calculation results for Step 1
   step1Output: Step1Output | null;
 
-  // Step 2 Input
+  // Step 2
   step2Input: Step2Input;
   step2Output: Step2Output | null;
+
+  // Step 3
+  step3Output: Step3Output | null;
 
   // Actions
   setStep1Input: (input: FanPreset) => void;
@@ -24,7 +28,7 @@ interface FanStoreState {
   updateStep2Field: (fieldName: keyof Step2Input, value: number) => void;
 }
 
-// Helper function để tính toán nhanh
+// Helper functions tính toán an toàn
 const computeStep1Helper = (input: FanPreset): Step1Output | null => {
   try {
     return calculateStep1(input);
@@ -33,15 +37,33 @@ const computeStep1Helper = (input: FanPreset): Step1Output | null => {
     return null;
   }
 };
-const computeStep2Helper = (step1Input: FanPreset, step2Input: Step2Input): Step2Output | null => {
-  try { 
+
+const computeStep2Helper = (
+  step1Input: FanPreset,
+  step2Input: Step2Input
+): Step2Output | null => {
+  try {
     return calculateStep2(step1Input, step2Input);
-  }
-  catch { 
+  } catch (error: unknown) {
+    console.error('Lỗi tính toán Step 2:', error);
     return null;
   }
 };
 
+const computeStep3Helper = (
+  step1Input: FanPreset,
+  step2Output: Step2Output | null
+): Step3Output | null => {
+  if (!step2Output) return null;
+  try {
+    return calculateStep3(step1Input, step2Output);
+  } catch (error: unknown) {
+    console.error('Lỗi tính toán Step 3:', error);
+    return null;
+  }
+};
+
+// Giá trị khởi tạo mặc định
 const initialPreset = fanPresets[0];
 const initialStep2Input: Step2Input = {
   delta: 1.65,
@@ -50,43 +72,74 @@ const initialStep2Input: Step2Input = {
   mu: 0.925,
 };
 
+// Tính sẵn kết quả ban đầu nối tiếp nhau
+const initialStep1Output = computeStep1Helper(initialPreset);
+const initialStep2Output = computeStep2Helper(initialPreset, initialStep2Input);
+const initialStep3Output = computeStep3Helper(initialPreset, initialStep2Output);
+
 export const useFanStore = create<FanStoreState>((set, get) => ({
-  // Mặc định là 3 chữ số thập phân
+  // Cấu hình UI
   decimalPlaces: 3,
   setDecimalPlaces: (places) => set({ decimalPlaces: places }),
 
+  // Data State
   step1Input: initialPreset,
-  step1Output: computeStep1Helper(initialPreset), // Tính toán luôn giá trị ban đầu
-  step2Input: initialStep2Input,
-  step2Output: computeStep2Helper(initialPreset, initialStep2Input),
+  step1Output: initialStep1Output,
 
-  // Khi chọn một Preset mới -> Cập nhật input và tự động tính toán lại ngay
+  step2Input: initialStep2Input,
+  step2Output: initialStep2Output,
+
+  step3Output: initialStep3Output,
+
+  // --- ACTIONS ---
+
+  // 1. Khi chọn Preset mới ở Bước 1 -> Tự động tính toán lại cả Step 1, Step 2 và Step 3
   setStep1Input: (input) => {
+    const { step2Input } = get();
+    const s1Out = computeStep1Helper(input);
+    const s2Out = computeStep2Helper(input, step2Input);
+    const s3Out = computeStep3Helper(input, s2Out);
+
     set({
       step1Input: input,
-      step1Output: computeStep1Helper(input),
+      step1Output: s1Out,
+      step2Output: s2Out,
+      step3Output: s3Out,
     });
   },
 
-  // Khi chỉnh sửa 1 trường thông số bất kỳ -> Cập nhật input và tự động tính toán lại ngay
+  // 2. Khi thay đổi 1 trường ở Bước 1 -> Cập nhật nối tiếp sang Step 2 và Step 3
   updateStep1Field: (fieldName, value) => {
     const updatedInput = {
       ...get().step1Input,
       [fieldName]: value,
     };
+    const { step2Input } = get();
+
+    const s1Out = computeStep1Helper(updatedInput);
+    const s2Out = computeStep2Helper(updatedInput, step2Input);
+    const s3Out = computeStep3Helper(updatedInput, s2Out);
 
     set({
       step1Input: updatedInput,
-      step1Output: computeStep1Helper(updatedInput),
+      step1Output: s1Out,
+      step2Output: s2Out,
+      step3Output: s3Out,
     });
   },
-  // --- STEP 2 STATE ---
+
+  // 3. Khi thay đổi 1 trường ở Bước 2 -> Cập nhật Step 2 và tính toán lại Step 3
   updateStep2Field: (fieldName, value) => {
     const updatedStep2 = { ...get().step2Input, [fieldName]: value };
     const { step1Input } = get();
+
+    const s2Out = computeStep2Helper(step1Input, updatedStep2);
+    const s3Out = computeStep3Helper(step1Input, s2Out);
+
     set({
       step2Input: updatedStep2,
-      step2Output: computeStep2Helper(step1Input, updatedStep2),
+      step2Output: s2Out,
+      step3Output: s3Out,
     });
   },
 }));

@@ -1,0 +1,66 @@
+.step3-table-wrapper {
+    position: relative;
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+.step3-table {
+    min-width: max-content;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* Hai cột cố định */
+.step3-table .sticky-column {
+    position: sticky;
+    background-color: #ffffff;
+}
+
+/* Cột 1 */
+.step3-table .sticky-column-1 {
+    left: 0;
+    min-width: 180px;
+    width: 180px;
+    z-index: 3;
+}
+
+/* Cột 2 */
+.step3-table .sticky-column-2 {
+    left: 180px;
+    min-width: 220px;
+    width: 220px;
+    z-index: 3;
+
+    /* Tạo bóng ngăn cách với các cột có thể cuộn */
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.08);
+}
+
+/* Header nằm trên các ô dữ liệu */
+.step3-table thead .sticky-column {
+    background-color: #f8f9fa;
+    z-index: 5;
+}
+
+/* Các cột mặt cắt */
+.step3-table .section-column {
+    min-width: 100px;
+    white-space: nowrap;
+}
+
+/* Điều chỉnh trên điện thoại */
+@media (max-width: 576px) {
+    .step3-table .sticky-column-1 {
+        min-width: 130px;
+        width: 130px;
+    }
+
+    .step3-table .sticky-column-2 {
+        left: 130px;
+        min-width: 170px;
+        width: 170px;
+    }
+
+    .step3-table .section-column {
+        min-width: 80px;
+    }
+}
