@@ -76,8 +76,7 @@
     "title": "Parameter Calculation Table by Annular Section",
     "column1Title": "Parameter",
     "column2Title": "Formula",
-    "row1": {
-      "title": "Diameter at the i-th Section (D<sub>i</sub>)"
-    }
+    "diFormula": "Diameter at the i-th Section (D<sub>i</sub>)",
+    "cmFormula": "Meridional velocity component of the fan (C<sub>m</sub>)"
   }
 }

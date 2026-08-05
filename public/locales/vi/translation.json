@@ -76,8 +76,7 @@
     "title": "Bảng tính toán các chỉ số theo mặt cắt vành khăn",
     "column1Title": "Thông số",
     "column2Title": "Công thức",
-    "row1": {
-      "title": "Đường kính tại mặt cắt thứ i (D<sub>i</sub>)"
-    }
+    "diFormula": "Đường kính tại mặt cắt thứ i (D<sub>i</sub>)",
+    "cmFormula": "Thành phần tốc độ hướng dọc trục quạt (C<span>m</span>)"
   }
 }

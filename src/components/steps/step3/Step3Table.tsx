@@ -17,7 +17,7 @@ export const Step3Table: React.FC = () => {
         return null;
     }
 
-    const { sections } = step3Output;
+    const { cm, sections } = step3Output;
 
     return (
         <div className="card border-0 shadow-sm p-4 mt-4 bg-white">
@@ -28,7 +28,7 @@ export const Step3Table: React.FC = () => {
 
             {/* BẢNG DẠNG NGANG GIỐNG HỆT NHƯ TRONG ẢNH MẪU */}
             <div className="step3-table-wrapper">
-                <table className="table table-bordered align-middle text-center mb-0 step3-table">
+                <table className="table table-hover table-bordered align-middle text-center mb-0 step3-table">
                     <thead className="table-light">
                         <tr>
                             <th className="sticky-column sticky-column-1 fw-bold text-start">
@@ -53,7 +53,7 @@ export const Step3Table: React.FC = () => {
                             <td className="sticky-column sticky-column-1 fw-bold text-start">
                                 <span
                                     dangerouslySetInnerHTML={{
-                                        __html: t('step3.row1.title'),
+                                        __html: t('step3.diFormula'),
                                     }}
                                 />
                             </td>
@@ -72,6 +72,29 @@ export const Step3Table: React.FC = () => {
                                     {formatNumber(sec.di, decimalPlaces)}
                                 </td>
                             ))}
+                        </tr>
+                        {/* Hàng 2: Thành phần tốc độ cm (Dùng colSpan gộp chung 1 ô) */}
+                        <tr>
+                            <td className="fw-bold text-start bg-light">
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: t('step3.cmFormula'),
+                                    }}
+                                />
+                            </td>
+                            <td className="bg-light">
+                                <MathFormula
+                                    fontSize="0.95rem"
+                                    formula={`c_m = \\frac{Q}{A_m}`}
+                                />
+                            </td>
+                            {/* 🟢 Gộp tất cả các cột mặt cắt làm một */}
+                            <td
+                                colSpan={sections.length}
+                                className="fw-bold text-success text-center"
+                            >
+                                {formatNumber(cm, decimalPlaces)}
+                            </td>
                         </tr>
                     </tbody>
                 </table>

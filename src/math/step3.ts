@@ -8,6 +8,7 @@ export interface RingSectionData {
 }
 
 export interface Step3Output {
+  cm: number;
   sections: RingSectionData[];
 }
 
@@ -16,13 +17,17 @@ export const calculateStep3 = (
   step2Output: Step2Output
 ): Step3Output => {
   const m = step1Input.bladeRingCount || 4; // Số vành khăn (m) từ Step 1
+  const Q = step1Input.airflow;
   const { da, am } = step2Output;          // Da và Am từ Step 2
 
   const sections: RingSectionData[] = [];
 
   if (m <= 0 || am <= 0 || da <= 0) {
-    return { sections: [] };
+    return { cm: 0, sections: [] };
   }
+
+  // 1. Tính cm = Q / Am (Dùng chung cho tất cả mặt cắt)
+  const cm = am > 0 ? Q / am : 0;
 
   // Lượng trừ cố định: (4 * Am) / (m * pi)
   const deltaD = (4 * am) / (m * Math.PI);
@@ -44,5 +49,5 @@ export const calculateStep3 = (
     currentD = nextDSquared > 0 ? Math.sqrt(nextDSquared) : 0;
   }
 
-  return { sections };
+  return { cm, sections };
 };
