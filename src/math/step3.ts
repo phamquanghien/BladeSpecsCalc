@@ -10,6 +10,7 @@ export interface RingSectionData {
   c2i: number;
   cinfi: number;
   w1i: number;
+  w2i: number;
 }
 
 export interface Step3Output {
@@ -58,12 +59,14 @@ export const calculateStep3 = (
     const cinfi = Math.sqrt(Math.pow(cm, 2) + Math.pow(c2ui / 2, 2));
     // Tính w1i = sqrt(cm^2 + ui^2)
     const w1i = Math.sqrt(Math.pow(cm, 2) + Math.pow(ui, 2));
+    // Tính w2i = sqrt(cm^2 + (ui - c2ui)^2)
+    const w2i = Math.sqrt(Math.pow(cm, 2) + Math.pow(ui - c2ui, 2));
 
     sections.push({
       sectionIndex: i,
       sectionLabel: label,
       di: currentD,
-      ui, c2ui, c2i, cinfi, w1i
+      ui, c2ui, c2i, cinfi, w1i, w2i
     });
 
     // Tính đường kính cho mặt cắt tiếp theo: D_i = sqrt(D_{i-1}^2 - deltaD)
