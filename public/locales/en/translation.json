@@ -80,6 +80,7 @@
     "cmFormula": "Meridional velocity component of the fan (C<sub>m</sub>)",
     "uiFormula": "Circumferential velocity at section i (u<sub>i</sub>)",
     "c2uiFormula": "Circumferential velocity component at section i (C<sub>2u,i</sub>)",
-    "c2iFormula": "Absolute velocity component at section i (C<sub>2,i</sub>)"
+    "c2iFormula": "Absolute velocity component at section i (C<sub>2,i</sub>)",
+    "cinfiFormula": "Absolute velocity component at section i (C<sub>∞,i</sub>"
   }
 }

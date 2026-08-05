@@ -8,6 +8,7 @@ export interface RingSectionData {
   ui: number;           // Vận tốc vòng ui [m/s]
   c2ui: number;
   c2i: number;
+  cinfi: number;
 }
 
 export interface Step3Output {
@@ -52,12 +53,14 @@ export const calculateStep3 = (
     const c2ui = ui > 0 ? yLtInfinity / ui : 0;
     // Tính c2i = sqrt(cm^2 + c2ui^2)
     const c2i = Math.sqrt(Math.pow(cm, 2) + Math.pow(c2ui, 2));
+    // Tính c_infinity,i = sqrt(cm^2 + (c2ui / 2)^2)
+    const cinfi = Math.sqrt(Math.pow(cm, 2) + Math.pow(c2ui / 2, 2));
 
     sections.push({
       sectionIndex: i,
       sectionLabel: label,
       di: currentD,
-      ui, c2ui, c2i
+      ui, c2ui, c2i, cinfi
     });
 
     // Tính đường kính cho mặt cắt tiếp theo: D_i = sqrt(D_{i-1}^2 - deltaD)

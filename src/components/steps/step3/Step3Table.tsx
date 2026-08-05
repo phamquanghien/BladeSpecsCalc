@@ -168,6 +168,30 @@ export const Step3Table: React.FC = () => {
                                 </td>
                             ))}
                         </tr>
+                        {/* Hàng 6: Thành phần tốc độ c_infinity,i */}
+                        <tr>
+                            <td className="sticky-column sticky-column-1 fw-bold text-start">
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: t('step3.cinfiFormula'),
+                                    }}
+                                />
+                            </td>
+                            <td className="sticky-column sticky-column-2">
+                                <MathFormula
+                                    fontSize="1rem"
+                                    formula={`c_{\\infty,i} = \\sqrt{c_m^2 + \\left(\\frac{c_{2u,i}}{2}\\right)^2}`}
+                                />
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-primary"
+                                >
+                                    {formatNumber(sec.cinfi, decimalPlaces)}
+                                </td>
+                            ))}
+                        </tr>
                     </tbody>
                 </table>
             </div>

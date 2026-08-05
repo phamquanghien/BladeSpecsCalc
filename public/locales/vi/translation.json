@@ -80,6 +80,7 @@
     "cmFormula": "Thành phần tốc độ hướng dọc trục quạt (C<span>m</span>)",
     "uiFormula": "Tốc độ vòng tại các tiết diện đã chia (u<sub>i</sub>)",
     "c2uiFormula": "Thành phần tốc độ hướng quay vòng (C<sub>2u,i</sub>) của quạt",
-    "c2iFormula": "Thành phần tốc độ (C<sub>2,i</sub>) của quạt"
+    "c2iFormula": "Thành phần tốc độ (C<sub>2,i</sub>) của quạt",
+    "cinfiFormula": "Thành phần tốc độ (C<sub>∞,i</sub>) của quạt"
   }
 }
