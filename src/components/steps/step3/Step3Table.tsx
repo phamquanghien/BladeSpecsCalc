@@ -330,6 +330,45 @@ export const Step3Table: React.FC = () => {
                                 </td>
                             ))}
                         </tr>
+                        <tr>
+                            <td
+                                colSpan={sections.length + 2}
+                                className="sticky-column sticky-column-1"
+                            >
+                                <h6
+                                    className="text-start mb-0 fw-bold text-primary"
+                                    dangerouslySetInnerHTML={{
+                                        __html: t(
+                                            'step3.relativeVelocityAngles',
+                                        ),
+                                    }}
+                                />
+                            </td>
+                        </tr>
+                        {/* Hàng 11: Góc nghiêng beta1,i */}
+                        <tr>
+                            <td className="sticky-column sticky-column-1 fw-bold text-start">
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: t('step3.beta1i'),
+                                    }}
+                                />
+                            </td>
+                            <td className="sticky-column sticky-column-2">
+                                <MathFormula
+                                    fontSize="1rem"
+                                    formula={`\\beta_{1,i} = \\arctan\\left(\\frac{c_m}{u_i}\\right)`}
+                                />
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-primary"
+                                >
+                                    {formatNumber(sec.beta1i, decimalPlaces)}
+                                </td>
+                            ))}
+                        </tr>
                     </tbody>
                 </table>
             </div>

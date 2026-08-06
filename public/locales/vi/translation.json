@@ -90,6 +90,7 @@
     "relativeVelocityComponents": "Các thành phần vận tốc tương đối của quạt (w<sub>1,i</sub>, w<sub>2,i</sub>, w<sub>∞,i</sub>)",
     "relativeVelocityAngles": "Các góc nghiêng của véc tơ vận tốc tương đối của quạt (β<sub>1,i</sub>, β<sub>2,i</sub>, β<sub>∞,i</sub>)",
     "absoluteVelocityAngles": "Các góc nghiêng của véc tơ vận tốc tuyệt đối của quạt (α<sub>1,i</sub>, α<sub>2,i</sub>, α<sub>∞,i</sub>)",
-    "bladeNumberSelection": "Lựa chọn số cánh của bánh công tác (z, t<sub>i</sub>, l<sub>iRe,i</sub>)"
+    "bladeNumberSelection": "Lựa chọn số cánh của bánh công tác (z, t<sub>i</sub>, l<sub>iRe,i</sub>)",
+    "beta1i": "Góc nghiêng β <sub>1,i</sub> của quạt"
   }
 }
