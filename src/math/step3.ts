@@ -10,7 +10,7 @@ export interface RingSectionData {
   w1i: number; w2i: number; wRatio: number; isRatioValid: boolean; winfi: number;
   beta1i: number; beta2i: number; betainfi: number;
   alpha1i: number; alpha2i: number; alphainfi: number;
-  ti: number;
+  ti: number; deltaWui: number; lOverTi04: number; lOverTi05: number;
 }
 
 export interface Step3Output {
@@ -88,6 +88,10 @@ export const calculateStep3 = (
     const alphainfiRad = alphainfiDenom > 0 ? Math.atan(cm / alphainfiDenom) : 0;
     const alphainfi = (alphainfiRad * 180) / Math.PI;
 
+    const deltaWui = w1i - w2i;
+    const lOverTi04 = winfi > 0 ? deltaWui / (0.4 * winfi) : 0;
+    const lOverTi05 = winfi > 0 ? deltaWui / (0.5 * winfi) : 0;
+
     const ti = (Math.PI * currentD) / z;
 
     sections.push({
@@ -98,7 +102,7 @@ export const calculateStep3 = (
       w1i, w2i, wRatio,isRatioValid, winfi,
       beta1i, beta2i, betainfi,
       alpha1i, alpha2i, alphainfi,
-      ti
+      ti, deltaWui, lOverTi04, lOverTi05
     });
 
     // Tính đường kính cho mặt cắt tiếp theo: D_i = sqrt(D_{i-1}^2 - deltaD)
