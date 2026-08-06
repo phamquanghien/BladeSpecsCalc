@@ -85,6 +85,11 @@
     "w1iFormula": "Thành phần tốc độ (w<sub>1,i</sub>)của quạt",
     "w2iFormula": "Thành phần tốc độ (w<sub>2,i</sub>)của quạt",
     "wRatioFormula": "Tỷ số tốc độ (w<sub>2,i</sub>/w<sub>1,i</sub>) của quạt",
-    "wInfinityFormula": "Thành phần tốc độ (w<sub>∞,i</sub>) của quạt"
+    "wInfinityFormula": "Thành phần tốc độ (w<sub>∞,i</sub>) của quạt",
+    "absoluteVelocityComponents": "Các thành phần vận tốc tuyệt đối của quạt (C<sub>m</sub>, C<sub>1</sub>, C<sub>2u,i</sub>, C<sub>2,i</sub>, C<sub>∞,i</sub>)",
+    "relativeVelocityComponents": "Các thành phần vận tốc tương đối của quạt (w<sub>1,i</sub>, w<sub>2,i</sub>, w<sub>∞,i</sub>)",
+    "relativeVelocityAngles": "Các góc nghiêng của véc tơ vận tốc tương đối của quạt (β<sub>1,i</sub>, β<sub>2,i</sub>, β<sub>∞,i</sub>)",
+    "absoluteVelocityAngles": "Các góc nghiêng của véc tơ vận tốc tuyệt đối của quạt (α<sub>1,i</sub>, α<sub>2,i</sub>, α<sub>∞,i</sub>)",
+    "bladeNumberSelection": "Lựa chọn số cánh của bánh công tác (z, t<sub>i</sub>, l<sub>iRe,i</sub>)"
   }
 }

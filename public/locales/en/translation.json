@@ -85,6 +85,11 @@
     "w1iFormula": "Absolute velocity component at section i (w<sub>1,i</sub>)",
     "w2iFormula": "Absolute velocity component at section i (w<sub>2,i</sub>)",
     "wRatioFormula": "Relative velocity ratio (w<sub>2,i</sub>/w<sub>1,i</sub>)",
-    "wInfinityFormula": "Relative velocity component (w<sub>∞,i</sub>)"
+    "wInfinityFormula": "Relative velocity component (w<sub>∞,i</sub>)",
+    "absoluteVelocityComponents": "Absolute velocity components of the fan (C<sub>m</sub>, C<sub>1</sub>, C<sub>2u,i</sub>, C<sub>2,i</sub>, C<sub>∞,i</sub>)",
+    "relativeVelocityComponents": "Relative velocity components of the fan (w<sub>1,i</sub>, w<sub>2,i</sub>, w<sub>∞,i</sub>)",
+    "relativeVelocityAngles": "Relative velocity angles of the fan (β<sub>1,i</sub>, β<sub>2,i</sub>, β<sub>∞,i</sub>)",
+    "absoluteVelocityAngles": "Absolute velocity angles of the fan (α<sub>1,i</sub>, α<sub>2,i</sub>, α<sub>∞,i</sub>)",
+    "bladeNumberSelection": "Selection of the number of impeller blades (z, t<sub>i</sub>, l<sub>iRe,i</sub>)"
   }
 }

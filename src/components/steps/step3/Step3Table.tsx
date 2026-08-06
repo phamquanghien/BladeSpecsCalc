@@ -73,6 +73,21 @@ export const Step3Table: React.FC = () => {
                                 </td>
                             ))}
                         </tr>
+                        <tr>
+                            <td
+                                colSpan={sections.length + 2}
+                                className="sticky-column sticky-column-1"
+                            >
+                                <h6
+                                    className="text-start mb-0 fw-bold text-primary"
+                                    dangerouslySetInnerHTML={{
+                                        __html: t(
+                                            'step3.absoluteVelocityComponents',
+                                        ),
+                                    }}
+                                />
+                            </td>
+                        </tr>
                         {/* Hàng 2: Thành phần tốc độ cm (Dùng colSpan gộp chung 1 ô) */}
                         <tr>
                             <td className="sticky-column sticky-column-1 fw-bold text-start">
@@ -91,7 +106,7 @@ export const Step3Table: React.FC = () => {
                             {/* 🟢 Gộp tất cả các cột mặt cắt làm một */}
                             <td
                                 colSpan={sections.length}
-                                className="fw-bold text-primary text-center"
+                                className="fw-bold text-primary text-start"
                             >
                                 {formatNumber(cm, decimalPlaces)}
                             </td>
@@ -192,6 +207,21 @@ export const Step3Table: React.FC = () => {
                                 </td>
                             ))}
                         </tr>
+                        <tr>
+                            <td
+                                colSpan={sections.length + 2}
+                                className="sticky-column sticky-column-1"
+                            >
+                                <h6
+                                    className="text-start mb-0 fw-bold text-primary"
+                                    dangerouslySetInnerHTML={{
+                                        __html: t(
+                                            'step3.relativeVelocityComponents',
+                                        ),
+                                    }}
+                                />
+                            </td>
+                        </tr>
                         {/* Hàng 7: Thành phần tốc độ w1i */}
                         <tr>
                             <td className="sticky-column sticky-column-1 fw-bold text-start">
@@ -237,6 +267,66 @@ export const Step3Table: React.FC = () => {
                                     className="fw-bold text-primary"
                                 >
                                     {formatNumber(sec.w2i, decimalPlaces)}
+                                </td>
+                            ))}
+                        </tr>
+                        {/* Hàng 9: Kiểm tra tỷ số tốc độ (w2i / w1i) */}
+                        <tr>
+                            <td className="sticky-column sticky-column-1 fw-bold text-start">
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: t('step3.wRatioFormula'),
+                                    }}
+                                />
+                            </td>
+                            <td className="sticky-column sticky-column-2">
+                                <MathFormula
+                                    fontSize="1rem"
+                                    formula={`\\left(\\frac{w_{2,i}}{w_{1,i}}\\right) = f(i) > 0{,}75`}
+                                />
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="align-middle"
+                                >
+                                    <span
+                                        className={`fw-bold me-1 ${sec.isRatioValid ? 'text-success' : 'text-danger'}`}
+                                    >
+                                        {formatNumber(
+                                            sec.wRatio,
+                                            decimalPlaces,
+                                        )}
+                                    </span>
+                                    <span
+                                        className={`badge ${sec.isRatioValid ? 'bg-success-subtle text-success' : 'bg-danger-subtle text-danger'}`}
+                                    >
+                                        {sec.isRatioValid ? '✓' : '✗'}
+                                    </span>
+                                </td>
+                            ))}
+                        </tr>
+                        {/* Hàng 10: Thành phần tốc độ w_infinity,i */}
+                        <tr>
+                            <td className="sticky-column sticky-column-1 fw-bold text-start">
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: t('step3.wInfinityFormula'),
+                                    }}
+                                />
+                            </td>
+                            <td className="sticky-column sticky-column-2">
+                                <MathFormula
+                                    fontSize="1rem"
+                                    formula={`w_{\\infty,i} = \\sqrt{c_m^2 + \\left(u_i - \\frac{c_{2u,i}}{2}\\right)^2}`}
+                                />
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-primary"
+                                >
+                                    {formatNumber(sec.winfi, decimalPlaces)}
                                 </td>
                             ))}
                         </tr>

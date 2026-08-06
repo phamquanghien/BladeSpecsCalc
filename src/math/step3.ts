@@ -11,6 +11,9 @@ export interface RingSectionData {
   cinfi: number;
   w1i: number;
   w2i: number;
+  wRatio: number;        // Giá trị tỷ số w2i / w1i
+  isRatioValid: boolean;  // Kết quả kiểm tra > 0.75 (true/false)
+  winfi: number;
 }
 
 export interface Step3Output {
@@ -61,12 +64,18 @@ export const calculateStep3 = (
     const w1i = Math.sqrt(Math.pow(cm, 2) + Math.pow(ui, 2));
     // Tính w2i = sqrt(cm^2 + (ui - c2ui)^2)
     const w2i = Math.sqrt(Math.pow(cm, 2) + Math.pow(ui - c2ui, 2));
+    // Tính w2i / w1i và kiểm tra điều kiện
+    const wRatio = w1i > 0 ? w2i / w1i : 0;
+    const isRatioValid = wRatio > 0.75;
+    // Tính w_infinity,i = sqrt(cm^2 + (ui - c2ui / 2)^2)
+    const winfi = Math.sqrt(Math.pow(cm, 2) + Math.pow(ui - c2ui / 2, 2));
 
     sections.push({
       sectionIndex: i,
       sectionLabel: label,
       di: currentD,
-      ui, c2ui, c2i, cinfi, w1i, w2i
+      ui, c2ui, c2i, cinfi,
+      w1i, w2i, wRatio,isRatioValid, winfi
     });
 
     // Tính đường kính cho mặt cắt tiếp theo: D_i = sqrt(D_{i-1}^2 - deltaD)
