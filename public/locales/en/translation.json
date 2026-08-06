@@ -26,7 +26,8 @@
       "staticPressure": "Rated Static Pressure (Pa)",
       "rotationSpeed": "Rotational Speed (rot/min)",
       "gasDensity": "Gas Density (kg/m³)",
-      "bladeRingCount": "Number of Blade Rings (m)"
+      "bladeRingCount": "Number of Blade Rings (m)",
+      "bladeNumber": "Number of blades"
     },
     "calcSigmaBtn": "Calculate Specific Speed (σ)",
     "sigmaResultTitle": "Specific Speed (σ):",
@@ -96,6 +97,14 @@
     "betaInfinityI": "Fan relative velocity angle β<sub>∞,i</sub>",
     "alpha1i": "Fan absolute velocity angle α<sub>1,i</sub>",
     "alpha2i": "Fan absolute velocity angle α<sub>2,i</sub>",
-    "alphaInfinityI": "Fan absolute velocity angle α<sub>∞,i</sub>"
+    "alphaInfinityI": "Fan absolute velocity angle α<sub>∞,i</sub>",
+    "bladeNumberSelectionDescription": "Select the number of blades (z): z = 14 blades, satisfying 0.5 < t/l < 1.5 for large fans and 0.5 < t/l < 2 for small fans. The l/t ratio and Reynolds number should be verified",
+    "bladePitch": "Blade pitch (t<sub>i</sub>)",
+    "bladeLengthToPitchRatio": "Blade length-to-pitch ratio (l/t<sub>i</sub>)",
+    "bladeSectionLengthCalculated": "Calculated blade section length (l<sub>i</sub>)",
+    "bladeSectionLengthSelected": "Selected blade section length (l<sub>i</sub>)",
+    "reynoldsNumber": "Reynolds number verification (Re<sub>i</sub>)",
+    "calOverTPitch": "Product (ca·l/t)<sub>i</sub>",
+    "caCoefficient": "Coefficient c<sub>a,i</sub>"
   }
 }

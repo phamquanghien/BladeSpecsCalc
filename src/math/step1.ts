@@ -4,6 +4,7 @@ export interface Step1Input {
   rotationSpeed: number;   // n (vòng/phút)
   gasDensity: number;      // ρ (kg/m³)
   bladeRingCount?: number; 
+  bladeNumber: number;
 }
 
 export interface Step1Output {

@@ -7,4 +7,5 @@ export interface FanPreset {
   rotationSpeed: number;    // n (v/p)
   gasDensity: number;       // ρ (kg/m³)
   bladeRingCount: number;   // m (số vành khăn)
+  bladeNumber: number;
 }

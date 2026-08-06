@@ -188,7 +188,7 @@ export const Step1Presets: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="col-12 col-sm-6 col-lg-4 col-xl-3">
+                    <div className="col-12 col-sm-6 col-lg-4 col-xl-2">
                         <label
                             className="form-label small fw-bold text-muted text-truncate w-100"
                             title={t('step1.labels.staticPressure')}
@@ -230,7 +230,7 @@ export const Step1Presets: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="col-12 col-sm-6 col-lg-6 col-xl-3">
+                    <div className="col-12 col-sm-6 col-lg-6 col-xl-2">
                         <label
                             className="form-label small fw-bold text-muted text-truncate w-100"
                             title={t('step1.labels.gasDensity')}
@@ -265,6 +265,27 @@ export const Step1Presets: React.FC = () => {
                                 className="form-control fw-bold"
                                 name="bladeRingCount"
                                 value={step1Input.bladeRingCount || ''}
+                                onChange={handleInputChange}
+                            />
+                            <span className="input-group-text bg-light text-muted">
+                                m
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="col-12 col-sm-6 col-lg-6 col-xl-2">
+                        <label
+                            className="form-label small fw-bold text-muted text-truncate w-100"
+                            title={t('step1.labels.bladeNumber')}
+                        >
+                            {t('step1.labels.bladeNumber')}
+                        </label>
+                        <div className="input-group input-group-sm flex-nowrap">
+                            <input
+                                type="number"
+                                className="form-control fw-bold"
+                                name="bladeNumber"
+                                value={step1Input.bladeNumber || ''}
                                 onChange={handleInputChange}
                             />
                             <span className="input-group-text bg-light text-muted">

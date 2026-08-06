@@ -10,6 +10,7 @@ export const fanPresets: FanPreset[] = [
     rotationSpeed: 980,
     gasDensity: 1.2,
     bladeRingCount: 26,
+    bladeNumber: 14
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ export const fanPresets: FanPreset[] = [
     rotationSpeed: 980,
     gasDensity: 1.2,
     bladeRingCount: 26,
+    bladeNumber: 12
   },
   {
     id: 3,
@@ -30,5 +32,6 @@ export const fanPresets: FanPreset[] = [
     rotationSpeed: 980,
     gasDensity: 1.2,
     bladeRingCount: 26,
+    bladeNumber: 12
   },
 ];

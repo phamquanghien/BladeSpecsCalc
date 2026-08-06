@@ -500,6 +500,56 @@ export const Step3Table: React.FC = () => {
                                 </td>
                             ))}
                         </tr>
+                        <tr>
+                            <td
+                                colSpan={2}
+                                className="sticky-column sticky-column-1"
+                            >
+                                <h6
+                                    className="text-start mb-0 fw-bold text-primary"
+                                    dangerouslySetInnerHTML={{
+                                        __html: t('step3.bladeNumberSelection'),
+                                    }}
+                                />
+                            </td>
+                            <td
+                                colSpan={sections.length}
+                                className="sticky-column sticky-column-1"
+                            >
+                                <h6
+                                    className="text-start mb-0 fw-bold text-primary"
+                                    dangerouslySetInnerHTML={{
+                                        __html: t(
+                                            'step3.bladeNumberSelectionDescription',
+                                        ),
+                                    }}
+                                />
+                            </td>
+                        </tr>
+                        {/* Hàng 17: Góc nghiêng alphaInfinity,i */}
+                        <tr>
+                            <td className="sticky-column sticky-column-1 fw-bold text-start">
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: t('step3.bladePitch'),
+                                    }}
+                                />
+                            </td>
+                            <td className="sticky-column sticky-column-2">
+                                <MathFormula
+                                    fontSize="1rem"
+                                    formula={`t_i = \\frac{\\pi D_i}{z}`}
+                                />
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-success"
+                                >
+                                    {formatNumber(sec.ti, decimalPlaces)}
+                                </td>
+                            ))}
+                        </tr>
                     </tbody>
                 </table>
             </div>

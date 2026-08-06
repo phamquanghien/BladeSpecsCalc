@@ -26,7 +26,8 @@
       "staticPressure": "Áp suất tĩnh định mức (Pa)",
       "rotationSpeed": "Số vòng quay (rot/min)",
       "gasDensity": "Khối lượng riêng của khí (kg/m³)",
-      "bladeRingCount": "Số vành khăn (m)"
+      "bladeRingCount": "Số vành khăn (m)",
+      "bladeNumber": "Số cánh"
     },
     "calcSigmaBtn": "Tính hệ số đặc trưng (σ)",
     "sigmaResultTitle": "Hệ số đặc trưng (Specific Speed):",
@@ -96,6 +97,14 @@
     "betaInfinityI": "Góc nghiêng β<sub>∞,i</sub> của quạt",
     "alpha1i": "Góc nghiêng α<sub>1,i</sub> của quạt",
     "alpha2i": "Góc nghiêng α<sub>2,i</sub> của quạt",
-    "alphaInfinityI": "Góc nghiêng α<sub>∞,i</sub> của quạt"
+    "alphaInfinityI": "Góc nghiêng α<sub>∞,i</sub> của quạt",
+    "bladeNumberSelectionDescription": "Chọn số cánh (z): z = 14 cánh, với điều kiện 0,5 < t/l < 1,5 đối với quạt lớn và 0,5 < t/l < 2 đối với quạt nhỏ. Cần kiểm tra lại tỷ số l/t và số Reynolds.",
+    "bladePitch": "Bước cánh (t<sub>i</sub>)",
+    "bladeLengthToPitchRatio": "Tỷ số chiều dài cánh trên bước cánh (l/t<sub>i</sub>)",
+    "bladeSectionLengthCalculated": "Chiều dài tính toán của tiết diện cánh (l<sub>i</sub>)",
+    "bladeSectionLengthSelected": "Chiều dài lựa chọn của tiết diện cánh (l<sub>i</sub>)",
+    "reynoldsNumber": "Kiểm tra số Reynolds (Re<sub>i</sub>)",
+    "calOverTPitch": "Tích (ca·l/t)<sub>i</sub>",
+    "caCoefficient": "Hệ số c<sub>a,i</sub>"
   }
 }

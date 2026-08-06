@@ -10,6 +10,7 @@ export interface RingSectionData {
   w1i: number; w2i: number; wRatio: number; isRatioValid: boolean; winfi: number;
   beta1i: number; beta2i: number; betainfi: number;
   alpha1i: number; alpha2i: number; alphainfi: number;
+  ti: number;
 }
 
 export interface Step3Output {
@@ -23,6 +24,7 @@ export const calculateStep3 = (
 ): Step3Output => {
   const m = step1Input.bladeRingCount || 4; // Số vành khăn (m) từ Step 1
   const Q = step1Input.airflow;
+  const z = step1Input.bladeNumber || 12; // Số cánh quạt z mặc định bằng 12
   const rpm = step1Input.rotationSpeed;            // Tốc độ quay n (vòng/phút)
   const { da, am } = step2Output;          // Da và Am từ Step 2
 
@@ -86,6 +88,8 @@ export const calculateStep3 = (
     const alphainfiRad = alphainfiDenom > 0 ? Math.atan(cm / alphainfiDenom) : 0;
     const alphainfi = (alphainfiRad * 180) / Math.PI;
 
+    const ti = (Math.PI * currentD) / z;
+
     sections.push({
       sectionIndex: i,
       sectionLabel: label,
@@ -93,7 +97,8 @@ export const calculateStep3 = (
       ui, c2ui, c2i, cinfi,
       w1i, w2i, wRatio,isRatioValid, winfi,
       beta1i, beta2i, betainfi,
-      alpha1i, alpha2i, alphainfi
+      alpha1i, alpha2i, alphainfi,
+      ti
     });
 
     // Tính đường kính cho mặt cắt tiếp theo: D_i = sqrt(D_{i-1}^2 - deltaD)
