@@ -8,7 +8,7 @@ export interface RingSectionData {
   ui: number;           // Vận tốc vòng ui [m/s]
   c2ui: number; c2i: number; cinfi: number;
   w1i: number; w2i: number; wRatio: number; isRatioValid: boolean; winfi: number;
-  beta1i: number; beta2i: number;
+  beta1i: number; beta2i: number; betainfi: number;
 }
 
 export interface Step3Output {
@@ -71,6 +71,10 @@ export const calculateStep3 = (
     const denominator = ui - c2ui;
     const beta2iRad = denominator !== 0 ? Math.atan(cm / denominator) : 0;
     const beta2i = (beta2iRad * 180) / Math.PI;
+    // Tính beta_infinity,i = arctan(cm / (ui - c2ui / 2)) [độ]
+    const betainfiDenom = ui - (c2ui / 2);
+    const betainfiRad = betainfiDenom !== 0 ? Math.atan(cm / betainfiDenom) : 0;
+    const betainfi = (betainfiRad * 180) / Math.PI;
 
     sections.push({
       sectionIndex: i,
@@ -78,7 +82,7 @@ export const calculateStep3 = (
       di: currentD,
       ui, c2ui, c2i, cinfi,
       w1i, w2i, wRatio,isRatioValid, winfi,
-      beta1i, beta2i
+      beta1i, beta2i, betainfi
     });
 
     // Tính đường kính cho mặt cắt tiếp theo: D_i = sqrt(D_{i-1}^2 - deltaD)
