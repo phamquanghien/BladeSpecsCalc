@@ -8,56 +8,90 @@
     min-width: max-content;
     border-collapse: separate;
     border-spacing: 0;
+    background: #fff;
 }
 
-/* Hai cột cố định */
+/* ===========================
+   Border cho toàn bộ bảng
+   =========================== */
+.step3-table th,
+.step3-table td {
+    border-top: 1px solid #dee2e6;
+    border-left: 1px solid #dee2e6;
+    padding: 0.75rem;
+    vertical-align: middle;
+}
+
+/* Cột cuối */
+.step3-table th:last-child,
+.step3-table td:last-child {
+    border-right: 1px solid #dee2e6;
+}
+
+/* Hàng cuối */
+.step3-table tbody tr:last-child td {
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Header */
+.step3-table thead th {
+    background: #f8f9fa;
+    font-weight: 600;
+    border-bottom: 2px solid #adb5bd;
+}
+
+/* ===========================
+   Sticky Columns
+   =========================== */
 .step3-table .sticky-column {
     position: sticky;
-    background-color: #ffffff;
+    background: #fff;
+    background-clip: padding-box;
+    z-index: 3;
+}
+
+/* Header sticky cao hơn */
+.step3-table thead .sticky-column {
+    background: #f8f9fa;
+    z-index: 5;
 }
 
 /* Cột 1 */
 .step3-table .sticky-column-1 {
     left: 0;
-    min-width: 180px;
     width: 180px;
-    z-index: 3;
+    min-width: 180px;
 }
 
 /* Cột 2 */
 .step3-table .sticky-column-2 {
     left: 180px;
-    min-width: 220px;
     width: 220px;
-    z-index: 3;
+    min-width: 220px;
 
-    /* Tạo bóng ngăn cách với các cột có thể cuộn */
-    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.08);
+    /* Phân cách với vùng cuộn */
+    box-shadow: 3px 0 6px rgba(0, 0, 0, 0.08);
 }
 
-/* Header nằm trên các ô dữ liệu */
-.step3-table thead .sticky-column {
-    background-color: #f8f9fa;
-    z-index: 5;
-}
-
-/* Các cột mặt cắt */
+/* Cột dữ liệu */
 .step3-table .section-column {
     min-width: 100px;
     white-space: nowrap;
 }
 
-/* Điều chỉnh trên điện thoại */
+/* ===========================
+   Mobile
+   =========================== */
 @media (max-width: 576px) {
     .step3-table .sticky-column-1 {
-        min-width: 130px;
         width: 130px;
+        min-width: 130px;
     }
 
     .step3-table .sticky-column-2 {
         left: 130px;
-        min-width: 170px;
         width: 170px;
+        min-width: 170px;
     }
 
     .step3-table .section-column {
