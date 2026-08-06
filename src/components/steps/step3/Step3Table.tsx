@@ -592,6 +592,48 @@ export const Step3Table: React.FC = () => {
                                 </td>
                             ))}
                         </tr>
+                        {/* Hàng 19: li */}
+                        <tr>
+                            <td
+                                className="sticky-column sticky-column-1 fw-bold text-start"
+                                rowSpan={2}
+                            >
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: t(
+                                            'step3.bladeSectionLengthCalculated',
+                                        ),
+                                    }}
+                                />
+                            </td>
+                            <td
+                                className="sticky-column sticky-column-2"
+                                rowSpan={2}
+                            >
+                                <MathFormula
+                                    fontSize="1rem"
+                                    formula={`l_i = \\left(\\frac{l}{t}\\right)_{i,0.4} \\cdot t_i`}
+                                />
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-primary"
+                                >
+                                    {formatNumber(sec.li04, decimalPlaces)}
+                                </td>
+                            ))}
+                        </tr>
+                        <tr>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-success"
+                                >
+                                    {formatNumber(sec.li05, decimalPlaces)}
+                                </td>
+                            ))}
+                        </tr>
                     </tbody>
                 </table>
             </div>

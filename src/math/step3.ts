@@ -10,7 +10,7 @@ export interface RingSectionData {
   w1i: number; w2i: number; wRatio: number; isRatioValid: boolean; winfi: number;
   beta1i: number; beta2i: number; betainfi: number;
   alpha1i: number; alpha2i: number; alphainfi: number;
-  ti: number; deltaWui: number; lOverTi04: number; lOverTi05: number;
+  ti: number; deltaWui: number; lOverTi04: number; lOverTi05: number; li04: number; li05: number;
 }
 
 export interface Step3Output {
@@ -94,6 +94,10 @@ export const calculateStep3 = (
 
     const ti = (Math.PI * currentD) / z;
 
+    // Tính li = (l/t)_i * t_i tương ứng với k = 0.4 và k = 0.5
+    const li04 = lOverTi04 * ti;
+    const li05 = lOverTi05 * ti;
+
     sections.push({
       sectionIndex: i,
       sectionLabel: label,
@@ -102,7 +106,7 @@ export const calculateStep3 = (
       w1i, w2i, wRatio,isRatioValid, winfi,
       beta1i, beta2i, betainfi,
       alpha1i, alpha2i, alphainfi,
-      ti, deltaWui, lOverTi04, lOverTi05
+      ti, deltaWui, lOverTi04, lOverTi05, li04, li05
     });
 
     // Tính đường kính cho mặt cắt tiếp theo: D_i = sqrt(D_{i-1}^2 - deltaD)
