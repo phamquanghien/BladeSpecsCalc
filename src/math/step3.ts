@@ -6,15 +6,9 @@ export interface RingSectionData {
   sectionLabel: string; // Tên hiển thị (1=a, 2, 3...)
   di: number;           // Đường kính Di (m)
   ui: number;           // Vận tốc vòng ui [m/s]
-  c2ui: number;
-  c2i: number;
-  cinfi: number;
-  w1i: number;
-  w2i: number;
-  wRatio: number;        // Giá trị tỷ số w2i / w1i
-  isRatioValid: boolean;  // Kết quả kiểm tra > 0.75 (true/false)
-  winfi: number;
-  beta1i: number;
+  c2ui: number; c2i: number; cinfi: number;
+  w1i: number; w2i: number; wRatio: number; isRatioValid: boolean; winfi: number;
+  beta1i: number; beta2i: number;
 }
 
 export interface Step3Output {
@@ -73,6 +67,10 @@ export const calculateStep3 = (
     // Tính beta1,i = arctan(cm / ui) [độ]
     const beta1iRad = ui > 0 ? Math.atan(cm / ui) : 0;
     const beta1i = (beta1iRad * 180) / Math.PI;
+    // Tính beta2,i = arctan(cm / (ui - c2ui)) [độ]
+    const denominator = ui - c2ui;
+    const beta2iRad = denominator !== 0 ? Math.atan(cm / denominator) : 0;
+    const beta2i = (beta2iRad * 180) / Math.PI;
 
     sections.push({
       sectionIndex: i,
@@ -80,7 +78,7 @@ export const calculateStep3 = (
       di: currentD,
       ui, c2ui, c2i, cinfi,
       w1i, w2i, wRatio,isRatioValid, winfi,
-      beta1i
+      beta1i, beta2i
     });
 
     // Tính đường kính cho mặt cắt tiếp theo: D_i = sqrt(D_{i-1}^2 - deltaD)

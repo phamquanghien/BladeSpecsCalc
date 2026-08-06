@@ -363,9 +363,33 @@ export const Step3Table: React.FC = () => {
                             {sections.map((sec) => (
                                 <td
                                     key={sec.sectionIndex}
-                                    className="fw-bold text-primary"
+                                    className="fw-bold text-success"
                                 >
                                     {formatNumber(sec.beta1i, decimalPlaces)}
+                                </td>
+                            ))}
+                        </tr>
+                        {/* Hàng 12: Góc nghiêng beta2,i */}
+                        <tr>
+                            <td className="sticky-column sticky-column-1 fw-bold text-start">
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: t('step3.beta2i'),
+                                    }}
+                                />
+                            </td>
+                            <td className="sticky-column sticky-column-2">
+                                <MathFormula
+                                    fontSize="1rem"
+                                    formula={`\\beta_{2,i} = \\arctan\\left(\\frac{c_m}{u_i - c_{2u,i}}\\right)`}
+                                />
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-primary"
+                                >
+                                    {formatNumber(sec.beta2i, decimalPlaces)}
                                 </td>
                             ))}
                         </tr>

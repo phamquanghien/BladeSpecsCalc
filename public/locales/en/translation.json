@@ -91,6 +91,7 @@
     "relativeVelocityAngles": "Relative velocity angles of the fan (β<sub>1,i</sub>, β<sub>2,i</sub>, β<sub>∞,i</sub>)",
     "absoluteVelocityAngles": "Absolute velocity angles of the fan (α<sub>1,i</sub>, α<sub>2,i</sub>, α<sub>∞,i</sub>)",
     "bladeNumberSelection": "Selection of the number of impeller blades (z, t<sub>i</sub>, l<sub>iRe,i</sub>)",
-    "beta1i": "Fan relative velocity angle β<sub>1,i</sub>"
+    "beta1i": "Fan relative velocity angle β<sub>1,i</sub>",
+    "beta2i": "Fan relative velocity angle β<sub>2,i</sub>"
   }
 }
