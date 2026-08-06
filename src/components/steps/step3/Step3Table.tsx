@@ -634,6 +634,35 @@ export const Step3Table: React.FC = () => {
                                 </td>
                             ))}
                         </tr>
+                        {/* Hàng 20: li */}
+                        <tr>
+                            <td className="sticky-column sticky-column-1 fw-bold text-start">
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: t(
+                                            'step3.bladeSectionLengthSelected',
+                                        ),
+                                    }}
+                                />
+                            </td>
+                            <td className="sticky-column sticky-column-2">
+                                <MathFormula
+                                    fontSize="1rem"
+                                    formula={`l_i = \\left( \\frac{\\Delta w_{u,i}}{\\left(0{,}4 + \\frac{0{,}1}{m} \\cdot (i-1)\\right) \\cdot w_{\\infty,i}} \\right) \\cdot t_i`}
+                                />
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-primary"
+                                >
+                                    {formatNumber(
+                                        sec.selectedLi,
+                                        decimalPlaces,
+                                    )}
+                                </td>
+                            ))}
+                        </tr>
                     </tbody>
                 </table>
             </div>
