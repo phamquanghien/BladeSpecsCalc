@@ -9,6 +9,7 @@ export interface RingSectionData {
   c2ui: number; c2i: number; cinfi: number;
   w1i: number; w2i: number; wRatio: number; isRatioValid: boolean; winfi: number;
   beta1i: number; beta2i: number; betainfi: number;
+  alpha1i: number; alpha2i: number; alphainfi: number;
 }
 
 export interface Step3Output {
@@ -75,6 +76,15 @@ export const calculateStep3 = (
     const betainfiDenom = ui - (c2ui / 2);
     const betainfiRad = betainfiDenom !== 0 ? Math.atan(cm / betainfiDenom) : 0;
     const betainfi = (betainfiRad * 180) / Math.PI;
+    // Trong vòng lặp for (let i = 1; i <= m; i++):
+    const alpha1i = 90; // Mặc định 90 độ cho dòng vào dọc trục
+    // Tính alpha2,i = arctan(cm / c2ui) [độ]
+    const alpha2iRad = c2ui > 0 ? Math.atan(cm / c2ui) : 0;
+    const alpha2i = (alpha2iRad * 180) / Math.PI;
+    // Tính alpha_infinity,i = arctan(cm / (c2ui / 2)) [độ]
+    const alphainfiDenom = c2ui / 2;
+    const alphainfiRad = alphainfiDenom > 0 ? Math.atan(cm / alphainfiDenom) : 0;
+    const alphainfi = (alphainfiRad * 180) / Math.PI;
 
     sections.push({
       sectionIndex: i,
@@ -82,7 +92,8 @@ export const calculateStep3 = (
       di: currentD,
       ui, c2ui, c2i, cinfi,
       w1i, w2i, wRatio,isRatioValid, winfi,
-      beta1i, beta2i, betainfi
+      beta1i, beta2i, betainfi,
+      alpha1i, alpha2i, alphainfi
     });
 
     // Tính đường kính cho mặt cắt tiếp theo: D_i = sqrt(D_{i-1}^2 - deltaD)

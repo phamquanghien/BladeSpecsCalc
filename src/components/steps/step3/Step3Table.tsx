@@ -411,9 +411,92 @@ export const Step3Table: React.FC = () => {
                             {sections.map((sec) => (
                                 <td
                                     key={sec.sectionIndex}
-                                    className="fw-bold text-primary"
+                                    className="fw-bold text-success"
                                 >
                                     {formatNumber(sec.betainfi, decimalPlaces)}
+                                </td>
+                            ))}
+                        </tr>
+                        <tr>
+                            <td
+                                colSpan={sections.length + 2}
+                                className="sticky-column sticky-column-1"
+                            >
+                                <h6
+                                    className="text-start mb-0 fw-bold text-primary"
+                                    dangerouslySetInnerHTML={{
+                                        __html: t(
+                                            'step3.absoluteVelocityAngles',
+                                        ),
+                                    }}
+                                />
+                            </td>
+                        </tr>
+                        {/* Hàng 14: Góc nghiêng alpha1,i */}
+                        <tr>
+                            <td className="sticky-column sticky-column-1 fw-bold text-start">
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: t('step3.alpha1i'),
+                                    }}
+                                />
+                            </td>
+                            <td className="sticky-column sticky-column-2">
+                                <MathFormula
+                                    fontSize="1rem"
+                                    formula={`\\alpha_{1,i}`}
+                                />
+                            </td>
+                            <td
+                                colSpan={sections.length}
+                                className="sticky-column sticky-column-1"
+                            ></td>
+                        </tr>
+                        {/* Hàng 15: Góc nghiêng alpha2,i */}
+                        <tr>
+                            <td className="sticky-column sticky-column-1 fw-bold text-start">
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: t('step3.alpha2i'),
+                                    }}
+                                />
+                            </td>
+                            <td className="sticky-column sticky-column-2">
+                                <MathFormula
+                                    fontSize="1rem"
+                                    formula={`\\alpha_{2,i} = \\arctan\\left(\\frac{c_m}{c_{2u,i}}\\right)`}
+                                />
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-primary"
+                                >
+                                    {formatNumber(sec.alpha2i, decimalPlaces)}
+                                </td>
+                            ))}
+                        </tr>
+                        {/* Hàng 16: Góc nghiêng alphaInfinity,i */}
+                        <tr>
+                            <td className="sticky-column sticky-column-1 fw-bold text-start">
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: t('step3.alphaInfinityI'),
+                                    }}
+                                />
+                            </td>
+                            <td className="sticky-column sticky-column-2">
+                                <MathFormula
+                                    fontSize="1rem"
+                                    formula={`\\alpha_{\\infty,i} = \\arctan\\left(\\frac{c_m}{c_{2u,i}/2}\\right)`}
+                                />
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-success"
+                                >
+                                    {formatNumber(sec.alphainfi, decimalPlaces)}
                                 </td>
                             ))}
                         </tr>
