@@ -107,6 +107,8 @@
     "calOverTPitch": "Tích (ca·l/t)<sub>i</sub>",
     "caCoefficientDetermination": "Xác định hệ số c<sub>a</sub> của quạt",
     "caLOverTProduct": "Tích (c<sub>a</sub>l/t)<sub>i</sub>",
-    "caiCoefficient": "Hệ số c<sub>a,i</sub>"
+    "caiCoefficient": "Hệ số c<sub>a,i</sub>",
+    "bladeProfileSettingAngles": "Tính toán các góc xác lập biên dạng cánh (γ<sub>m,i</sub>)",
+    "preliminaryBladeSettingAngle": "Góc xác lập cánh sơ bộ (γ<sub>m,i</sub>)"
   }
 }

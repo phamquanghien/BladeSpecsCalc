@@ -107,6 +107,8 @@
     "calOverTPitch": "Product (ca·l/t)<sub>i</sub>",
     "caCoefficientDetermination": "Determination of the fan c<sub>a</sub> coefficient",
     "caLOverTProduct": "Product (c<sub>a</sub>l/t)<sub>i</sub>",
-    "caiCoefficient": "Coefficient c<sub>a,i</sub>"
+    "caiCoefficient": "Coefficient c<sub>a,i</sub>",
+    "bladeProfileSettingAngles": "Calculation of the blade profile setting angles (γ<sub>m,i</sub>)",
+    "preliminaryBladeSettingAngle": "Preliminary blade setting angle (γ<sub>m,i</sub>)"
   }
 }

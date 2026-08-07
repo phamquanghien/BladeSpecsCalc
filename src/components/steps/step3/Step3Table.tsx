@@ -426,6 +426,15 @@ export const Step3Table: React.FC = () => {
                             decimalPlaces={decimalPlaces}
                             textColor="text-success"
                         />
+                        {renderSectionHeader('step3.bladeProfileSettingAngles')}
+                        <TableRowStandard
+                            labelHtml={t('step3.preliminaryBladeSettingAngle')}
+                            formula={`\\gamma_{m,i} = \\frac{\\beta_{1,i} + \\beta_{2,i}}{2}`}
+                            sections={sections}
+                            valueKey="gammaMi"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-primary"
+                        />
                     </tbody>
                 </table>
             </div>
