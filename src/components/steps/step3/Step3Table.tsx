@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useFanStore } from '../../../store/useFanStore';
 import { MathFormula } from '../../common/MathFormula';
 import { formatNumber } from '../../../utils/format';
+import { TableRowStandard } from './TableRowStandard';
 import './Step3Table.css';
 
 export const Step3Table: React.FC = () => {
@@ -18,6 +19,21 @@ export const Step3Table: React.FC = () => {
     }
 
     const { cm, sections } = step3Output;
+    const colSpanTotal = sections.length + 2;
+
+    const renderSectionHeader = (translationKey: string) => (
+        <tr>
+            <td
+                colSpan={colSpanTotal}
+                className="sticky-column sticky-column-1"
+            >
+                <h6
+                    className="text-start mb-0 fw-bold text-primary"
+                    dangerouslySetInnerHTML={{ __html: t(translationKey) }}
+                />
+            </td>
+        </tr>
+    );
 
     return (
         <div className="card border-0 shadow-sm p-4 mt-4 bg-white">
@@ -49,45 +65,20 @@ export const Step3Table: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="text-green">
-                            <td className="sticky-column sticky-column-1 fw-bold text-start">
-                                <span
-                                    dangerouslySetInnerHTML={{
-                                        __html: t('step3.diFormula'),
-                                    }}
-                                />
-                            </td>
-                            <td className="sticky-column sticky-column-2">
-                                <MathFormula
-                                    fontSize="1rem"
-                                    formula={`D_i = \\sqrt{D_{i-1}^2 - \\frac{4A_m}{m\\pi}}`}
-                                />
-                            </td>
-                            {/* Render giá trị D_i tương ứng từng mặt cắt */}
-                            {sections.map((sec) => (
-                                <td
-                                    key={sec.sectionIndex}
-                                    className="fw-bold text-success"
-                                >
-                                    {formatNumber(sec.di, decimalPlaces)}
-                                </td>
-                            ))}
-                        </tr>
-                        <tr>
-                            <td
-                                colSpan={sections.length + 2}
-                                className="sticky-column sticky-column-1"
-                            >
-                                <h6
-                                    className="text-start mb-0 fw-bold text-primary"
-                                    dangerouslySetInnerHTML={{
-                                        __html: t(
-                                            'step3.absoluteVelocityComponents',
-                                        ),
-                                    }}
-                                />
-                            </td>
-                        </tr>
+                        {/* Hàng D_i */}
+                        <TableRowStandard
+                            labelHtml={t('step3.diFormula')}
+                            formula={`D_i = \\sqrt{D_{i-1}^2 - \\frac{4A_m}{m\\pi}}`}
+                            sections={sections}
+                            valueKey="di"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-success"
+                        />
+
+                        {renderSectionHeader(
+                            'step3.absoluteVelocityComponents',
+                        )}
+
                         {/* Hàng 2: Thành phần tốc độ cm (Dùng colSpan gộp chung 1 ô) */}
                         <tr>
                             <td className="sticky-column sticky-column-1 fw-bold text-start">
@@ -112,164 +103,62 @@ export const Step3Table: React.FC = () => {
                             </td>
                         </tr>
                         {/* Hàng 3: Tốc độ vòng ui */}
-                        <tr>
-                            <td className="sticky-column sticky-column-1 fw-bold text-start">
-                                <span
-                                    dangerouslySetInnerHTML={{
-                                        __html: t('step3.uiFormula'),
-                                    }}
-                                />
-                            </td>
-                            <td className="sticky-column sticky-column-2">
-                                <MathFormula
-                                    fontSize="1rem"
-                                    formula={`u_i = n \\cdot \\pi \\cdot D_i`}
-                                />
-                            </td>
-                            {sections.map((sec) => (
-                                <td
-                                    key={sec.sectionIndex}
-                                    className="fw-bold text-success"
-                                >
-                                    {formatNumber(sec.ui, decimalPlaces)}
-                                </td>
-                            ))}
-                        </tr>
+                        <TableRowStandard
+                            labelHtml={t('step3.uiFormula')}
+                            formula={`u_i = n \\cdot \\pi \\cdot D_i`}
+                            sections={sections}
+                            valueKey="ui"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-success"
+                        />
                         {/* Hàng 4: Thành phần tốc độ hướng quay vòng c2ui */}
-                        <tr>
-                            <td className="sticky-column sticky-column-1 fw-bold text-start">
-                                <span
-                                    dangerouslySetInnerHTML={{
-                                        __html: t('step3.c2uiFormula'),
-                                    }}
-                                />
-                            </td>
-                            <td className="sticky-column sticky-column-2">
-                                <MathFormula
-                                    fontSize="1rem"
-                                    formula={`c_{2u,i} = \\frac{Y_{lt,\\infty}}{u_i}`}
-                                />
-                            </td>
-                            {sections.map((sec) => (
-                                <td
-                                    key={sec.sectionIndex}
-                                    className="fw-bold text-primary"
-                                >
-                                    {formatNumber(sec.c2ui, decimalPlaces)}
-                                </td>
-                            ))}
-                        </tr>
+                        <TableRowStandard
+                            labelHtml={t('step3.c2uiFormula')}
+                            formula={`c_{2u,i} = \\frac{Y_{lt,\\infty}}{u_i}`}
+                            sections={sections}
+                            valueKey="c2ui"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-primary"
+                        />
                         {/* Hàng 5: Thành phần tốc độ c2i */}
-                        <tr>
-                            <td className="sticky-column sticky-column-1 fw-bold text-start">
-                                <span
-                                    dangerouslySetInnerHTML={{
-                                        __html: t('step3.c2iFormula'),
-                                    }}
-                                />
-                            </td>
-                            <td className="sticky-column sticky-column-2">
-                                <MathFormula
-                                    fontSize="1rem"
-                                    formula={`c_{2,i} = \\sqrt{c_m^2 + c_{2u,i}^2}`}
-                                />
-                            </td>
-                            {sections.map((sec) => (
-                                <td
-                                    key={sec.sectionIndex}
-                                    className="fw-bold text-success"
-                                >
-                                    {formatNumber(sec.c2i, decimalPlaces)}
-                                </td>
-                            ))}
-                        </tr>
+                        <TableRowStandard
+                            labelHtml={t('step3.c2iFormula')}
+                            formula={`c_{2,i} = \\sqrt{c_m^2 + c_{2u,i}^2}`}
+                            sections={sections}
+                            valueKey="c2i"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-success"
+                        />
                         {/* Hàng 6: Thành phần tốc độ c_infinity,i */}
-                        <tr>
-                            <td className="sticky-column sticky-column-1 fw-bold text-start">
-                                <span
-                                    dangerouslySetInnerHTML={{
-                                        __html: t('step3.cinfiFormula'),
-                                    }}
-                                />
-                            </td>
-                            <td className="sticky-column sticky-column-2">
-                                <MathFormula
-                                    fontSize="1rem"
-                                    formula={`c_{\\infty,i} = \\sqrt{c_m^2 + \\left(\\frac{c_{2u,i}}{2}\\right)^2}`}
-                                />
-                            </td>
-                            {sections.map((sec) => (
-                                <td
-                                    key={sec.sectionIndex}
-                                    className="fw-bold text-primary"
-                                >
-                                    {formatNumber(sec.cinfi, decimalPlaces)}
-                                </td>
-                            ))}
-                        </tr>
-                        <tr>
-                            <td
-                                colSpan={sections.length + 2}
-                                className="sticky-column sticky-column-1"
-                            >
-                                <h6
-                                    className="text-start mb-0 fw-bold text-primary"
-                                    dangerouslySetInnerHTML={{
-                                        __html: t(
-                                            'step3.relativeVelocityComponents',
-                                        ),
-                                    }}
-                                />
-                            </td>
-                        </tr>
+                        <TableRowStandard
+                            labelHtml={t('step3.cinfiFormula')}
+                            formula={`c_{\\infty,i} = \\sqrt{c_m^2 + \\left(\\frac{c_{2u,i}}{2}\\right)^2}`}
+                            sections={sections}
+                            valueKey="cinfi"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-primary"
+                        />
+                        {renderSectionHeader(
+                            'step3.relativeVelocityComponents',
+                        )}
                         {/* Hàng 7: Thành phần tốc độ w1i */}
-                        <tr>
-                            <td className="sticky-column sticky-column-1 fw-bold text-start">
-                                <span
-                                    dangerouslySetInnerHTML={{
-                                        __html: t('step3.w1iFormula'),
-                                    }}
-                                />
-                            </td>
-                            <td className="sticky-column sticky-column-2">
-                                <MathFormula
-                                    fontSize="1rem"
-                                    formula={`w_{1,i} = \\sqrt{c_m^2 + u_i^2}`}
-                                />
-                            </td>
-                            {sections.map((sec) => (
-                                <td
-                                    key={sec.sectionIndex}
-                                    className="fw-bold text-success"
-                                >
-                                    {formatNumber(sec.w1i, decimalPlaces)}
-                                </td>
-                            ))}
-                        </tr>
+                        <TableRowStandard
+                            labelHtml={t('step3.w1iFormula')}
+                            formula={`w_{1,i} = \\sqrt{c_m^2 + u_i^2}`}
+                            sections={sections}
+                            valueKey="w1i"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-success"
+                        />
                         {/* Hàng 8: Thành phần tốc độ w2i */}
-                        <tr>
-                            <td className="sticky-column sticky-column-1 fw-bold text-start">
-                                <span
-                                    dangerouslySetInnerHTML={{
-                                        __html: t('step3.w2iFormula'),
-                                    }}
-                                />
-                            </td>
-                            <td className="sticky-column sticky-column-2">
-                                <MathFormula
-                                    fontSize="1rem"
-                                    formula={`w_{2,i} = \\sqrt{c_m^2 + (u_i - c_{2u,i})^2}`}
-                                />
-                            </td>
-                            {sections.map((sec) => (
-                                <td
-                                    key={sec.sectionIndex}
-                                    className="fw-bold text-primary"
-                                >
-                                    {formatNumber(sec.w2i, decimalPlaces)}
-                                </td>
-                            ))}
-                        </tr>
+                        <TableRowStandard
+                            labelHtml={t('step3.w2iFormula')}
+                            formula={`w_{2,i} = \\sqrt{c_m^2 + (u_i - c_{2u,i})^2}`}
+                            sections={sections}
+                            valueKey="w2i"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-primary"
+                        />
                         {/* Hàng 9: Kiểm tra tỷ số tốc độ (w2i / w1i) */}
                         <tr>
                             <td className="sticky-column sticky-column-1 fw-bold text-start">
@@ -307,131 +196,43 @@ export const Step3Table: React.FC = () => {
                             ))}
                         </tr>
                         {/* Hàng 10: Thành phần tốc độ w_infinity,i */}
-                        <tr>
-                            <td className="sticky-column sticky-column-1 fw-bold text-start">
-                                <span
-                                    dangerouslySetInnerHTML={{
-                                        __html: t('step3.wInfinityFormula'),
-                                    }}
-                                />
-                            </td>
-                            <td className="sticky-column sticky-column-2">
-                                <MathFormula
-                                    fontSize="1rem"
-                                    formula={`w_{\\infty,i} = \\sqrt{c_m^2 + \\left(u_i - \\frac{c_{2u,i}}{2}\\right)^2}`}
-                                />
-                            </td>
-                            {sections.map((sec) => (
-                                <td
-                                    key={sec.sectionIndex}
-                                    className="fw-bold text-primary"
-                                >
-                                    {formatNumber(sec.winfi, decimalPlaces)}
-                                </td>
-                            ))}
-                        </tr>
-                        <tr>
-                            <td
-                                colSpan={sections.length + 2}
-                                className="sticky-column sticky-column-1"
-                            >
-                                <h6
-                                    className="text-start mb-0 fw-bold text-primary"
-                                    dangerouslySetInnerHTML={{
-                                        __html: t(
-                                            'step3.relativeVelocityAngles',
-                                        ),
-                                    }}
-                                />
-                            </td>
-                        </tr>
+                        <TableRowStandard
+                            labelHtml={t('step3.wInfinityFormula')}
+                            formula={`w_{\\infty,i} = \\sqrt{c_m^2 + \\left(u_i - \\frac{c_{2u,i}}{2}\\right)^2}`}
+                            sections={sections}
+                            valueKey="winfi"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-primary"
+                        />
+                        {renderSectionHeader('step3.relativeVelocityAngles')}
                         {/* Hàng 11: Góc nghiêng beta1,i */}
-                        <tr>
-                            <td className="sticky-column sticky-column-1 fw-bold text-start">
-                                <span
-                                    dangerouslySetInnerHTML={{
-                                        __html: t('step3.beta1i'),
-                                    }}
-                                />
-                            </td>
-                            <td className="sticky-column sticky-column-2">
-                                <MathFormula
-                                    fontSize="1rem"
-                                    formula={`\\beta_{1,i} = \\arctan\\left(\\frac{c_m}{u_i}\\right)`}
-                                />
-                            </td>
-                            {sections.map((sec) => (
-                                <td
-                                    key={sec.sectionIndex}
-                                    className="fw-bold text-success"
-                                >
-                                    {formatNumber(sec.beta1i, decimalPlaces)}
-                                </td>
-                            ))}
-                        </tr>
+                        <TableRowStandard
+                            labelHtml={t('step3.beta1i')}
+                            formula={`\\beta_{1,i} = \\arctan\\left(\\frac{c_m}{u_i}\\right)`}
+                            sections={sections}
+                            valueKey="beta1i"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-success"
+                        />
                         {/* Hàng 12: Góc nghiêng beta2,i */}
-                        <tr>
-                            <td className="sticky-column sticky-column-1 fw-bold text-start">
-                                <span
-                                    dangerouslySetInnerHTML={{
-                                        __html: t('step3.beta2i'),
-                                    }}
-                                />
-                            </td>
-                            <td className="sticky-column sticky-column-2">
-                                <MathFormula
-                                    fontSize="1rem"
-                                    formula={`\\beta_{2,i} = \\arctan\\left(\\frac{c_m}{u_i - c_{2u,i}}\\right)`}
-                                />
-                            </td>
-                            {sections.map((sec) => (
-                                <td
-                                    key={sec.sectionIndex}
-                                    className="fw-bold text-primary"
-                                >
-                                    {formatNumber(sec.beta2i, decimalPlaces)}
-                                </td>
-                            ))}
-                        </tr>
+                        <TableRowStandard
+                            labelHtml={t('step3.beta2i')}
+                            formula={`\\beta_{2,i} = \\arctan\\left(\\frac{c_m}{u_i - c_{2u,i}}\\right)`}
+                            sections={sections}
+                            valueKey="beta2i"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-primary"
+                        />
                         {/* Hàng 13: Góc nghiêng betaInfinity,i */}
-                        <tr>
-                            <td className="sticky-column sticky-column-1 fw-bold text-start">
-                                <span
-                                    dangerouslySetInnerHTML={{
-                                        __html: t('step3.betaInfinityI'),
-                                    }}
-                                />
-                            </td>
-                            <td className="sticky-column sticky-column-2">
-                                <MathFormula
-                                    fontSize="1rem"
-                                    formula={`\\beta_{\\infty,i} = \\arctan\\left(\\frac{c_m}{u_i - \\frac{c_{2u,i}}{2}}\\right)`}
-                                />
-                            </td>
-                            {sections.map((sec) => (
-                                <td
-                                    key={sec.sectionIndex}
-                                    className="fw-bold text-success"
-                                >
-                                    {formatNumber(sec.betainfi, decimalPlaces)}
-                                </td>
-                            ))}
-                        </tr>
-                        <tr>
-                            <td
-                                colSpan={sections.length + 2}
-                                className="sticky-column sticky-column-1"
-                            >
-                                <h6
-                                    className="text-start mb-0 fw-bold text-primary"
-                                    dangerouslySetInnerHTML={{
-                                        __html: t(
-                                            'step3.absoluteVelocityAngles',
-                                        ),
-                                    }}
-                                />
-                            </td>
-                        </tr>
+                        <TableRowStandard
+                            labelHtml={t('step3.betaInfinityI')}
+                            formula={`\\beta_{\\infty,i} = \\arctan\\left(\\frac{c_m}{u_i - \\frac{c_{2u,i}}{2}}\\right)`}
+                            sections={sections}
+                            valueKey="betainfi"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-success"
+                        />
+                        {renderSectionHeader('step3.absoluteVelocityAngles')}
                         {/* Hàng 14: Góc nghiêng alpha1,i */}
                         <tr>
                             <td className="sticky-column sticky-column-1 fw-bold text-start">
@@ -453,53 +254,23 @@ export const Step3Table: React.FC = () => {
                             ></td>
                         </tr>
                         {/* Hàng 15: Góc nghiêng alpha2,i */}
-                        <tr>
-                            <td className="sticky-column sticky-column-1 fw-bold text-start">
-                                <span
-                                    dangerouslySetInnerHTML={{
-                                        __html: t('step3.alpha2i'),
-                                    }}
-                                />
-                            </td>
-                            <td className="sticky-column sticky-column-2">
-                                <MathFormula
-                                    fontSize="1rem"
-                                    formula={`\\alpha_{2,i} = \\arctan\\left(\\frac{c_m}{c_{2u,i}}\\right)`}
-                                />
-                            </td>
-                            {sections.map((sec) => (
-                                <td
-                                    key={sec.sectionIndex}
-                                    className="fw-bold text-primary"
-                                >
-                                    {formatNumber(sec.alpha2i, decimalPlaces)}
-                                </td>
-                            ))}
-                        </tr>
+                        <TableRowStandard
+                            labelHtml={t('step3.alpha2i')}
+                            formula={`\\alpha_{2,i} = \\arctan\\left(\\frac{c_m}{c_{2u,i}}\\right)`}
+                            sections={sections}
+                            valueKey="alpha2i"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-primary"
+                        />
                         {/* Hàng 16: Góc nghiêng alphaInfinity,i */}
-                        <tr>
-                            <td className="sticky-column sticky-column-1 fw-bold text-start">
-                                <span
-                                    dangerouslySetInnerHTML={{
-                                        __html: t('step3.alphaInfinityI'),
-                                    }}
-                                />
-                            </td>
-                            <td className="sticky-column sticky-column-2">
-                                <MathFormula
-                                    fontSize="1rem"
-                                    formula={`\\alpha_{\\infty,i} = \\arctan\\left(\\frac{c_m}{c_{2u,i}/2}\\right)`}
-                                />
-                            </td>
-                            {sections.map((sec) => (
-                                <td
-                                    key={sec.sectionIndex}
-                                    className="fw-bold text-success"
-                                >
-                                    {formatNumber(sec.alphainfi, decimalPlaces)}
-                                </td>
-                            ))}
-                        </tr>
+                        <TableRowStandard
+                            labelHtml={t('step3.alphaInfinityI')}
+                            formula={`\\alpha_{\\infty,i} = \\arctan\\left(\\frac{c_m}{c_{2u,i}/2}\\right)`}
+                            sections={sections}
+                            valueKey="alphainfi"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-success"
+                        />
                         <tr>
                             <td
                                 colSpan={2}
@@ -527,29 +298,14 @@ export const Step3Table: React.FC = () => {
                             </td>
                         </tr>
                         {/* Hàng 17: Góc nghiêng alphaInfinity,i */}
-                        <tr>
-                            <td className="sticky-column sticky-column-1 fw-bold text-start">
-                                <span
-                                    dangerouslySetInnerHTML={{
-                                        __html: t('step3.bladePitch'),
-                                    }}
-                                />
-                            </td>
-                            <td className="sticky-column sticky-column-2">
-                                <MathFormula
-                                    fontSize="1rem"
-                                    formula={`t_i = \\frac{\\pi D_i}{z}`}
-                                />
-                            </td>
-                            {sections.map((sec) => (
-                                <td
-                                    key={sec.sectionIndex}
-                                    className="fw-bold text-success"
-                                >
-                                    {formatNumber(sec.ti, decimalPlaces)}
-                                </td>
-                            ))}
-                        </tr>
+                        <TableRowStandard
+                            labelHtml={t('step3.bladePitch')}
+                            formula={`t_i = \\frac{\\pi D_i}{z}`}
+                            sections={sections}
+                            valueKey="ti"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-success"
+                        />
                         {/* Hàng 18: (l/t)i */}
                         <tr>
                             <td
@@ -635,34 +391,14 @@ export const Step3Table: React.FC = () => {
                             ))}
                         </tr>
                         {/* Hàng 20: li */}
-                        <tr>
-                            <td className="sticky-column sticky-column-1 fw-bold text-start">
-                                <span
-                                    dangerouslySetInnerHTML={{
-                                        __html: t(
-                                            'step3.bladeSectionLengthSelected',
-                                        ),
-                                    }}
-                                />
-                            </td>
-                            <td className="sticky-column sticky-column-2">
-                                <MathFormula
-                                    fontSize="1rem"
-                                    formula={`l_i = \\left( \\frac{\\Delta w_{u,i}}{\\left(0{,}4 + \\frac{0{,}1}{m} \\cdot (i-1)\\right) \\cdot w_{\\infty,i}} \\right) \\cdot t_i`}
-                                />
-                            </td>
-                            {sections.map((sec) => (
-                                <td
-                                    key={sec.sectionIndex}
-                                    className="fw-bold text-primary"
-                                >
-                                    {formatNumber(
-                                        sec.selectedLi,
-                                        decimalPlaces,
-                                    )}
-                                </td>
-                            ))}
-                        </tr>
+                        <TableRowStandard
+                            labelHtml={t('step3.bladeSectionLengthSelected')}
+                            formula={`l_i = \\left( \\frac{\\Delta w_{u,i}}{\\left(0{,}4 + \\frac{0{,}1}{m} \\cdot (i-1)\\right) \\cdot w_{\\infty,i}} \\right) \\cdot t_i`}
+                            sections={sections}
+                            valueKey="selectedLi"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-primary"
+                        />
                     </tbody>
                 </table>
             </div>
