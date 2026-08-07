@@ -405,7 +405,26 @@ export const Step3Table: React.FC = () => {
                             sections={sections}
                             valueKey="rei" // Thay 'rei' bằng tên key tương ứng trong object section của bạn (vd: 're', 'reynolds')
                             decimalPlaces={0} // Số Re thường lớn, nên để decimalPlaces = 0 hoặc tùy chọn
+                            textColor="text-success"
+                        />
+                        {renderSectionHeader(
+                            'step3.caCoefficientDetermination',
+                        )}
+                        <TableRowStandard
+                            labelHtml={t('step3.caLOverTProduct')}
+                            formula={`\\left(c_a \\frac{l}{t}\\right)_i = \\frac{2Y_{lt,\\infty}}{u_i w_{\\infty,i}}`}
+                            sections={sections}
+                            valueKey="calOverTi"
+                            decimalPlaces={decimalPlaces}
                             textColor="text-primary"
+                        />
+                        <TableRowStandard
+                            labelHtml={t('step3.caiCoefficient')}
+                            formula={`c_{a,i} = \\left(c_a \\frac{l}{t}\\right)_i \\cdot \\frac{t_i}{l_i}`}
+                            sections={sections}
+                            valueKey="cai"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-success"
                         />
                     </tbody>
                 </table>

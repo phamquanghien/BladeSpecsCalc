@@ -105,6 +105,8 @@
     "bladeSectionLengthSelected": "Selected blade section length (l<sub>i</sub>)",
     "reynoldsNumber": "Reynolds number verification (Re<sub>i</sub>)",
     "calOverTPitch": "Product (ca·l/t)<sub>i</sub>",
-    "caCoefficient": "Coefficient c<sub>a,i</sub>"
+    "caCoefficientDetermination": "Determination of the fan c<sub>a</sub> coefficient",
+    "caLOverTProduct": "Product (c<sub>a</sub>l/t)<sub>i</sub>",
+    "caiCoefficient": "Coefficient c<sub>a,i</sub>"
   }
 }

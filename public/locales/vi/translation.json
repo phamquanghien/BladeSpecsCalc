@@ -105,6 +105,8 @@
     "bladeSectionLengthSelected": "Chiều dài lựa chọn của tiết diện cánh (l<sub>i</sub>)",
     "reynoldsNumber": "Kiểm tra số Reynolds (Re<sub>i</sub>)",
     "calOverTPitch": "Tích (ca·l/t)<sub>i</sub>",
-    "caCoefficient": "Hệ số c<sub>a,i</sub>"
+    "caCoefficientDetermination": "Xác định hệ số c<sub>a</sub> của quạt",
+    "caLOverTProduct": "Tích (c<sub>a</sub>l/t)<sub>i</sub>",
+    "caiCoefficient": "Hệ số c<sub>a,i</sub>"
   }
 }
