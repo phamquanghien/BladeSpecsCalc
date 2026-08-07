@@ -399,6 +399,14 @@ export const Step3Table: React.FC = () => {
                             decimalPlaces={decimalPlaces}
                             textColor="text-primary"
                         />
+                        <TableRowStandard
+                            labelHtml={t('step3.reynoldsNumber')} // Hoặc: "Hệ số Reynolds Re<sub>i</sub>"
+                            formula={`Re_i = \\frac{w_{\\infty,i} \\cdot l_i}{\\nu}`}
+                            sections={sections}
+                            valueKey="rei" // Thay 'rei' bằng tên key tương ứng trong object section của bạn (vd: 're', 'reynolds')
+                            decimalPlaces={0} // Số Re thường lớn, nên để decimalPlaces = 0 hoặc tùy chọn
+                            textColor="text-primary"
+                        />
                     </tbody>
                 </table>
             </div>
