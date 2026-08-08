@@ -1,0 +1,40 @@
+name: Deploy React Vite App to Shared Hosting
+
+on:
+  push:
+    branches:
+      - main # Đảm bảo tên nhánh đúng với tên nhánh chính của bạn (main hoặc master)
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Lấy mã nguồn từ GitHub
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Cài đặt môi trường Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 3. Cài đặt dependencies và Build dự án Vite
+      - name: Install dependencies & Build
+        run: |
+          npm install
+          npm run build
+
+      # 4. Upload thư mục dist lên Hosting qua FTP
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          protocol: ftp
+          local-dir: ./dist/
+          server-dir: /
+          security: loose
