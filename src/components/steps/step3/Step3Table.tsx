@@ -427,6 +427,16 @@ export const Step3Table: React.FC = () => {
                             textColor="text-success"
                         />
                         {renderSectionHeader('step3.bladeProfileSettingAngles')}
+                        {/* <tr>
+                            <td colSpan={sections.length + 2}>
+                                <Step3Image
+                                    src="/images/step3/Hinh1112C.png"
+                                    alt="Distribution of Blade Sections"
+                                    fallbackText="Distribution of Blade Sections"
+                                    maxHeight="30em"
+                                />
+                            </td>
+                        </tr> */}
                         <TableRowStandard
                             labelHtml={t('step3.preliminaryBladeSettingAngle')}
                             formula={`\\gamma_{m,i} = \\frac{\\beta_{1,i} + \\beta_{2,i}}{2}`}
