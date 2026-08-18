@@ -428,16 +428,7 @@ export const Step3Table: React.FC = () => {
                             textColor="text-success"
                         />
                         {renderSectionHeader('step3.bladeProfileSettingAngles')}
-                        {/* <tr>
-                            <td colSpan={sections.length + 2}>
-                                <Step3Image
-                                    src="/images/step3/Hinh1112C.png"
-                                    alt="Distribution of Blade Sections"
-                                    fallbackText="Distribution of Blade Sections"
-                                    maxHeight="30em"
-                                />
-                            </td>
-                        </tr> */}
+
                         <TableRowStandard
                             labelHtml={t('step3.preliminaryBladeSettingAngle')}
                             formula={`\\gamma_{m,i} = \\frac{\\beta_{1,i} + \\beta_{2,i}}{2}`}
@@ -458,6 +449,57 @@ export const Step3Table: React.FC = () => {
                                     fallbackText="Distribution of Blade Sections"
                                 />
                             </td>
+                        </tr>
+                        <tr>
+                            <td
+                                colSpan={2}
+                                className="fw-bold text-start bg-light text-center"
+                            >
+                                (t<sub>i</sub>)
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-success"
+                                >
+                                    {formatNumber(sec.ti, decimalPlaces)}
+                                </td>
+                            ))}
+                        </tr>
+                        <tr>
+                            <td
+                                colSpan={2}
+                                className="fw-bold text-start bg-light text-center"
+                            >
+                                (l<sub>i</sub>)
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-primary"
+                                >
+                                    {formatNumber(
+                                        sec.selectedLi,
+                                        decimalPlaces,
+                                    )}
+                                </td>
+                            ))}
+                        </tr>
+                        <tr>
+                            <td
+                                colSpan={2}
+                                className="fw-bold text-start bg-light text-center"
+                            >
+                                (t/l)
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-success"
+                                >
+                                    {formatNumber(sec.tOverL, decimalPlaces)}
+                                </td>
+                            ))}
                         </tr>
                     </tbody>
                 </table>

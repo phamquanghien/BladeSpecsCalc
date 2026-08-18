@@ -11,7 +11,7 @@ export interface RingSectionData {
   beta1i: number; beta2i: number; betainfi: number;
   alpha1i: number; alpha2i: number; alphainfi: number;
   ti: number; deltaWui: number; lOverTi04: number; lOverTi05: number; li04: number; li05: number; selectedLi: number; rei: number;
-  calOverTi: number; cai: number; gammaMi: number;
+  calOverTi: number; cai: number; gammaMi: number; tOverL: number;
 }
 
 export interface Step3Output {
@@ -113,6 +113,8 @@ export const calculateStep3 = (
     // Tính gamma_m,i = (beta1i + beta2i) / 2 [độ]
     const gammaMi = (beta1i + beta2i) / 2;
 
+    const tOverL = selectedLi > 0 ? ti / selectedLi : 0;
+
     sections.push({
       sectionIndex: i,
       sectionLabel: label,
@@ -122,7 +124,7 @@ export const calculateStep3 = (
       beta1i, beta2i, betainfi,
       alpha1i, alpha2i, alphainfi,
       ti, deltaWui, lOverTi04, lOverTi05, li04, li05, selectedLi, rei,
-      calOverTi, cai, gammaMi
+      calOverTi, cai, gammaMi, tOverL
     });
 
     // Tính đường kính cho mặt cắt tiếp theo: D_i = sqrt(D_{i-1}^2 - deltaD)
