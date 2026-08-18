@@ -5,6 +5,7 @@ import { MathFormula } from '../../common/MathFormula';
 import { formatNumber } from '../../../utils/format';
 import { TableRowStandard } from './TableRowStandard';
 import './Step3Table.css';
+import { Step3Image } from './Step3Image';
 
 export const Step3Table: React.FC = () => {
     const { t } = useTranslation();
@@ -445,6 +446,19 @@ export const Step3Table: React.FC = () => {
                             decimalPlaces={decimalPlaces}
                             textColor="text-primary"
                         />
+                        {/* 🟢 Hàng hiển thị hình ảnh Giản đồ ε = f(t/l, γ_m) */}
+                        <tr>
+                            <td
+                                colSpan={sections.length + 2}
+                                className="text-center py-4 bg-white"
+                            >
+                                <Step3Image
+                                    src="/images/step3/Hinh1113B.png"
+                                    alt="Distribution of Blade Sections"
+                                    fallbackText="Distribution of Blade Sections"
+                                />
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

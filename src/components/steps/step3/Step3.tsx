@@ -13,11 +13,6 @@ export const Step3: React.FC = () => {
             />
             {/* Phần 2: Hiển thị kết quả tính toán các công thức trên table*/}
             <Step3Table />
-            <Step3Image
-                src="/images/step3/Hinh1113B.png"
-                alt="Distribution of Blade Sections"
-                fallbackText="Distribution of Blade Sections"
-            />
         </div>
     );
 };
