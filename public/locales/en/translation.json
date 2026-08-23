@@ -109,6 +109,10 @@
     "caLOverTProduct": "Product (c<sub>a</sub>l/t)<sub>i</sub>",
     "caiCoefficient": "Coefficient c<sub>a,i</sub>",
     "bladeProfileSettingAngles": "Calculation of the blade profile setting angles (γ<sub>m,i</sub>)",
-    "preliminaryBladeSettingAngle": "Preliminary blade setting angle (γ<sub>m,i</sub>)"
+    "preliminaryBladeSettingAngle": "Preliminary blade setting angle (γ<sub>m,i</sub>)",
+    "lookUpBladeExpansionCoefficient": "Look up blade expansion coefficient (ε<sub>i</sub>)",
+    "wrapAngle": "Wrap angle",
+    "correctedCentralAngle": "Corrected central angle",
+    "determineBladeProfileRadiusOfCurvature": "Determine blade profile radius of curvature (R<sub>i</sub>)"
   }
 }

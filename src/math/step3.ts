@@ -12,6 +12,7 @@ export interface RingSectionData {
   alpha1i: number; alpha2i: number; alphainfi: number;
   ti: number; deltaWui: number; lOverTi04: number; lOverTi05: number; li04: number; li05: number; selectedLi: number; rei: number;
   calOverTi: number; cai: number; gammaMi: number; tOverL: number;
+  epsilonI: number; thetaI: number; varthetaI: number; Ri: number;
 }
 
 export interface Step3Output {
@@ -21,7 +22,8 @@ export interface Step3Output {
 
 export const calculateStep3 = (
   step1Input: FanPreset,
-  step2Output: Step2Output
+  step2Output: Step2Output,
+  userEpsilonInputs: number[] = []
 ): Step3Output => {
   const m = step1Input.bladeRingCount || 4; // Số vành khăn (m) từ Step 1
   const Q = step1Input.airflow;
@@ -114,6 +116,17 @@ export const calculateStep3 = (
     const gammaMi = (beta1i + beta2i) / 2;
 
     const tOverL = selectedLi > 0 ? ti / selectedLi : 0;
+    // Nhận epsilon_i từ input người dùng truyền vào (mặc định bằng 1 nếu chưa nhập để tránh chia cho 0)
+    const epsilonI = userEpsilonInputs[i - 1] > 0 ? userEpsilonInputs[i - 1] : 1;
+    // Tính Góc ôm cung theta_i [độ]
+    const thetaI = beta2i - beta1i;
+    // Tính Góc chính tâm có hiệu chỉnh vartheta_i [độ]
+    const varthetaI = epsilonI > 0 ? thetaI / epsilonI : 0;
+    // Tính Bán kính cong trắc diện R_i [m]
+    // Chuyển vartheta_i/2 từ độ sang Radian để dùng trong Math.sin()
+    const halfVarthetaRad = ((varthetaI / 2) * Math.PI) / 180;
+    const sinVal = Math.sin(halfVarthetaRad);
+    const Ri = sinVal !== 0 ? selectedLi / (2 * sinVal) : 0;
 
     sections.push({
       sectionIndex: i,
@@ -124,7 +137,7 @@ export const calculateStep3 = (
       beta1i, beta2i, betainfi,
       alpha1i, alpha2i, alphainfi,
       ti, deltaWui, lOverTi04, lOverTi05, li04, li05, selectedLi, rei,
-      calOverTi, cai, gammaMi, tOverL
+      calOverTi, cai, gammaMi, tOverL, epsilonI, thetaI, varthetaI, Ri
     });
 
     // Tính đường kính cho mặt cắt tiếp theo: D_i = sqrt(D_{i-1}^2 - deltaD)

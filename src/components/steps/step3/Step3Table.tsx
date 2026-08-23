@@ -9,7 +9,12 @@ import { Step3Image } from './Step3Image';
 
 export const Step3Table: React.FC = () => {
     const { t } = useTranslation();
-    const { step3Output, decimalPlaces } = useFanStore();
+    const {
+        step3Output,
+        decimalPlaces,
+        userEpsilonInputs,
+        updateEpsilonInput,
+    } = useFanStore();
 
     if (
         !step3Output ||
@@ -400,6 +405,7 @@ export const Step3Table: React.FC = () => {
                             decimalPlaces={decimalPlaces}
                             textColor="text-primary"
                         />
+                        {/* Hàng 21: Rei */}
                         <TableRowStandard
                             labelHtml={t('step3.reynoldsNumber')} // Hoặc: "Hệ số Reynolds Re<sub>i</sub>"
                             formula={`Re_i = \\frac{w_{\\infty,i} \\cdot l_i}{\\nu}`}
@@ -411,6 +417,7 @@ export const Step3Table: React.FC = () => {
                         {renderSectionHeader(
                             'step3.caCoefficientDetermination',
                         )}
+                        {/* Hàng 22: C<sub>a</sub>l/t */}
                         <TableRowStandard
                             labelHtml={t('step3.caLOverTProduct')}
                             formula={`\\left(c_a \\frac{l}{t}\\right)_i = \\frac{2Y_{lt,\\infty}}{u_i w_{\\infty,i}}`}
@@ -419,6 +426,7 @@ export const Step3Table: React.FC = () => {
                             decimalPlaces={decimalPlaces}
                             textColor="text-primary"
                         />
+                        {/* Hàng 23: Ca */}
                         <TableRowStandard
                             labelHtml={t('step3.caiCoefficient')}
                             formula={`c_{a,i} = \\left(c_a \\frac{l}{t}\\right)_i \\cdot \\frac{t_i}{l_i}`}
@@ -428,7 +436,7 @@ export const Step3Table: React.FC = () => {
                             textColor="text-success"
                         />
                         {renderSectionHeader('step3.bladeProfileSettingAngles')}
-
+                        {/* Hàng 24: Gama */}
                         <TableRowStandard
                             labelHtml={t('step3.preliminaryBladeSettingAngle')}
                             formula={`\\gamma_{m,i} = \\frac{\\beta_{1,i} + \\beta_{2,i}}{2}`}
@@ -437,7 +445,7 @@ export const Step3Table: React.FC = () => {
                             decimalPlaces={decimalPlaces}
                             textColor="text-primary"
                         />
-                        {/* 🟢 Hàng hiển thị hình ảnh Giản đồ ε = f(t/l, γ_m) */}
+                        {/* Hàng 25 ε = f(t/l, γ_m) */}
                         <tr>
                             <td
                                 colSpan={sections.length + 2}
@@ -450,6 +458,7 @@ export const Step3Table: React.FC = () => {
                                 />
                             </td>
                         </tr>
+                        {/* Hàng 26 */}
                         <tr>
                             <td
                                 colSpan={2}
@@ -466,6 +475,7 @@ export const Step3Table: React.FC = () => {
                                 </td>
                             ))}
                         </tr>
+                        {/* Hàng 27 */}
                         <tr>
                             <td
                                 colSpan={2}
@@ -485,6 +495,7 @@ export const Step3Table: React.FC = () => {
                                 </td>
                             ))}
                         </tr>
+                        {/* Hàng 28 */}
                         <tr>
                             <td
                                 colSpan={2}
@@ -501,6 +512,82 @@ export const Step3Table: React.FC = () => {
                                 </td>
                             ))}
                         </tr>
+                        {/* Hàng 29 EPSILON */}
+                        <tr className="table-danger">
+                            <td className="sticky-column sticky-column-1 fw-bold text-start align-middle">
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: t(
+                                            'step3.lookUpBladeExpansionCoefficient',
+                                        ),
+                                    }}
+                                />
+                            </td>
+                            <td className="sticky-column sticky-column-2 align-middle">
+                                <MathFormula
+                                    fontSize="1rem"
+                                    formula="\varepsilon_i = f(t_i/l_i, \gamma_{m,i})"
+                                />
+                            </td>
+                            {sections.map((sec, idx) => {
+                                const currentValue =
+                                    userEpsilonInputs[idx] !== undefined
+                                        ? userEpsilonInputs[idx]
+                                        : sec.epsilonI;
+                                return (
+                                    <td
+                                        key={sec.sectionIndex}
+                                        className="p-1 align-middle"
+                                    >
+                                        <input
+                                            type="number"
+                                            step="0.01"
+                                            className="form-control form-control-sm text-center fw-bold border-primary"
+                                            value={currentValue}
+                                            onChange={(e) =>
+                                                updateEpsilonInput(
+                                                    idx,
+                                                    parseFloat(
+                                                        e.target.value,
+                                                    ) || 0,
+                                                )
+                                            }
+                                            style={{ minWidth: '70px' }}
+                                        />
+                                    </td>
+                                );
+                            })}
+                        </tr>
+                        {/* Hàng 30: theta_i */}
+                        <TableRowStandard
+                            labelHtml={t('step3.wrapAngle')}
+                            formula="\theta_i = \beta_{2,i} - \beta_{1,i}"
+                            sections={sections}
+                            valueKey="thetaI"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-primary"
+                        />
+                        {/* Hàng 31: vartheta_i */}
+                        <TableRowStandard
+                            labelHtml={t('step3.correctedCentralAngle')}
+                            formula="\vartheta_i = \frac{\theta_i}{\varepsilon_i}"
+                            sections={sections}
+                            valueKey="varthetaI"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-success"
+                        />
+
+                        {/* Hàng 32: R_i */}
+                        <TableRowStandard
+                            labelHtml={t(
+                                'step3.determineBladeProfileRadiusOfCurvature',
+                            )}
+                            formula="R_i = \frac{l_i}{2 \sin(\vartheta_i / 2)}"
+                            sections={sections}
+                            valueKey="Ri"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-primary"
+                        />
                     </tbody>
                 </table>
             </div>

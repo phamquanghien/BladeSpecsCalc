@@ -109,6 +109,10 @@
     "caLOverTProduct": "Tích (c<sub>a</sub>l/t)<sub>i</sub>",
     "caiCoefficient": "Hệ số c<sub>a,i</sub>",
     "bladeProfileSettingAngles": "Tính toán các góc xác lập biên dạng cánh (γ<sub>m,i</sub>)",
-    "preliminaryBladeSettingAngle": "Góc xác lập cánh sơ bộ (γ<sub>m,i</sub>)"
+    "preliminaryBladeSettingAngle": "Góc xác lập cánh sơ bộ (γ<sub>m,i</sub>)",
+    "lookUpBladeExpansionCoefficient": "Tra hệ số mở rộng cánh (ε<sub>i</sub>)",
+    "wrapAngle": "Góc ôm cung",
+    "correctedCentralAngle": "Góc chính tâm có hiệu chỉnh",
+    "determineBladeProfileRadiusOfCurvature": "Xác định bán kính cong trắc diện của cánh (R<sub>i</sub>)"
   }
 }
