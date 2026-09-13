@@ -14,6 +14,8 @@ export const Step3Table: React.FC = () => {
         decimalPlaces,
         userEpsilonInputs,
         updateEpsilonInput,
+        userDeltaGamma1IInputs,
+        updateDeltaGamma1IInput,
     } = useFanStore();
 
     if (
@@ -646,7 +648,7 @@ export const Step3Table: React.FC = () => {
                                 colSpan={2}
                                 className="fw-bold text-start bg-light text-center"
                             >
-                                (Y<sub>m,i</sub>)
+                                (&gamma;<sub>m,i</sub>)
                             </td>
                             {sections.map((sec) => (
                                 <td
@@ -657,6 +659,68 @@ export const Step3Table: React.FC = () => {
                                 </td>
                             ))}
                         </tr>
+                        {/* Hàng 36: Δγ */}
+                        <tr className="table-danger">
+                            <td className="sticky-column sticky-column-1 fw-bold text-start align-middle">
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: t(
+                                            'step3.lookupAngleCorrectionFromDiagram',
+                                        ),
+                                    }}
+                                />
+                            </td>
+                            <td className="sticky-column sticky-column-2 align-middle">
+                                <MathFormula
+                                    fontSize="1rem"
+                                    formula={`\\Delta \\gamma_{1,i} = f \\left( \\frac{d_i}{l_i}, \\gamma_{m,i} \\right)`}
+                                />
+                            </td>
+                            {sections.map((sec, idx) => {
+                                const currentValue =
+                                    userDeltaGamma1IInputs[idx] !== undefined
+                                        ? userDeltaGamma1IInputs[idx]
+                                        : sec.deltaGamma1I;
+                                return (
+                                    <td
+                                        key={sec.sectionIndex}
+                                        className="p-1 align-middle"
+                                    >
+                                        <input
+                                            type="number"
+                                            step="0.01"
+                                            className="form-control form-control-sm text-center fw-bold border-primary"
+                                            value={currentValue}
+                                            onChange={(e) =>
+                                                updateDeltaGamma1IInput(
+                                                    idx,
+                                                    parseFloat(
+                                                        e.target.value,
+                                                    ) || 0,
+                                                )
+                                            }
+                                            style={{ minWidth: '70px' }}
+                                        />
+                                    </td>
+                                );
+                            })}
+                        </tr>
+                        <TableRowStandard
+                            labelHtml={t('step3.calculatedAngleCorrection')}
+                            formula={`\\Delta \\gamma_i = \\Delta \\gamma_{1,i} \\left( \\frac{l_i}{t_i} \\right)^2`}
+                            sections={sections}
+                            valueKey="deltaGammaI"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-primary"
+                        />
+                        <TableRowStandard
+                            labelHtml={t('step3.bladeSettingAngle')}
+                            formula={`\\gamma_i = \\gamma_{m,i} + \\Delta \\gamma_i`}
+                            sections={sections}
+                            valueKey="gammaI"
+                            decimalPlaces={decimalPlaces}
+                            textColor="text-primary"
+                        />
                     </tbody>
                 </table>
             </div>

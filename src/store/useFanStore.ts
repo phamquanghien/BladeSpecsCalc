@@ -22,6 +22,7 @@ interface FanStoreState {
   // Step 3
   step3Output: Step3Output | null;
   userEpsilonInputs: number[];
+  userDeltaGamma1IInputs: number[];
   
 
   // Actions
@@ -29,6 +30,7 @@ interface FanStoreState {
   updateStep1Field: (fieldName: keyof FanPreset, value: number) => void;
   updateStep2Field: (fieldName: keyof Step2Input, value: number) => void;
   updateEpsilonInput: (index: number, value: number) => void;
+  updateDeltaGamma1IInput: (index: number, value: number) => void;
 }
 
 // Helper functions tính toán an toàn
@@ -56,11 +58,12 @@ const computeStep2Helper = (
 const computeStep3Helper = (
   step1Input: FanPreset,
   step2Output: Step2Output | null,
-  userEpsilonInputs: number[] = []
+  userEpsilonInputs: number[] = [],
+  userDeltaGamma1IInputs: number[] = []
 ): Step3Output | null => {
   if (!step2Output) return null;
   try {
-    return calculateStep3(step1Input, step2Output, userEpsilonInputs);
+    return calculateStep3(step1Input, step2Output, userEpsilonInputs, userDeltaGamma1IInputs);
   } catch (error: unknown) {
     console.error('Lỗi tính toán Step 3:', error);
     return null;
@@ -96,17 +99,31 @@ export const useFanStore = create<FanStoreState>((set, get) => ({
   step3Output: initialStep3Output,
   userEpsilonInputs: [],
   updateEpsilonInput: (index: number, value: number) => {
-    const { step1Input, step2Output, userEpsilonInputs } = get();
+    const { step1Input, step2Output, userEpsilonInputs, userDeltaGamma1IInputs } = get();
     
     // Copy mảng cũ và gán giá trị mới tại vị trí index
     const newEpsilons = [...userEpsilonInputs];
     newEpsilons[index] = value;
 
     // Tính toán lại Step 3 với mảng epsilon mới
-    const s3Out = computeStep3Helper(step1Input, step2Output, newEpsilons);
+    const s3Out = computeStep3Helper(step1Input, step2Output, newEpsilons, userDeltaGamma1IInputs);
 
     set({
       userEpsilonInputs: newEpsilons,
+      step3Output: s3Out,
+    });
+  },
+  userDeltaGamma1IInputs: [],
+  updateDeltaGamma1IInput: (index: number, value: number) => {
+    const { step1Input, step2Output, userEpsilonInputs, userDeltaGamma1IInputs } = get();
+
+    const newDeltaGamma1I = [...userDeltaGamma1IInputs];
+    newDeltaGamma1I[index] = value;
+
+    const s3Out = computeStep3Helper(step1Input, step2Output, userEpsilonInputs, newDeltaGamma1I);
+
+    set({
+      userDeltaGamma1IInputs: newDeltaGamma1I,
       step3Output: s3Out,
     });
   },
@@ -118,7 +135,7 @@ export const useFanStore = create<FanStoreState>((set, get) => ({
     const { step2Input } = get();
     const s1Out = computeStep1Helper(input);
     const s2Out = computeStep2Helper(input, step2Input);
-    const s3Out = computeStep3Helper(input, s2Out, get().userEpsilonInputs);
+    const s3Out = computeStep3Helper(input, s2Out, get().userEpsilonInputs, get().userDeltaGamma1IInputs);
 
     set({
       step1Input: input,
@@ -138,7 +155,7 @@ export const useFanStore = create<FanStoreState>((set, get) => ({
 
     const s1Out = computeStep1Helper(updatedInput);
     const s2Out = computeStep2Helper(updatedInput, step2Input);
-    const s3Out = computeStep3Helper(updatedInput, s2Out, get().userEpsilonInputs);
+    const s3Out = computeStep3Helper(updatedInput, s2Out, get().userEpsilonInputs, get().userDeltaGamma1IInputs);
 
     set({
       step1Input: updatedInput,
@@ -154,7 +171,7 @@ export const useFanStore = create<FanStoreState>((set, get) => ({
     const { step1Input } = get();
 
     const s2Out = computeStep2Helper(step1Input, updatedStep2);
-    const s3Out = computeStep3Helper(step1Input, s2Out, get().userEpsilonInputs);
+    const s3Out = computeStep3Helper(step1Input, s2Out, get().userEpsilonInputs, get().userDeltaGamma1IInputs);
 
     set({
       step2Input: updatedStep2,

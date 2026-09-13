@@ -113,6 +113,9 @@
     "lookUpBladeExpansionCoefficient": "Tra hệ số mở rộng cánh (ε<sub>i</sub>)",
     "wrapAngle": "Góc ôm cung",
     "correctedCentralAngle": "Góc chính tâm có hiệu chỉnh",
-    "determineBladeProfileRadiusOfCurvature": "Xác định bán kính cong trắc diện của cánh (R<sub>i</sub>)"
+    "determineBladeProfileRadiusOfCurvature": "Xác định bán kính cong trắc diện của cánh (R<sub>i</sub>)",
+    "lookupAngleCorrectionFromDiagram": "Độ hiệu chỉnh góc tra theo giản đồ (Δγ<sub>1,i</sub>)",
+    "calculatedAngleCorrection": "Độ hiệu chỉnh góc tính toán (Δγ<sub>i</sub>)",
+    "bladeSettingAngle": "Góc xác lập cánh (γ<sub>i</sub>)"
   }
 }

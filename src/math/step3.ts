@@ -13,6 +13,7 @@ export interface RingSectionData {
   ti: number; deltaWui: number; lOverTi04: number; lOverTi05: number; li04: number; li05: number; selectedLi: number; rei: number;
   calOverTi: number; cai: number; gammaMi: number; tOverL: number;
   epsilonI: number; thetaI: number; varthetaI: number; Ri: number; di: number; lidi: number;
+  deltaGamma1I: number; deltaGammaI: number; gammaI: number;
 }
 
 export interface Step3Output {
@@ -23,7 +24,8 @@ export interface Step3Output {
 export const calculateStep3 = (
   step1Input: FanPreset,
   step2Output: Step2Output,
-  userEpsilonInputs: number[] = []
+  userEpsilonInputs: number[] = [],
+  userDeltaGamma1IInputs: number[] = []
 ): Step3Output => {
   const m = step1Input.bladeRingCount || 4; // Số vành khăn (m) từ Step 1
   const Q = step1Input.airflow;
@@ -129,6 +131,10 @@ export const calculateStep3 = (
     const Ri = sinVal !== 0 ? selectedLi / (2 * sinVal) : 0;
     const di = 2 * Ri;
     const lidi = di/currentD;
+    // Nhận epsilon_i từ input người dùng truyền vào (mặc định bằng 1 nếu chưa nhập để tránh chia cho 0)
+    const deltaGamma1I = userDeltaGamma1IInputs[i - 1] > 0 ? userDeltaGamma1IInputs[i - 1] : 1;
+    const deltaGammaI = deltaGamma1I * Math.pow((selectedLi/ti),2);
+    const gammaI = gammaMi + deltaGammaI;
 
     sections.push({
       sectionIndex: i,
@@ -139,7 +145,8 @@ export const calculateStep3 = (
       beta1i, beta2i, betainfi,
       alpha1i, alpha2i, alphainfi,
       ti, deltaWui, lOverTi04, lOverTi05, li04, li05, selectedLi, rei,
-      calOverTi, cai, gammaMi, tOverL, epsilonI, thetaI, varthetaI, Ri, di, lidi
+      calOverTi, cai, gammaMi, tOverL, epsilonI, thetaI, varthetaI, Ri, di, lidi,
+      deltaGamma1I, deltaGammaI, gammaI
     });
 
     // Tính đường kính cho mặt cắt tiếp theo: D_i = sqrt(D_{i-1}^2 - deltaD)
