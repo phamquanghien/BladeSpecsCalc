@@ -76,7 +76,7 @@ export const Step3Table: React.FC = () => {
                             labelHtml={t('step3.diFormula')}
                             formula={`D_i = \\sqrt{D_{i-1}^2 - \\frac{4A_m}{m\\pi}}`}
                             sections={sections}
-                            valueKey="di"
+                            valueKey="Di"
                             decimalPlaces={decimalPlaces}
                             textColor="text-success"
                         />
@@ -588,6 +588,75 @@ export const Step3Table: React.FC = () => {
                             decimalPlaces={decimalPlaces}
                             textColor="text-primary"
                         />
+                        {/* Hàng 33 */}
+                        <tr>
+                            <td
+                                colSpan={2}
+                                className="fw-bold text-start bg-light text-center"
+                            >
+                                (d<sub>i</sub>)
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-success"
+                                >
+                                    {formatNumber(sec.di, decimalPlaces)}
+                                </td>
+                            ))}
+                        </tr>
+                        {/* Hàng 34 */}
+                        <tr>
+                            <td
+                                colSpan={2}
+                                className="fw-bold text-start bg-light text-center"
+                            >
+                                (l<sub>i</sub>)
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-primary"
+                                >
+                                    {formatNumber(
+                                        sec.selectedLi,
+                                        decimalPlaces,
+                                    )}
+                                </td>
+                            ))}
+                        </tr>
+                        <tr>
+                            <td
+                                colSpan={2}
+                                className="fw-bold text-start bg-light text-center"
+                            >
+                                (l<sub>i</sub>/d<sub>i</sub>)
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-success"
+                                >
+                                    {formatNumber(sec.lidi, decimalPlaces)}
+                                </td>
+                            ))}
+                        </tr>
+                        <tr>
+                            <td
+                                colSpan={2}
+                                className="fw-bold text-start bg-light text-center"
+                            >
+                                (Y<sub>m,i</sub>)
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-primary"
+                                >
+                                    {formatNumber(sec.gammaMi, decimalPlaces)}
+                                </td>
+                            ))}
+                        </tr>
                     </tbody>
                 </table>
             </div>

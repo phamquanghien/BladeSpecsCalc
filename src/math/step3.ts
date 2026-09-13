@@ -4,7 +4,7 @@ import type { Step2Output } from '../models/Step2';
 export interface RingSectionData {
   sectionIndex: number; // Chỉ số mặt cắt i (1, 2, 3...)
   sectionLabel: string; // Tên hiển thị (1=a, 2, 3...)
-  di: number;           // Đường kính Di (m)
+  Di: number;           // Đường kính Di (m)
   ui: number;           // Vận tốc vòng ui [m/s]
   c2ui: number; c2i: number; cinfi: number;
   w1i: number; w2i: number; wRatio: number; isRatioValid: boolean; winfi: number;
@@ -12,7 +12,7 @@ export interface RingSectionData {
   alpha1i: number; alpha2i: number; alphainfi: number;
   ti: number; deltaWui: number; lOverTi04: number; lOverTi05: number; li04: number; li05: number; selectedLi: number; rei: number;
   calOverTi: number; cai: number; gammaMi: number; tOverL: number;
-  epsilonI: number; thetaI: number; varthetaI: number; Ri: number;
+  epsilonI: number; thetaI: number; varthetaI: number; Ri: number; di: number; lidi: number;
 }
 
 export interface Step3Output {
@@ -127,17 +127,19 @@ export const calculateStep3 = (
     const halfVarthetaRad = ((varthetaI / 2) * Math.PI) / 180;
     const sinVal = Math.sin(halfVarthetaRad);
     const Ri = sinVal !== 0 ? selectedLi / (2 * sinVal) : 0;
+    const di = 2 * Ri;
+    const lidi = di/currentD;
 
     sections.push({
       sectionIndex: i,
       sectionLabel: label,
-      di: currentD,
+      Di: currentD,
       ui, c2ui, c2i, cinfi,
       w1i, w2i, wRatio,isRatioValid, winfi,
       beta1i, beta2i, betainfi,
       alpha1i, alpha2i, alphainfi,
       ti, deltaWui, lOverTi04, lOverTi05, li04, li05, selectedLi, rei,
-      calOverTi, cai, gammaMi, tOverL, epsilonI, thetaI, varthetaI, Ri
+      calOverTi, cai, gammaMi, tOverL, epsilonI, thetaI, varthetaI, Ri, di, lidi
     });
 
     // Tính đường kính cho mặt cắt tiếp theo: D_i = sqrt(D_{i-1}^2 - deltaD)
