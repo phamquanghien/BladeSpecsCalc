@@ -6,6 +6,7 @@ import { formatNumber } from '../../../utils/format';
 import { TableRowStandard } from './TableRowStandard';
 import './Step3Table.css';
 import { Step3Image } from './Step3Image';
+import { Step3DistributionTable } from './Step3DistributionTable';
 
 export const Step3Table: React.FC = () => {
     const { t } = useTranslation();
@@ -721,6 +722,50 @@ export const Step3Table: React.FC = () => {
                             decimalPlaces={decimalPlaces}
                             textColor="text-primary"
                         />
+                    </tbody>
+                </table>
+            </div>
+            <Step3DistributionTable />
+            <div className="step3-table-wrapper">
+                <table className="table table-hover table-bordered align-middle text-center mb-0 step3-table">
+                    <thead className="table-light"></thead>
+                    <tbody>
+                        <tr>
+                            <td
+                                colSpan={2}
+                                className="fw-bold text-start bg-light text-center"
+                            >
+                                L<sub>i</sub>
+                            </td>
+                            {sections.map((sec, index) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-success"
+                                >
+                                    {index + 1}
+                                </td>
+                            ))}
+                        </tr>
+                        <tr>
+                            <td
+                                colSpan={2}
+                                className="fw-bold text-start bg-light text-center"
+                            >
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: t('step3.valueText'),
+                                    }}
+                                />
+                            </td>
+                            {sections.map((sec) => (
+                                <td
+                                    key={sec.sectionIndex}
+                                    className="fw-bold text-primary"
+                                >
+                                    {formatNumber(sec.Li, decimalPlaces)}
+                                </td>
+                            ))}
+                        </tr>
                     </tbody>
                 </table>
             </div>

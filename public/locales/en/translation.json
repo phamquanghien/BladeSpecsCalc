@@ -116,6 +116,7 @@
     "determineBladeProfileRadiusOfCurvature": "Determine blade profile radius of curvature (R<sub>i</sub>)",
     "lookupAngleCorrectionFromDiagram": "Lookup angle correction from diagram (Δγ<sub>1,i</sub>)",
     "calculatedAngleCorrection": "Calculated angle correction (Δγ<sub>i</sub>)",
-    "bladeSettingAngle": "Blade setting angle (γ<sub>i</sub>)"
+    "bladeSettingAngle": "Blade setting angle (γ<sub>i</sub>)",
+    "valueText": "Value"
   }
 }
