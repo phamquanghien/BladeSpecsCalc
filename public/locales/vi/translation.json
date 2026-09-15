@@ -128,6 +128,9 @@
     "allowableTensileStress": "Ứng suất kéo cho phép σ<sub>k,cp</sub>",
     "allowableBendingStress": "Ứng suất uốn cho phép σ<sub>u,cp</sub>",
     "bladeMaterialDensity": "Khối lượng riêng của vật liệu chế tạo cánh ρ",
-    "bladeSectionGeometricMechanicalParameters": "Tính toán các thông số hình và cơ học của tiết diện cánh thứ i bất kỳ"
+    "bladeSectionGeometricMechanicalParameters": "Tính toán các thông số hình và cơ học của tiết diện cánh thứ i bất kỳ",
+    "parametersXikYikXiIj": "Các thông số (x<sub>ik</sub>, y<sub>ik</sub>, ξ<sub>ij</sub>)",
+    "boundaryDimensions": "Kích thước biên",
+    "bladeSection": "Mặt cắt thứ {{index}}"
   }
 }
