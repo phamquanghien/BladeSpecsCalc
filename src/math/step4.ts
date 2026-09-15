@@ -11,6 +11,17 @@ export const defaultStep4Input: Step4Input = {
     rhoMaterial: 7800,
 };
 
+// Interface cho bảng biên Boundary (j từ 1 đến 16)
+export interface BoundaryPointData {
+    jIndex: number; // Chỉ số j (từ 1 đến 16)
+    dij: number;    // d_ij = y_i,j + y_i,j+1 (tương ứng với y_ik[j-1] + y_ik[j])
+}
+
+export interface SectionBoundaryData {
+    sectionIndex: number;
+    boundaries: BoundaryPointData[];
+}
+
 export const calculateStep4 = (
     step4Input: Step4Input,
     step3Output: Step3Output | null
@@ -51,4 +62,36 @@ export const calculateStep4 = (
     return {
         sectionsDistribution,
     };
+};
+export const calculateStep4Boundary = (
+    step3Output: Step3Output | null
+): SectionBoundaryData[] => {
+    if (!step3Output || !step3Output.sections || step3Output.sections.length === 0) {
+        return [];
+    }
+
+    return step3Output.sections.map((sec, idx) => {
+        const Li = sec.Li;
+        const sectionIndex = sec.sectionIndex || idx + 1;
+
+        // Mảng chứa các giá trị y_ik (từ k = 0 đến 16, tổng cộng 17 điểm)
+        const yikValues = Y_COEFFICIENTS.map((yCoeff) => (yCoeff * Li) / 100);
+
+        // Tính d_ij cho j chạy từ 1 đến 16 (tương ứng chỉ số mảng k từ 0 đến 15)
+        // d_ij = y_ik[j-1] + y_ik[j] (với j = k + 1)
+        const boundaries: BoundaryPointData[] = [];
+        for (let j = 1; j <= 16; j++) {
+            const yCurrent = yikValues[j - 1]; // y_i,j-1 (ví dụ j=1 -> k=0)
+            const yNext = yikValues[j];         // y_i,j   (ví dụ j=1 -> k=1)
+            boundaries.push({
+                jIndex: j,
+                dij: yCurrent + yNext,
+            });
+        }
+
+        return {
+            sectionIndex,
+            boundaries,
+        };
+    });
 };
