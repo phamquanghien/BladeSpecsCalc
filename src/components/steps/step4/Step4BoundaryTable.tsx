@@ -1,5 +1,3 @@
-// src/components/steps/step4/Step4BoundaryTable.tsx
-
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useFanStore } from '../../../store/useFanStore';

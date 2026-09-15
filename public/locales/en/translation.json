@@ -131,6 +131,8 @@
     "bladeSectionGeometricMechanicalParameters": "Calculation of geometric and mechanical parameters of an arbitrary i-th blade section",
     "parametersXikYikXiIj": "Parameters (x<sub>ik</sub>, y<sub>ik</sub>, ξ<sub>ij</sub>)",
     "boundaryDimensions": "Boundary dimensions",
-    "bladeSection": "{{index}}-th blade section"
+    "bladeSection": "{{index}}-th blade section",
+    "bladeSectionArea": "Blade section area A<sub>i</sub>",
+    "value": "Value"
   }
 }

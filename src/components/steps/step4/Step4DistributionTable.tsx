@@ -1,5 +1,3 @@
-// src/components/steps/step4/Step4DistributionTable.tsx
-
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useFanStore } from '../../../store/useFanStore';
@@ -15,10 +13,15 @@ export const Step4DistributionTable: React.FC = () => {
         return calculateStep4(step4Input, step3Output);
     }, [step4Input, step3Output]);
 
-    if (!step3Output || !step3Output.sections || step3Output.sections.length === 0) {
+    if (
+        !step3Output ||
+        !step3Output.sections ||
+        step3Output.sections.length === 0
+    ) {
         return (
             <div className="alert alert-warning mt-3">
-                Chưa có dữ liệu tính toán từ Bước 3. Vui lòng hoàn thành Bước 3 trước.
+                Chưa có dữ liệu tính toán từ Bước 3. Vui lòng hoàn thành Bước 3
+                trước.
             </div>
         );
     }
@@ -27,14 +30,21 @@ export const Step4DistributionTable: React.FC = () => {
         <div className="mt-4">
             <h6 className="fw-bold text-primary mb-3">
                 <i className="bi bi-grid-3x3-gap-fill me-2"></i>
-                <span dangerouslySetInnerHTML={{ __html: t('step4.parametersXikYikXiIj') }} />
+                <span
+                    dangerouslySetInnerHTML={{
+                        __html: t('step4.parametersXikYikXiIj'),
+                    }}
+                />
             </h6>
 
             {step4Output.sectionsDistribution.map((secDist) => {
                 const i = secDist.sectionIndex;
 
                 return (
-                    <div key={i} className="card border-0 shadow-sm p-3 mb-4 bg-white">
+                    <div
+                        key={i}
+                        className="card border-0 shadow-sm p-3 mb-4 bg-white"
+                    >
                         <div className="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
                             <span className="fw-bold text-dark">
                                 {t('step4.bladeSection', { index: i })}
@@ -45,10 +55,14 @@ export const Step4DistributionTable: React.FC = () => {
                             <table className="table table-bordered align-middle text-center mb-0 text-nowrap small">
                                 <thead className="table-light">
                                     <tr>
-                                        <th className="fw-bold text-start">STT</th>
+                                        <th className="fw-bold text-start">
+                                            STT
+                                        </th>
                                         {secDist.points.map((pt) => (
                                             <th key={pt.sIndex}>
-                                                {pt.sIndex === 16 ? `s=${pt.sIndex}` : pt.sIndex}
+                                                {pt.sIndex === 16
+                                                    ? `s=${pt.sIndex}`
+                                                    : pt.sIndex}
                                             </th>
                                         ))}
                                     </tr>
@@ -62,7 +76,10 @@ export const Step4DistributionTable: React.FC = () => {
                                         {secDist.points.map((pt) => (
                                             <td key={pt.sIndex}>
                                                 <div className="fw-bold text-primary">
-                                                    {formatNumber(pt.xik, decimalPlaces)}
+                                                    {formatNumber(
+                                                        pt.xik,
+                                                        decimalPlaces,
+                                                    )}
                                                 </div>
                                             </td>
                                         ))}
@@ -76,7 +93,10 @@ export const Step4DistributionTable: React.FC = () => {
                                         {secDist.points.map((pt) => (
                                             <td key={pt.sIndex}>
                                                 <div className="fw-bold text-success">
-                                                    {formatNumber(pt.yik, decimalPlaces)}
+                                                    {formatNumber(
+                                                        pt.yik,
+                                                        decimalPlaces,
+                                                    )}
                                                 </div>
                                             </td>
                                         ))}
@@ -90,7 +110,10 @@ export const Step4DistributionTable: React.FC = () => {
                                         {secDist.points.map((pt) => (
                                             <td key={pt.sIndex}>
                                                 <div className="fw-bold text-dark">
-                                                    {formatNumber(pt.xiIj, decimalPlaces)}
+                                                    {formatNumber(
+                                                        pt.xiIj,
+                                                        decimalPlaces,
+                                                    )}
                                                 </div>
                                             </td>
                                         ))}

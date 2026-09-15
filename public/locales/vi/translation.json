@@ -131,6 +131,8 @@
     "bladeSectionGeometricMechanicalParameters": "Tính toán các thông số hình và cơ học của tiết diện cánh thứ i bất kỳ",
     "parametersXikYikXiIj": "Các thông số (x<sub>ik</sub>, y<sub>ik</sub>, ξ<sub>ij</sub>)",
     "boundaryDimensions": "Kích thước biên",
-    "bladeSection": "Mặt cắt thứ {{index}}"
+    "bladeSection": "Mặt cắt thứ {{index}}",
+    "bladeSectionArea": "Diện tích của tiết diện cánh A<sub>i</sub>",
+    "value": "Giá trị"
   }
 }

@@ -3,6 +3,7 @@ import { Step4Inputs } from './Step4Inputs';
 import { Step4DistributionTable } from './Step4DistributionTable';
 import { Step3DistributionTable } from '../step3/Step3DistributionTable';
 import { Step4BoundaryTable } from './Step4BoundaryTable';
+import { Step4AreaTable } from './Step4AreaTable';
 
 export const Step4: React.FC = () => {
     return (
@@ -11,6 +12,7 @@ export const Step4: React.FC = () => {
             <Step3DistributionTable />
             <Step4DistributionTable />
             <Step4BoundaryTable />
+            <Step4AreaTable />
         </div>
     );
 };

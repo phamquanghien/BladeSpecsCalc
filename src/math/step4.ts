@@ -26,6 +26,11 @@ export interface SectionBoundaryData {
     boundaries: BoundaryPointData[];
 }
 
+export interface SectionAreaOutput {
+    sectionIndex: number;
+    Ai: number; // A_i = (Tổng A_ij từ j=1 đến 16) / 6
+}
+
 export const calculateStep4 = (
     step4Input: Step4Input,
     step3Output: Step3Output | null
@@ -123,6 +128,32 @@ export const calculateStep4Boundary = (
         return {
             sectionIndex,
             boundaries,
+        };
+    });
+};
+
+export const calculateStep4Area = (
+    step3Output: Step3Output | null
+): SectionAreaOutput[] => {
+    if (!step3Output || !step3Output.sections || step3Output.sections.length === 0) {
+        return [];
+    }
+
+    const boundariesData = calculateStep4Boundary(step3Output);
+
+    return boundariesData.map((secBound) => {
+        // Tính A_ij cho từng j từ 1 đến 16 và cộng tổng lại
+        const sumAij = secBound.boundaries.reduce((sum, b) => {
+            const Aij = ((b.aij + b.bij) / 2) * b.hij;
+            return sum + Aij;
+        }, 0);
+
+        // Ai[i] = Sum(Aij[i,j]) / 6
+        const Ai = sumAij / 6;
+
+        return {
+            sectionIndex: secBound.sectionIndex,
+            Ai,
         };
     });
 };
