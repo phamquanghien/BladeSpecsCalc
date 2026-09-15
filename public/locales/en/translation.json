@@ -118,5 +118,16 @@
     "calculatedAngleCorrection": "Calculated angle correction (Δγ<sub>i</sub>)",
     "bladeSettingAngle": "Blade setting angle (γ<sub>i</sub>)",
     "valueText": "Value"
+  },
+  "step4": {
+    "title": "Axial fan blade strength verification calculation",
+    "inputDataForBladeStrengthCalculation": "Input data for fan blade strength calculation",
+    "bladeMaterial": "Blade material",
+    "steel20MnGOST1050_60": "20Mn steel, GOST 1050-60",
+    "materialElasticModulus": "Elastic modulus of blade material E",
+    "allowableTensileStress": "Allowable tensile stress σ<sub>k,cp</sub>",
+    "allowableBendingStress": "Allowable bending stress σ<sub>u,cp</sub>",
+    "bladeMaterialDensity": "Density of blade material ρ",
+    "bladeSectionGeometricMechanicalParameters": "Calculation of geometric and mechanical parameters of an arbitrary i-th blade section"
   }
 }

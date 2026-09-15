@@ -5,6 +5,8 @@ import { fanPresets } from '../config/fanPresets';
 import type { Step2Input } from '../models/Step2';
 import { calculateStep2, type Step2Output } from '../math/step2';
 import { calculateStep3, type Step3Output } from '../math/step3';
+import type { Step4Input } from '../models/Step4';
+import { defaultStep4Input } from '../math/step4';
 
 interface FanStoreState {
   // Cấu hình hiển thị UI
@@ -23,6 +25,10 @@ interface FanStoreState {
   step3Output: Step3Output | null;
   userEpsilonInputs: number[];
   userDeltaGamma1IInputs: number[];
+
+  //Step 4
+  step4Input: Step4Input;
+  setStep4Input: (input: Step4Input) => void;
   
 
   // Actions
@@ -31,6 +37,8 @@ interface FanStoreState {
   updateStep2Field: (fieldName: keyof Step2Input, value: number) => void;
   updateEpsilonInput: (index: number, value: number) => void;
   updateDeltaGamma1IInput: (index: number, value: number) => void;
+
+  updateStep4Field: (field: keyof Step4Input, value: string | number) => void;
 }
 
 // Helper functions tính toán an toàn
@@ -178,5 +186,17 @@ export const useFanStore = create<FanStoreState>((set, get) => ({
       step2Output: s2Out,
       step3Output: s3Out,
     });
+  },
+
+  step4Input: defaultStep4Input,
+  setStep4Input: (input) => set({ step4Input: input }),
+
+  updateStep4Field: (field, value) => {
+    set((state) => ({
+      step4Input: {
+        ...state.step4Input,
+        [field]: value,
+      },
+    }));
   },
 }));

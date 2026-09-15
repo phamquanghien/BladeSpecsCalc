@@ -118,5 +118,16 @@
     "calculatedAngleCorrection": "Độ hiệu chỉnh góc tính toán (Δγ<sub>i</sub>)",
     "bladeSettingAngle": "Góc xác lập cánh (γ<sub>i</sub>)",
     "valueText": "Giá trị"
+  },
+  "step4": {
+    "title": "Tính toán kiểm nghiệm bền cánh quạt hướng trục",
+    "inputDataForBladeStrengthCalculation": "Các dữ liệu cho trước để tính toán nghiệm bền cánh quạt",
+    "bladeMaterial": "Vật liệu làm cánh quạt",
+    "steel20MnGOST1050_60": "Thép 20Mn GOST 1050-60",
+    "materialElasticModulus": "Mô men đàn hồi của vật liệu làm cánh quạt E",
+    "allowableTensileStress": "Ứng suất kéo cho phép σ<sub>k,cp</sub>",
+    "allowableBendingStress": "Ứng suất uốn cho phép σ<sub>u,cp</sub>",
+    "bladeMaterialDensity": "Khối lượng riêng của vật liệu chế tạo cánh ρ",
+    "bladeSectionGeometricMechanicalParameters": "Tính toán các thông số hình và cơ học của tiết diện cánh thứ i bất kỳ"
   }
 }
