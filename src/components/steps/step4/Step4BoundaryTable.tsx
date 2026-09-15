@@ -92,6 +92,54 @@ export const Step4BoundaryTable: React.FC = () => {
                                             </td>
                                         ))}
                                     </tr>
+                                    {/* Hàng 4: a_ij */}
+                                    <tr>
+                                        <th className="fw-bold text-start bg-light">
+                                            a<sub>{i}j</sub>
+                                        </th>
+                                        {secBound.boundaries.map((b) => (
+                                            <td key={b.jIndex}>
+                                                <div className="fw-bold text-dark">
+                                                    {formatNumber(
+                                                        b.aij,
+                                                        decimalPlaces,
+                                                    )}
+                                                </div>
+                                            </td>
+                                        ))}
+                                    </tr>
+                                    {/* Hàng 5: b_ij */}
+                                    <tr>
+                                        <th className="fw-bold text-start bg-light">
+                                            b<sub>{i}j</sub>
+                                        </th>
+                                        {secBound.boundaries.map((b) => (
+                                            <td key={b.jIndex}>
+                                                <div className="fw-bold text-danger">
+                                                    {formatNumber(
+                                                        b.bij,
+                                                        decimalPlaces,
+                                                    )}
+                                                </div>
+                                            </td>
+                                        ))}
+                                    </tr>
+                                    {/* Hàng 6: h_ij */}
+                                    <tr>
+                                        <th className="fw-bold text-start bg-light">
+                                            h<sub>{i}j</sub>
+                                        </th>
+                                        {secBound.boundaries.map((b) => (
+                                            <td key={b.jIndex}>
+                                                <div className="fw-bold text-info">
+                                                    {formatNumber(
+                                                        b.hij,
+                                                        decimalPlaces,
+                                                    )}
+                                                </div>
+                                            </td>
+                                        ))}
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

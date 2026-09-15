@@ -16,6 +16,9 @@ export interface BoundaryPointData {
     jIndex: number; // Chỉ số j (từ 1 đến 16)
     dij: number;    // d_ij = y_i,j + y_i,j+1 (tương ứng với y_ik[j-1] + y_ik[j])
     deltaIj: number; // \delta_ij = \xi_i,j+1 - \xi_i,j (tương ứng với xiIj[j] - xiIj[j-1])
+    aij: number; // a_ij = 2 * (Ri + (d_ij / 2) * sin(delta_ij / 2))
+    bij: number; // b_ij = 2 * (Ri - (d_ij / 2) * sin(delta_ij / 2))
+    hij: number;     // h_ij = delta_ij
 }
 
 export interface SectionBoundaryData {
@@ -94,10 +97,26 @@ export const calculateStep4Boundary = (
             const yCurrent = yikValues[j - 1]; // y_i,j (k = j-1)
             const yNext = yikValues[j];         // y_i,j+1 (k = j)
 
+            const deltaIj = xiNext - xiCurrent;
+            const dij = yCurrent + yNext;
+
+            const Rij = Array.isArray(sec.Ri) ? sec.Ri[j - 1] : sec.Ri;
+
+            // Chuyển deltaIj từ Độ sang Radian để tính sin
+            const halfDeltaRad = ((deltaIj / 2) * Math.PI) / 180;
+            const sinHalfDelta = Math.sin(halfDeltaRad);
+            
+            const aij = 2 * (Rij + (dij / 2)) * sinHalfDelta;
+            const bij = 2 * (Rij - (dij / 2)) * sinHalfDelta;
+            const hij = deltaIj;
+
             boundaries.push({
                 jIndex: j,
-                deltaIj: xiNext - xiCurrent,
-                dij: yCurrent + yNext,
+                deltaIj,
+                dij,
+                aij,
+                bij,
+                hij
             });
         }
 
