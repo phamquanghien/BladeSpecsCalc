@@ -34,7 +34,6 @@ export const Step4BoundaryTable: React.FC = () => {
 
             {boundaryData.map((secBound) => {
                 const i = secBound.sectionIndex;
-
                 return (
                     <div
                         key={i}
@@ -61,7 +60,23 @@ export const Step4BoundaryTable: React.FC = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {/* Hàng 2: d_ij */}
+                                    {/* Hàng 2: \delta_ij */}
+                                    <tr>
+                                        <th className="fw-bold text-start bg-light">
+                                            &delta;<sub>{i}j</sub>
+                                        </th>
+                                        {secBound.boundaries.map((b) => (
+                                            <td key={b.jIndex}>
+                                                <div className="fw-bold text-primary">
+                                                    {formatNumber(
+                                                        b.deltaIj,
+                                                        decimalPlaces,
+                                                    )}
+                                                </div>
+                                            </td>
+                                        ))}
+                                    </tr>
+                                    {/* Hàng 3: d_ij */}
                                     <tr>
                                         <th className="fw-bold text-start bg-light">
                                             d<sub>{i}j</sub>

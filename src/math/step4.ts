@@ -15,6 +15,7 @@ export const defaultStep4Input: Step4Input = {
 export interface BoundaryPointData {
     jIndex: number; // Chỉ số j (từ 1 đến 16)
     dij: number;    // d_ij = y_i,j + y_i,j+1 (tương ứng với y_ik[j-1] + y_ik[j])
+    deltaIj: number; // \delta_ij = \xi_i,j+1 - \xi_i,j (tương ứng với xiIj[j] - xiIj[j-1])
 }
 
 export interface SectionBoundaryData {
@@ -72,19 +73,30 @@ export const calculateStep4Boundary = (
 
     return step3Output.sections.map((sec, idx) => {
         const Li = sec.Li;
+        const varthetaI = sec.varthetaI;
         const sectionIndex = sec.sectionIndex || idx + 1;
 
-        // Mảng chứa các giá trị y_ik (từ k = 0 đến 16, tổng cộng 17 điểm)
+        // 1. Mảng giá trị \xi_ij (17 điểm từ k = 0 đến 16)
+        const xiIjValues = X_COEFFICIENTS.map((xCoeff, k) =>
+            k === 16 ? Li : (xCoeff * varthetaI) / 100
+        );
+
+        // 2. Mảng chứa các giá trị y_ik (từ k = 0 đến 16, tổng cộng 17 điểm)
         const yikValues = Y_COEFFICIENTS.map((yCoeff) => (yCoeff * Li) / 100);
 
         // Tính d_ij cho j chạy từ 1 đến 16 (tương ứng chỉ số mảng k từ 0 đến 15)
         // d_ij = y_ik[j-1] + y_ik[j] (với j = k + 1)
         const boundaries: BoundaryPointData[] = [];
         for (let j = 1; j <= 16; j++) {
-            const yCurrent = yikValues[j - 1]; // y_i,j-1 (ví dụ j=1 -> k=0)
-            const yNext = yikValues[j];         // y_i,j   (ví dụ j=1 -> k=1)
+            const xiCurrent = xiIjValues[j - 1]; // \xi_i,j (k = j-1)
+            const xiNext = xiIjValues[j];         // \xi_i,j+1 (k = j)
+
+            const yCurrent = yikValues[j - 1]; // y_i,j (k = j-1)
+            const yNext = yikValues[j];         // y_i,j+1 (k = j)
+
             boundaries.push({
                 jIndex: j,
+                deltaIj: xiNext - xiCurrent,
                 dij: yCurrent + yNext,
             });
         }
