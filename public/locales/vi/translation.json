@@ -134,5 +134,32 @@
     "bladeSection": "Mặt cắt thứ {{index}}",
     "bladeSectionArea": "Diện tích của tiết diện cánh A<sub>i</sub>",
     "value": "Giá trị"
+  },
+  "step5": {
+    "title": "Báo cáo tổng hợp kết quả tính toán",
+    "printExportReport": "In / Xuất báo cáo",
+    "parameter": "Thông số",
+    "symbol": "Ký hiệu",
+    "value": "Giá trị",
+    "unit": "Đơn vị",
+    "part1": {
+      "axialFanType": "Kiểu quạt hướng trục",
+      "designCalculationInputData": "I/ Dữ liệu tính toán thiết kế cho trước:",
+      "fanBladeProfileDesignCalculation": "Phần tính toán thiết kế biên dạng cánh quạt",
+      "fanBladeStrengthCalculation": "Phần tính toán nghiệm bền cánh quạt",
+      "annular": "Vành khăn",
+      "bladeMaterial": "Vật liệu chế tạo cánh",
+      "materialElasticModulus": "Mô đun đàn hồi của vật liệu",
+      "allowableTensileStress": "Ứng suất kéo cho phép",
+      "materialDensity": "Khối lượng riêng của vật liệu"
+    },
+    "part2": {
+      "designCalculationResults": "II/ Kết quả tính toán thiết kế"
+    },
+    "part3": {
+      "optimalCharacteristicCoefficient": "Hệ số đặc trưng tối ưu",
+      "lookupOptimalCalculationCoefficientsFromDiagram": "Tra các hệ số tính toán tối ưu từ giản đồ",
+      "fanTipAndRootDiameters": "Đường kính đỉnh và đường kính chân cánh quạt"
+    }
   }
 }

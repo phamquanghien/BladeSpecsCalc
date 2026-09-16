@@ -134,5 +134,32 @@
     "bladeSection": "{{index}}-th blade section",
     "bladeSectionArea": "Blade section area A<sub>i</sub>",
     "value": "Value"
+  },
+  "step5": {
+    "title": "Calculation results summary report",
+    "printExportReport": "Print / Export report",
+    "parameter": "Parameter",
+    "symbol": "Symbol",
+    "value": "Value",
+    "unit": "Unit",
+    "part1": {
+      "axialFanType": "Axial fan type",
+      "designCalculationInputData": "I/ Input data for design calculation:",
+      "fanBladeProfileDesignCalculation": "Fan blade profile design calculation",
+      "fanBladeStrengthCalculation": "Fan blade strength verification calculation",
+      "annular": "Annular",
+      "bladeMaterial": "Blade material",
+      "materialElasticModulus": "Elastic modulus of the material",
+      "allowableTensileStress": "Allowable tensile stress",
+      "materialDensity": "Material density"
+    },
+    "part2": {
+      "designCalculationResults": "II/ Design calculation results"
+    },
+    "part3": {
+      "optimalCharacteristicCoefficient": "Optimal characteristic coefficient",
+      "lookupOptimalCalculationCoefficientsFromDiagram": "Lookup optimal calculation coefficients from diagram",
+      "fanTipAndRootDiameters": "Fan tip and root diameters"
+    }
   }
 }
