@@ -154,12 +154,21 @@
       "materialDensity": "Khối lượng riêng của vật liệu"
     },
     "part2": {
-      "designCalculationResults": "II/ Kết quả tính toán thiết kế"
-    },
-    "part3": {
+      "title": "II/ Kết quả tính toán thiết kế",
+      "fanBladeProfileDesignCalculation": "Phần tính toán thiết kế biên dạng cánh quạt",
       "optimalCharacteristicCoefficient": "Hệ số đặc trưng tối ưu",
       "lookupOptimalCalculationCoefficientsFromDiagram": "Tra các hệ số tính toán tối ưu từ giản đồ",
-      "fanTipAndRootDiameters": "Đường kính đỉnh và đường kính chân cánh quạt"
+      "optimalDiameterCoefficient": "Hệ số đường kính tối ưu",
+      "bladeRootToTipDiameterRatio": "Tỷ số đường kính chân và đỉnh cánh",
+      "fanTipAndRootDiameters": "Đường kính đỉnh và đường kính chân cánh quạt",
+      "bladeTipDiameter": "Đường kính đỉnh của cánh",
+      "bladeRootDiameter": "Đường kính chân của cánh",
+      "totalFanImpellerArea": "Diện tích toàn phần của bánh công tác quạt",
+      "bladeProfileCylindricalSections": "Phân chia các mặt cắt trụ để tính biên dạng cánh",
+      "section1Diameter": "Đường kính của mặt cắt thứ 1"
+    },
+    "part3": {
+     
     }
   }
 }

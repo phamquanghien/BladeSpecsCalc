@@ -33,15 +33,6 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
 
             <div className="d-flex align-items-center gap-2">
                 <LanguageSwitcher />
-                <button
-                    className="btn btn-outline-danger btn-sm fw-bold px-2 px-sm-3"
-                    onClick={() => window.print()}
-                >
-                    <i className="bi bi-printer me-0 me-sm-1"></i>
-                    <span className="d-none d-sm-inline">
-                        {t('header.exportPdf')}
-                    </span>
-                </button>
             </div>
         </div>
     );

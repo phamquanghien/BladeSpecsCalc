@@ -7,7 +7,7 @@ import { formatNumber } from '../../../utils/format';
 
 export const Step5InitialDataTable: React.FC = () => {
     const { t } = useTranslation();
-    const { step1Input, step4Input, decimalPlaces } = useFanStore();
+    const { step1Input, step4Input } = useFanStore();
 
     if (!step1Input) return null;
 
@@ -61,7 +61,7 @@ export const Step5InitialDataTable: React.FC = () => {
                         <td>- {t('step1.labels.airflow')}</td>
                         <td className="text-center">Q</td>
                         <td className="text-center fw-bold text-primary">
-                            {formatNumber(step1Input.airflow, decimalPlaces)}
+                            {formatNumber(step1Input.airflow, 0)}
                         </td>
                         <td className="text-center">[m^3/s]</td>
                     </tr>
@@ -70,10 +70,7 @@ export const Step5InitialDataTable: React.FC = () => {
                         <td>- {t('step1.labels.staticPressure')}</td>
                         <td className="text-center">&Delta;p</td>
                         <td className="text-center fw-bold text-primary">
-                            {formatNumber(
-                                step1Input.staticPressure,
-                                decimalPlaces,
-                            )}
+                            {formatNumber(step1Input.staticPressure, 0)}
                         </td>
                         <td className="text-center">[mmH2O]</td>
                     </tr>
@@ -82,10 +79,7 @@ export const Step5InitialDataTable: React.FC = () => {
                         <td>- {t('step1.labels.rotationSpeed')}</td>
                         <td className="text-center">n</td>
                         <td className="text-center fw-bold text-primary">
-                            {formatNumber(
-                                step1Input.rotationSpeed,
-                                decimalPlaces,
-                            )}
+                            {formatNumber(step1Input.rotationSpeed, 0)}
                         </td>
                         <td className="text-center">[rot/min]</td>
                     </tr>
@@ -94,10 +88,7 @@ export const Step5InitialDataTable: React.FC = () => {
                         <td>- {t('step1.labels.gasDensity')}</td>
                         <td className="text-center">ro</td>
                         <td className="text-center fw-bold text-primary">
-                            {formatNumber(
-                                step1Input.gasDensity || 1.2,
-                                decimalPlaces,
-                            )}
+                            {formatNumber(step1Input.gasDensity || 1.2, 2)}
                         </td>
                         <td className="text-center">[kg/m^3]</td>
                     </tr>
@@ -138,7 +129,7 @@ export const Step5InitialDataTable: React.FC = () => {
                                 </td>
                                 <td className="text-center">E</td>
                                 <td className="text-center fw-bold text-primary">
-                                    {formatNumber(step4Input.E, decimalPlaces)}
+                                    {formatNumber(step4Input.E, 0)}
                                 </td>
                                 <td className="text-center">[MPa]</td>
                             </tr>
@@ -149,10 +140,7 @@ export const Step5InitialDataTable: React.FC = () => {
                                 </td>
                                 <td className="text-center">[&sigma;k]</td>
                                 <td className="text-center fw-bold text-primary">
-                                    {formatNumber(
-                                        step4Input.sigmaKcp,
-                                        decimalPlaces,
-                                    )}
+                                    {formatNumber(step4Input.sigmaKcp, 2)}
                                 </td>
                                 <td className="text-center">[MPa]</td>
                             </tr>
@@ -161,10 +149,7 @@ export const Step5InitialDataTable: React.FC = () => {
                                 <td>- {t('step5.part1.materialDensity')}</td>
                                 <td className="text-center">&rho;</td>
                                 <td className="text-center fw-bold text-primary">
-                                    {formatNumber(
-                                        step4Input.rhoMaterial,
-                                        decimalPlaces,
-                                    )}
+                                    {formatNumber(step4Input.rhoMaterial, 0)}
                                 </td>
                                 <td className="text-center">[kg/m^3]</td>
                             </tr>

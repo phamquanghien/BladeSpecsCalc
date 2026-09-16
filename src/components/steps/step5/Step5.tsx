@@ -1,7 +1,7 @@
 import React from 'react';
 import { Step5InitialDataTable } from './Step5InitialDataTable';
 import { useTranslation } from 'react-i18next';
-// import { Step5SectionsDataTable } from './Step5SectionsDataTable';
+import { Step5CalculatedDataTable } from './Step5CalculatedDataTable';
 
 export const Step5: React.FC = () => {
     const { t } = useTranslation();
@@ -25,7 +25,7 @@ export const Step5: React.FC = () => {
             <Step5InitialDataTable />
 
             {/* Mục II: Bảng dữ liệu tổng hợp theo mặt cắt */}
-            {/* <Step5SectionsDataTable /> */}
+            <Step5CalculatedDataTable />
         </div>
     );
 };

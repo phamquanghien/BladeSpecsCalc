@@ -154,12 +154,21 @@
       "materialDensity": "Material density"
     },
     "part2": {
-      "designCalculationResults": "II/ Design calculation results"
-    },
-    "part3": {
+      "title": "II/ Design calculation results",
+      "fanBladeProfileDesignCalculation": "Fan blade profile design calculation",
       "optimalCharacteristicCoefficient": "Optimal characteristic coefficient",
       "lookupOptimalCalculationCoefficientsFromDiagram": "Lookup optimal calculation coefficients from diagram",
-      "fanTipAndRootDiameters": "Fan tip and root diameters"
+      "optimalDiameterCoefficient": "Optimal diameter coefficient",
+      "bladeRootToTipDiameterRatio": "Blade root-to-tip diameter ratio",
+      "fanTipAndRootDiameters": "Fan tip and root diameters",
+      "bladeTipDiameter": "Blade tip diameter",
+      "bladeRootDiameter": "Blade root diameter",
+      "totalFanImpellerArea": "Total fan impeller area",
+      "bladeProfileCylindricalSections": "Division of cylindrical sections for blade profile calculation",
+      "section1Diameter": "Diameter of section 1"
+    },
+    "part3": {
+      
     }
   }
 }
