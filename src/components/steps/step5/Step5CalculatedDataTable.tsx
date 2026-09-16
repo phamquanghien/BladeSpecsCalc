@@ -9,10 +9,16 @@ export const Step5CalculatedDataTable: React.FC = () => {
     const { t } = useTranslation();
 
     // Lấy cả step1Output và step2Output từ Zustand Store
-    const { step1Output, step2Input, step2Output, decimalPlaces } =
+    const { step1Output, step2Input, step2Output, step3Output, decimalPlaces } =
         useFanStore();
 
-    if (!step1Output && !step2Output) return null;
+    if (
+        !step1Output &&
+        !step2Output &&
+        !step2Input &&
+        !step3Output?.sections?.length
+    )
+        return null;
 
     return (
         <div className="table-responsive shadow-sm rounded mb-4">
@@ -192,6 +198,46 @@ export const Step5CalculatedDataTable: React.FC = () => {
                             </tr>
                         </>
                     )}
+                    {/* 5. Phân chia các mặt cắt trụ để tính biên dạng cánh */}
+                    {step3Output?.sections &&
+                        step3Output.sections.length > 0 && (
+                            <>
+                                <tr>
+                                    <td className="text-center fw-bold bg-primary text-white">
+                                        5.
+                                    </td>
+                                    <td
+                                        colSpan={4}
+                                        className="fw-bold bg-primary text-white"
+                                    >
+                                        {t(
+                                            'step5.part2.bladeProfileCylindricalSections',
+                                        )}
+                                    </td>
+                                </tr>
+                                {step3Output.sections.map((section) => (
+                                    <tr key={`ring-di-${section.sectionIndex}`}>
+                                        <td></td>
+                                        <td>
+                                            -{' '}
+                                            {t('step5.part2.sectionIDiameter', {
+                                                index: section.sectionLabel,
+                                            })}
+                                        </td>
+                                        <td className="text-center">
+                                            D<sub>{section.sectionLabel}</sub>
+                                        </td>
+                                        <td className="text-center fw-bold text-primary">
+                                            {formatNumber(
+                                                section.Di,
+                                                decimalPlaces,
+                                            )}
+                                        </td>
+                                        <td className="text-center">[m]</td>
+                                    </tr>
+                                ))}
+                            </>
+                        )}
                 </tbody>
             </table>
         </div>

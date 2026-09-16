@@ -165,7 +165,7 @@
       "bladeRootDiameter": "Đường kính chân của cánh",
       "totalFanImpellerArea": "Diện tích toàn phần của bánh công tác quạt",
       "bladeProfileCylindricalSections": "Phân chia các mặt cắt trụ để tính biên dạng cánh",
-      "section1Diameter": "Đường kính của mặt cắt thứ 1"
+      "sectionIDiameter": "Đường kính của mặt cắt thứ {{index}}"
     },
     "part3": {
      

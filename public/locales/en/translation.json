@@ -165,7 +165,7 @@
       "bladeRootDiameter": "Blade root diameter",
       "totalFanImpellerArea": "Total fan impeller area",
       "bladeProfileCylindricalSections": "Division of cylindrical sections for blade profile calculation",
-      "section1Diameter": "Diameter of section 1"
+      "sectionIDiameter": "Diameter of section {{index}}"
     },
     "part3": {
       
