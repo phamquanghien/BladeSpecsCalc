@@ -907,11 +907,12 @@ export const Step5CalculatedDataTable: React.FC = () => {
                                     <td></td>
                                     <td></td>
                                     <td className="text-center">
-                                        &gamma;<sub>{section.sectionIndex}</sub>
+                                        &gamma;
+                                        <sub>m,{section.sectionIndex}</sub>
                                     </td>
                                     <td className="text-center fw-bold text-primary">
                                         {formatNumber(
-                                            section.gammaI,
+                                            section.gammaMi,
                                             decimalPlaces,
                                         )}
                                     </td>
@@ -993,6 +994,90 @@ export const Step5CalculatedDataTable: React.FC = () => {
                                         )}
                                     </td>
                                     <td className="text-center">[m]</td>
+                                </tr>
+                            ))}
+                        </>
+                    )}
+                    {/* 16. Góc xác lập biên dạng cánh */}
+                    {step3Output && (
+                        <>
+                            <tr>
+                                <td className="text-center fw-bold bg-primary text-white">
+                                    16.
+                                </td>
+                                <td
+                                    colSpan={4}
+                                    className="fw-bold bg-primary text-white"
+                                >
+                                    {t('step5.part16.title')}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part16.content1')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        &Delta;&gamma;
+                                        <sub>1,{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.deltaGamma1I,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[deg]</td>
+                                </tr>
+                            ))}
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part16.content2')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        &Delta;&gamma;
+                                        <sub>{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.deltaGammaI,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[deg]</td>
+                                </tr>
+                            ))}
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part16.content3')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        &gamma;<sub>{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.gammaI,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[deg]</td>
                                 </tr>
                             ))}
                         </>
