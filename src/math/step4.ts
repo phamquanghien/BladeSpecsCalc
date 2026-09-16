@@ -32,7 +32,7 @@ export interface SectionAreaOutput {
 }
 
 export const calculateStep4 = (
-    step4Input: Step4Input,
+    _step4Input: Step4Input,
     step3Output: Step3Output | null
 ): Step4Output => {
     if (!step3Output || !step3Output.sections || step3Output.sections.length === 0) {
