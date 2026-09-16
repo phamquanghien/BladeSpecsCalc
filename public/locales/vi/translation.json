@@ -232,6 +232,10 @@
       "content3": "Góc xác lập cánh"
     },
     "part17": {
+      "title":"Phân bố chiều dầy của các biên dạng cánh",
+      "content1": "Biên dạng cánh thứ {{index}}"
+    },
+    "part18": {
       "title":"",
       "content1": "",
       "content2": "",

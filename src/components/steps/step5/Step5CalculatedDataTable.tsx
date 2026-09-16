@@ -5,6 +5,12 @@ import { SectionGeneralCoeffs } from './calculated-sections/SectionGeneralCoeffs
 import { SectionVelocitiesAndPressure } from './calculated-sections/SectionVelocitiesAndPressure';
 import { SectionAngles } from './calculated-sections/SectionAngles';
 import { SectionBladeGeometry } from './calculated-sections/SectionBladeGeometry';
+import { SectionBladeThickness } from './calculated-sections/SectionBladeThickness';
+import {
+    calculateStep4,
+    calculateStep4Boundary,
+    defaultStep4Input,
+} from '../../../math/step4';
 
 export const Step5CalculatedDataTable: React.FC = () => {
     const { t } = useTranslation();
@@ -17,6 +23,15 @@ export const Step5CalculatedDataTable: React.FC = () => {
         step3Output,
         decimalPlaces,
     } = useFanStore();
+
+    // 🟢 Tính toán step4Output & step4Boundary trực tiếp bằng useMemo
+    const step4Output = React.useMemo(() => {
+        return calculateStep4(defaultStep4Input, step3Output);
+    }, [step3Output]);
+
+    const step4Boundary = React.useMemo(() => {
+        return calculateStep4Boundary(step3Output);
+    }, [step3Output]);
 
     if (
         !step1Input &&
@@ -73,6 +88,13 @@ export const Step5CalculatedDataTable: React.FC = () => {
                     <SectionBladeGeometry
                         step1Input={step1Input}
                         step3Output={step3Output}
+                        decimalPlaces={decimalPlaces}
+                    />
+
+                    <SectionBladeThickness
+                        step3Output={step3Output}
+                        step4Output={step4Output}
+                        step4Boundary={step4Boundary}
                         decimalPlaces={decimalPlaces}
                     />
                 </tbody>

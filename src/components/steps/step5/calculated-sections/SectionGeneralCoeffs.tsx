@@ -36,7 +36,6 @@ export const SectionGeneralCoeffs: React.FC<SectionGeneralCoeffsProps> = ({
             {step1Output && (
                 <CalculatedDataRow
                     isHeaderRow
-                    colSpan={0}
                     stt="1."
                     label={t('step5.part2.optimalCharacteristicCoefficient')}
                     symbol="&sigma;"
@@ -112,7 +111,6 @@ export const SectionGeneralCoeffs: React.FC<SectionGeneralCoeffsProps> = ({
             {step2Output && (
                 <CalculatedDataRow
                     isHeaderRow
-                    colSpan={0}
                     stt="4."
                     label={t('step5.part2.totalFanImpellerArea')}
                     symbol={
