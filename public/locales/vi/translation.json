@@ -182,6 +182,60 @@
       "content2": "Thành phần tốc độ tuyệt đối hướng vòng quay",
       "content3": "Thành phần tốc độ tuyệt đối ở đầu ra",
       "content4": "Thành phần tốc độ tuyệt đối ở phần giữa cánh"
+    },
+    "part9": {
+      "title":"Các thành phần tốc độ tương đối của quạt",
+      "content1": "Thành phần tốc độ tương đối ở đầu vào",
+      "content2": "Thành phần tốc độ tương đối ở đầu ra",
+      "content3": "Thành phần tốc độ tương đối ở phần giữa cánh"
+    },
+    "part10": {
+      "title":"Góc của các véc tơ tốc độ tương đối của quạt",
+      "content1": "Góc của véc tơ tốc độ tương đối ở đầu vào",
+      "content2": "Góc của véc tơ tốc độ tương đối ở đầu ra",
+      "content3": "Góc của véc tơ tốc độ tương đối ở phần giữa cánh"
+    },
+    "part11": {
+      "title":"Góc của các véc tơ tốc độ tuyệt đối của quạt",
+      "content1": "Góc của véc tơ tốc độ tuyệt đối ở đầu vào",
+      "content2": "Góc của véc tơ tốc độ tuyệt đối ở đầu ra",
+      "content3": "Góc của véc tơ tốc độ tuyệt đối ở phần giữa cánh"
+    },
+    "part12": {
+      "title":"Số cánh của bánh công tác, bước và chiều dài của các tiết diện cánh",
+      "content1": "Số cánh của bánh công tác",
+      "content2": "Bước của tiết diện cánh",
+      "content3": "Tỷ số chiều dài trên bước của tiết diện cánh",
+      "content4": "Chiều dài tính toán của tiết diện cánh",
+      "content5": "Chiều dài chọn của tiết diện cánh",
+      "content6": "Hệ số Reynold trên tiết diện"
+    },
+    "part13": {
+      "title":"Hệ số ca tại các tiết diện của cánh quạt",
+      "content1": "Tích số ca * l/t tại tiết diện cánh",
+      "content2": "Hệ số ca tại tiết diện cánh",
+      "content3": "Góc giữa 2 véc tơ tốc độ w2 và w1 của tiết diện"
+    },
+    "part14": {
+      "title":"Các góc xác lập biên dạng cánh sơ bộ",
+      "content1": "Góc xác lập biên dạng cánh sơ bộ",
+      "content2": "Hệ số mở rộng biên dạng cánh",
+      "content3": "Góc chính tâm có hiệu chỉnh"
+    },
+    "part15": {
+      "title":"Bán kính cong trắc diện của biên dạng cánh"
+    },
+    "part16": {
+      "title":"Góc xác lập biên dạng cánh",
+      "content1": "Độ hiệu chỉnh góc tra bảng",
+      "content2": "Độ hiệu chỉnh góc tính toán",
+      "content3": "Góc xác lập cánh"
+    },
+    "part17": {
+      "title":"",
+      "content1": "",
+      "content2": "",
+      "content3": ""
     }
   }
 }

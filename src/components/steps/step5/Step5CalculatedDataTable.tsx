@@ -412,6 +412,252 @@ export const Step5CalculatedDataTable: React.FC = () => {
                             ))}
                         </>
                     )}
+                    {/* 9. Các thành phần tốc độ tương đối của quạt */}
+                    {step3Output && (
+                        <>
+                            <tr>
+                                <td className="text-center fw-bold bg-primary text-white">
+                                    9.
+                                </td>
+                                <td
+                                    colSpan={4}
+                                    className="fw-bold bg-primary text-white"
+                                >
+                                    {t('step5.part9.title')}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part9.content1')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        W<sub>1,{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.w1i,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[m/s]</td>
+                                </tr>
+                            ))}
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part9.content2')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        W<sub>2,{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.w2i,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[m/s]</td>
+                                </tr>
+                            ))}
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part9.content3')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        W<sub>∞,{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.winfi,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[m/s]</td>
+                                </tr>
+                            ))}
+                        </>
+                    )}
+                    {/* 10. Góc của các véc tơ tốc độ tương đối của quạt */}
+                    {step3Output && (
+                        <>
+                            <tr>
+                                <td className="text-center fw-bold bg-primary text-white">
+                                    10.
+                                </td>
+                                <td
+                                    colSpan={4}
+                                    className="fw-bold bg-primary text-white"
+                                >
+                                    {t('step5.part10.title')}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part10.content1')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        β<sub>1,{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.beta1i,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[deg]</td>
+                                </tr>
+                            ))}
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part10.content2')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        β<sub>2,{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.beta2i,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[deg]</td>
+                                </tr>
+                            ))}
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part10.content3')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        β<sub>∞,{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.betainfi,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[deg]</td>
+                                </tr>
+                            ))}
+                        </>
+                    )}
+                    {/* 11. Góc của các véc tơ tốc độ tuyệt đối của quạt */}
+                    {step3Output && (
+                        <>
+                            <tr>
+                                <td className="text-center fw-bold bg-primary text-white">
+                                    10.
+                                </td>
+                                <td
+                                    colSpan={4}
+                                    className="fw-bold bg-primary text-white"
+                                >
+                                    {t('step5.part10.title')}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part10.content1')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        β<sub>1,{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.beta1i,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[deg]</td>
+                                </tr>
+                            ))}
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part10.content2')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        β<sub>2,{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.beta2i,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[deg]</td>
+                                </tr>
+                            ))}
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part10.content3')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        β<sub>∞,{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.betainfi,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[deg]</td>
+                                </tr>
+                            ))}
+                        </>
+                    )}
                 </tbody>
             </table>
         </div>

@@ -167,8 +167,69 @@
       "bladeProfileCylindricalSections": "Division of cylindrical sections for blade profile calculation",
       "sectionIDiameter": "Diameter of section {{index}}"
     },
-    "part3": {
-      
+    "part6": {
+      "title": "Peripheral velocity at the divided sections",
+      "content": "Peripheral velocity at section {{index}}"
+    },
+    "part7": {
+      "title": "Theoretical work and theoretical pressure for an infinite number of blades",
+      "content1": "Theoretical specific work",
+      "content2": "Theoretical pressure"
+    },
+    "part8": {
+      "title": "Absolute velocity components of the fan",
+      "content1": "Axial component of absolute velocity at the inlet",
+      "content2": "Tangential component of absolute velocity",
+      "content3": "Absolute velocity component at the outlet",
+      "content4": "Absolute velocity component at the mid-blade section"
+    },
+    "part9": {
+      "title": "Relative velocity components of the fan",
+      "content1": "Relative velocity component at the inlet",
+      "content2": "Relative velocity component at the outlet",
+      "content3": "Relative velocity component at the mid-blade section"
+    },
+    "part10": {
+      "title": "Angles of the relative velocity vectors of the fan",
+      "content1": "Angle of the relative velocity vector at the inlet",
+      "content2": "Angle of the relative velocity vector at the outlet",
+      "content3": "Angle of the relative velocity vector at the mid-blade section"
+    },
+    "part11": {
+      "title": "Angles of the absolute velocity vectors of the fan",
+      "content1": "Angle of the absolute velocity vector at the inlet",
+      "content2": "Angle of the absolute velocity vector at the outlet",
+      "content3": "Angle of the absolute velocity vector at the mid-blade section"
+    },
+    "part12": {
+      "title": "Number of impeller blades, pitch, and blade section lengths",
+      "content1": "Number of impeller blades",
+      "content2": "Blade section pitch",
+      "content3": "Length-to-pitch ratio of the blade section",
+      "content4": "Calculated length of the blade section",
+      "content5": "Selected length of the blade section",
+      "content6": "Reynolds number at the section"
+    },
+    "part13": {
+      "title": "Flow coefficient at the blade sections",
+      "content1": "Product of flow coefficient ca and l/t at the blade section",
+      "content2": "Flow coefficient ca at the blade section",
+      "content3": "Angle between the w₂ and w₁ velocity vectors of the section"
+    },
+    "part14": {
+      "title": "Preliminary blade profile setting angles",
+      "content1": "Preliminary blade profile setting angle",
+      "content2": "Blade profile expansion coefficient",
+      "content3": "Corrected central angle"
+    },
+    "part15": {
+      "title": "Profile curvature radius of the blade profile"
+    },
+    "part16": {
+      "title": "Blade profile setting angle",
+      "content1": "Angle correction from the table",
+      "content2": "Calculated angle correction",
+      "content3": "Blade setting angle"
     }
   }
 }
