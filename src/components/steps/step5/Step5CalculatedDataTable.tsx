@@ -221,11 +221,11 @@ export const Step5CalculatedDataTable: React.FC = () => {
                                         <td>
                                             -{' '}
                                             {t('step5.part2.sectionIDiameter', {
-                                                index: section.sectionLabel,
+                                                index: section.sectionIndex,
                                             })}
                                         </td>
                                         <td className="text-center">
-                                            D<sub>{section.sectionLabel}</sub>
+                                            D<sub>{section.sectionIndex}</sub>
                                         </td>
                                         <td className="text-center fw-bold text-primary">
                                             {formatNumber(
@@ -238,6 +238,180 @@ export const Step5CalculatedDataTable: React.FC = () => {
                                 ))}
                             </>
                         )}
+                    {/* 6. Tốc độ vòng tại các mặt cắt đã chia */}
+                    {step3Output?.sections &&
+                        step3Output.sections.length > 0 && (
+                            <>
+                                <tr>
+                                    <td className="text-center fw-bold bg-primary text-white">
+                                        6.
+                                    </td>
+                                    <td
+                                        colSpan={4}
+                                        className="fw-bold bg-primary text-white"
+                                    >
+                                        {t('step5.part6.title')}
+                                    </td>
+                                </tr>
+                                {step3Output.sections.map((section) => (
+                                    <tr key={`ring-di-${section.sectionIndex}`}>
+                                        <td></td>
+                                        <td>
+                                            -{' '}
+                                            {t('step5.part6.content', {
+                                                index: section.sectionIndex,
+                                            })}
+                                        </td>
+                                        <td className="text-center">
+                                            u<sub>{section.sectionIndex}</sub>
+                                        </td>
+                                        <td className="text-center fw-bold text-primary">
+                                            {formatNumber(
+                                                section.ui,
+                                                decimalPlaces,
+                                            )}
+                                        </td>
+                                        <td className="text-center">[m]</td>
+                                    </tr>
+                                ))}
+                            </>
+                        )}
+                    {/* 7. Công riêng lý thuyết và áp suất lý thuyết khi số cánh là vô cùng */}
+                    {step2Output && (
+                        <>
+                            <tr>
+                                <td className="text-center fw-bold bg-primary text-white">
+                                    7.
+                                </td>
+                                <td
+                                    colSpan={4}
+                                    className="fw-bold bg-primary text-white"
+                                >
+                                    {t('step5.part7.title')}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>- {t('step5.part7.content1')}</td>
+                                <td className="text-center">Ylt,∞</td>
+                                <td className="text-center fw-bold text-primary">
+                                    {formatNumber(
+                                        step2Output.yLtInfinity,
+                                        decimalPlaces,
+                                    )}
+                                </td>
+                                <td className="text-center">[J/kg]</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>- {t('step5.part7.content2')}</td>
+                                <td className="text-center">Δplt,∞</td>
+                                <td className="text-center fw-bold text-primary">
+                                    {formatNumber(
+                                        step2Output.pLtInfinity,
+                                        decimalPlaces,
+                                    )}
+                                </td>
+                                <td className="text-center">[Pa]</td>
+                            </tr>
+                        </>
+                    )}
+                    {/* 8. Các thành phần tốc độ tuyệt đối của quạt */}
+                    {step3Output && (
+                        <>
+                            <tr>
+                                <td className="text-center fw-bold bg-primary text-white">
+                                    8.
+                                </td>
+                                <td
+                                    colSpan={4}
+                                    className="fw-bold bg-primary text-white"
+                                >
+                                    {t('step5.part8.title')}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>- {t('step5.part8.content1')}</td>
+                                <td className="text-center">
+                                    C<sub>m</sub>=C<sub>1</sub>
+                                </td>
+                                <td className="text-center fw-bold text-primary">
+                                    {formatNumber(
+                                        step3Output.cm,
+                                        decimalPlaces,
+                                    )}
+                                </td>
+                                <td className="text-center">[m/s]</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part8.content2')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        C<sub>2u,{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.c2ui,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[m/s]</td>
+                                </tr>
+                            ))}
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part8.content3')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        C<sub>2,{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.c2i,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[m/s]</td>
+                                </tr>
+                            ))}
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part8.content4')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        C<sub>∞,{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.cinfi,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[m/s]</td>
+                                </tr>
+                            ))}
+                        </>
+                    )}
                 </tbody>
             </table>
         </div>

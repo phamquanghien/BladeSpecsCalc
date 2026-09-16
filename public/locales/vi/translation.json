@@ -167,8 +167,21 @@
       "bladeProfileCylindricalSections": "Phân chia các mặt cắt trụ để tính biên dạng cánh",
       "sectionIDiameter": "Đường kính của mặt cắt thứ {{index}}"
     },
-    "part3": {
-     
+    "part6": {
+      "title":"Tốc độ vòng tại các mặt cắt đã chia",
+      "content": "Tốc độ vòng tại mặt cắt thứ {{index}}"
+    },
+    "part7": {
+      "title":"Công riêng lý thuyết và áp suất lý thuyết khi số cánh là vô cùng",
+      "content1": "Công riêng lý thuyết",
+      "content2": "Áp suất lý thuyết"
+    },
+    "part8": {
+      "title":"Các thành phần tốc độ tuyệt đối của quạt",
+      "content1": "Thành phần tốc độ tuyệt đối hướng dọc trục và ở đầu vào",
+      "content2": "Thành phần tốc độ tuyệt đối hướng vòng quay",
+      "content3": "Thành phần tốc độ tuyệt đối ở đầu ra",
+      "content4": "Thành phần tốc độ tuyệt đối ở phần giữa cánh"
     }
   }
 }
