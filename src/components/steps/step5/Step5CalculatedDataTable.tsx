@@ -601,7 +601,7 @@ export const Step5CalculatedDataTable: React.FC = () => {
                                 <td></td>
                                 <td>- {t('step5.part11.content1')}</td>
                                 <td className="text-center">
-                                    α<sub>1</sub>
+                                    &alpha;<sub>1</sub>
                                 </td>
                                 <td className="text-center">90</td>
                                 <td className="text-center">[deg]</td>
@@ -617,7 +617,8 @@ export const Step5CalculatedDataTable: React.FC = () => {
                                     <td></td>
                                     <td></td>
                                     <td className="text-center">
-                                        α<sub>2,{section.sectionIndex}</sub>
+                                        &alpha;
+                                        <sub>2,{section.sectionIndex}</sub>
                                     </td>
                                     <td className="text-center fw-bold text-primary">
                                         {formatNumber(
@@ -639,7 +640,8 @@ export const Step5CalculatedDataTable: React.FC = () => {
                                     <td></td>
                                     <td></td>
                                     <td className="text-center">
-                                        α<sub>∞,{section.sectionIndex}</sub>
+                                        &alpha;
+                                        <sub>∞,{section.sectionIndex}</sub>
                                     </td>
                                     <td className="text-center fw-bold text-primary">
                                         {formatNumber(
@@ -653,7 +655,7 @@ export const Step5CalculatedDataTable: React.FC = () => {
                         </>
                     )}
                     {/* 12. Góc của các véc tơ tốc độ tuyệt đối của quạt */}
-                    {step3Output && step1Input && (
+                    {step3Output && (
                         <>
                             <tr>
                                 <td className="text-center fw-bold bg-primary text-white">
@@ -748,7 +750,7 @@ export const Step5CalculatedDataTable: React.FC = () => {
                                             decimalPlaces,
                                         )}
                                     </td>
-                                    <td className="text-center">[/]</td>
+                                    <td className="text-center">[m]</td>
                                 </tr>
                             ))}
                             <tr>
@@ -770,7 +772,227 @@ export const Step5CalculatedDataTable: React.FC = () => {
                                             decimalPlaces,
                                         )}
                                     </td>
+                                    <td className="text-center">[m]</td>
+                                </tr>
+                            ))}
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part12.content6')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        R<sub>e,{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.rei,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[m]</td>
+                                </tr>
+                            ))}
+                        </>
+                    )}
+                    {/* 13. Hệ số ca tại các tiết diện của cánh quạt */}
+                    {step3Output && (
+                        <>
+                            <tr>
+                                <td className="text-center fw-bold bg-primary text-white">
+                                    13.
+                                </td>
+                                <td
+                                    colSpan={4}
+                                    className="fw-bold bg-primary text-white"
+                                >
+                                    {t('step5.part13.title')}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part13.content1')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        (C<sub>a</sub>l/t)
+                                        <sub>{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.calOverTi,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[m]</td>
+                                </tr>
+                            ))}
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part13.content2')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        C<sub>a,{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.cai,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
                                     <td className="text-center">[/]</td>
+                                </tr>
+                            ))}
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part13.content3')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        &theta;<sub>{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.thetaI,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[deg]</td>
+                                </tr>
+                            ))}
+                        </>
+                    )}
+                    {/* 14. Hệ số ca tại các tiết diện của cánh quạt */}
+                    {step3Output && (
+                        <>
+                            <tr>
+                                <td className="text-center fw-bold bg-primary text-white">
+                                    14.
+                                </td>
+                                <td
+                                    colSpan={4}
+                                    className="fw-bold bg-primary text-white"
+                                >
+                                    {t('step5.part14.title')}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part14.content1')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        &gamma;<sub>{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.gammaI,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[m]</td>
+                                </tr>
+                            ))}
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part14.content2')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        &epsilon;
+                                        <sub>{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.epsilonI,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[deg]</td>
+                                </tr>
+                            ))}
+                            <tr>
+                                <td></td>
+                                <td colSpan={4}>
+                                    - {t('step5.part14.content3')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        ϑ<sub>{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.varthetaI,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[deg]</td>
+                                </tr>
+                            ))}
+                        </>
+                    )}
+                    {/* 15. Bán kính cong trắc diện của biên dạng cánh */}
+                    {step3Output && (
+                        <>
+                            <tr>
+                                <td className="text-center fw-bold bg-primary text-white">
+                                    15.
+                                </td>
+                                <td
+                                    colSpan={4}
+                                    className="fw-bold bg-primary text-white"
+                                >
+                                    {t('step5.part15.title')}
+                                </td>
+                            </tr>
+                            {step3Output.sections.map((section) => (
+                                <tr key={`ring-di-${section.sectionIndex}`}>
+                                    <td></td>
+                                    <td></td>
+                                    <td className="text-center">
+                                        R<sub>{section.sectionIndex}</sub>
+                                    </td>
+                                    <td className="text-center fw-bold text-primary">
+                                        {formatNumber(
+                                            section.Ri,
+                                            decimalPlaces,
+                                        )}
+                                    </td>
+                                    <td className="text-center">[m]</td>
                                 </tr>
                             ))}
                         </>
