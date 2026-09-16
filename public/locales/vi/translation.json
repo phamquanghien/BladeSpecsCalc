@@ -231,15 +231,38 @@
       "content2": "Độ hiệu chỉnh góc tính toán",
       "content3": "Góc xác lập cánh"
     },
-    "part17": {
-      "title":"Phân bố chiều dầy của các biên dạng cánh",
-      "content1": "Biên dạng cánh thứ {{index}}"
+    "part17": 
+    { 
+      "title":"Phân bố chiều dầy của các biên dạng cánh", 
+      "content1": "Biên dạng cánh thứ {{index}}" 
     },
-    "part18": {
-      "title":"",
-      "content1": "",
-      "content2": "",
-      "content3": ""
+    "part18":
+    { 
+      "title":"Phần tính toán nghiệm bền cánh quạt" 
+    },
+    "part19":
+    {
+      "title":"Các thông số cơ học của các tiết diện cánh",
+      "content1": "Tiết diện cánh thứ {{index}}"
+    },
+    "part20":
+    {
+      "title":"Kiểm tra độ bền kéo tại tiết diện chân cánh",
+      "content1": "Lực kéo ly tâm tại tiết diện chân cánh",
+      "content2": "Ứng suất kéo tại tiết diện chân cánh",
+      "content3": "Độ dãn nở dài của cánh",
+      "content4": "Đánh giá"
+    },
+    "part21":
+    {
+      "title":"Kiểm tra độ bền uốn tại tiết diện chân cánh",
+      "content1": "Mô men uốn hướng vòng tại tiết diện chân cánh",
+      "content2": "Mô men uốn hướng trục tại tiết diện chân cánh",
+      "content3": "Mô men uốn tổng hợp tại tiết diện chân cánh",
+      "content4": "Mô men uốn hướng trục x tại tiết diện chân cánh",
+      "content5": "Mô men uốn hướng trục y tại tiết diện chân cánh",
+      "content6": "Ứng suất uốn tại tiết diện chân cánh",
+      "content7": "Đánh giá"
     }
   }
 }

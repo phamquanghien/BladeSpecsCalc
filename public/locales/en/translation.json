@@ -230,6 +230,34 @@
       "content1": "Angle correction from the table",
       "content2": "Calculated angle correction",
       "content3": "Blade setting angle"
+    },
+    "part17": {
+      "title": "Thickness distribution of the blade profiles",
+      "content1": "Blade profile {{index}}"
+    },
+    "part18": {
+      "title": "Fan blade strength verification calculation"
+    },
+    "part19": {
+      "title": "Mechanical parameters of the blade sections",
+      "content1": "Blade section {{index}}"
+    },
+    "part20": {
+      "title": "Tensile strength verification at the blade root section",
+      "content1": "Centrifugal tensile force at the blade root section",
+      "content2": "Tensile stress at the blade root section",
+      "content3": "Blade elongation",
+      "content4": "Assessment"
+    },
+    "part21": {
+      "title": "Bending strength verification at the blade root section",
+      "content1": "Tangential bending moment at the blade root section",
+      "content2": "Axial bending moment at the blade root section",
+      "content3": "Resultant bending moment at the blade root section",
+      "content4": "Bending moment about the x-axis at the blade root section",
+      "content5": "Bending moment about the y-axis at the blade root section",
+      "content6": "Bending stress at the blade root section",
+      "content7": "Assessment"
     }
   }
 }
