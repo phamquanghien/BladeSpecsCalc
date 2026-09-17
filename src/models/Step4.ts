@@ -24,6 +24,10 @@ export interface BoundaryPointData {
     aij: number;       // a_ij = 2 * (Ri + (d_ij / 2) * sin(delta_ij / 2))
     bij: number;       // b_ij = 2 * (Ri - (d_ij / 2) * sin(delta_ij / 2))
     hij: number;       // h_ij = delta_ij
+    Aij: number;       // Diện tích đoạn j
+    eij: number;       // Khoảng cách trọng tâm hình thang e_ij
+    xpij: number;      // X'_ij
+    ypij: number;
 }
 
 // 3. Dữ liệu tổng hợp tính toán cho từng mặt cắt i (tương đương RingSectionData bên Step3)
@@ -34,6 +38,8 @@ export interface SectionStep4Data {
     points: DistributionPointData[];  // Mảng 17 điểm phân bố
     boundaries: BoundaryPointData[];  // Mảng 16 đoạn biên
     Ai: number;                       // Diện tích mặt cắt A_i
+    xpsi: number;     // Trọng tâm X'_{s,i}
+    ypsi: number;     // Trọng tâm Y'_{s,i}
 }
 
 // 4. Kết quả đầu ra tổng thể của Step 4 (tương đương Step3Output)

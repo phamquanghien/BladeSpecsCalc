@@ -53,9 +53,15 @@ export const SectionStrengthCheck: React.FC = () => {
                         />
                         <CalculatedDataRow
                             key=""
-                            symbol=""
+                            symbol="A"
                             value={formatNumber(sec.Ai, decimalPlaces)}
                             unit="[cm²]"
+                        />
+                        <CalculatedDataRow
+                            key=""
+                            symbol="S"
+                            value={`(${formatNumber(sec.xpsi, decimalPlaces)},${formatNumber(sec.ypsi, decimalPlaces)})`}
+                            unit="[mm]"
                         />
                     </React.Fragment>
                 );
