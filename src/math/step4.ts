@@ -27,6 +27,7 @@ export const calculateStep4 = (
     const sections: SectionStep4Data[] = step3Output.sections.map((sec, idx) => {
         const Li = sec.Li;
         const varthetaI = sec.varthetaI;
+        const Ri = sec.Ri;
         const sectionIndex = sec.sectionIndex || idx + 1;
         const phi1iDeg = 90 - varthetaI / 2;
         const etaIDeg = 90 + varthetaI / 2;
@@ -65,14 +66,14 @@ export const calculateStep4 = (
             const deltaIj = xiNext - xiCurrent;
             const dij = yCurrent + yNext;
 
-            const Rij = Array.isArray(sec.Ri) ? sec.Ri[j - 1] : sec.Ri;
+
 
             // Chuyển deltaIj từ Độ sang Radian để tính sin
             const halfDeltaRad = ((deltaIj / 2) * Math.PI) / 180;
             const sinHalfDelta = Math.sin(halfDeltaRad);
 
-            const aij = 2 * (Rij + dij / 2) * sinHalfDelta;
-            const bij = 2 * (Rij - dij / 2) * sinHalfDelta;
+            const aij = 2 * (Ri + dij / 2) * sinHalfDelta;
+            const bij = 2 * (Ri - dij / 2) * sinHalfDelta;
             const hij = deltaIj;
 
             // Tính A_ij và cộng dồn
@@ -89,15 +90,15 @@ export const calculateStep4 = (
             if (j > 1) {
                 const xikCurrent = points[j - 1].xik;
                 const xikPrev = points[j - 2].xik;
-                betaIjDeg = Rij > 0 ? ((xikCurrent - xikPrev) / (2 * Rij)) * (180 / Math.PI) : 0;
+                betaIjDeg = Ri > 0 ? ((xikCurrent - xikPrev) / (2 * Ri)) * (180 / Math.PI) : 0;
             }
 
             const phi2iDeg = etaIDeg - betaIjDeg;
             const phi2iRad = (phi2iDeg * Math.PI) / 180;
 
             // Tính X'_ij và Y'_ij
-            const xpij = (Rij * Math.cos(phi1iRad)) + (Rij + hij / 2 - eij) * Math.cos(phi2iRad);
-            const ypij = (Rij * Math.sin(phi1iRad)) + (Rij + hij / 2 - eij) * Math.sin(phi2iRad);
+            const xpij = (Ri * Math.cos(phi1iRad)) + (Ri + hij / 2 - eij) * Math.cos(phi2iRad);
+            const ypij = (Ri * Math.sin(phi1iRad)) + (Ri + hij / 2 - eij) * Math.sin(phi2iRad);
 
             // Cộng dồn tích khối lượng cho tọa độ trọng tâm
             sumXpsi += Aij * xpij;
