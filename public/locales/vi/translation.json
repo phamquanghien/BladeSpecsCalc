@@ -151,6 +151,7 @@
       "bladeMaterial": "Vật liệu chế tạo cánh",
       "materialElasticModulus": "Mô đun đàn hồi của vật liệu",
       "allowableTensileStress": "Ứng suất kéo cho phép",
+      "allowableBendingStress": "Ứng suất uốn cho phép",
       "materialDensity": "Khối lượng riêng của vật liệu"
     },
     "part2": {

@@ -1,27 +1,15 @@
+// src/components/steps/step5/calculated-sections/SectionGeneralCoeffs.tsx
+
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { formatNumber } from '../../../../utils/format';
 import { CalculatedDataRow } from './CalculatedDataRow';
-// Import hook/store trực tiếp từ store của bạn
 import { useFanStore } from '../../../../store/useFanStore';
 
-// Lấy kiểu dữ liệu trực tiếp từ Zustand Store
-type FanStoreState = ReturnType<typeof useFanStore.getState>;
-
-interface SectionGeneralCoeffsProps {
-    step1Output: FanStoreState['step1Output'];
-    step2Input: FanStoreState['step2Input'];
-    step2Output: FanStoreState['step2Output'];
-    decimalPlaces: number;
-}
-
-export const SectionGeneralCoeffs: React.FC<SectionGeneralCoeffsProps> = ({
-    step1Output,
-    step2Input,
-    step2Output,
-    decimalPlaces,
-}) => {
+export const SectionGeneralCoeffs: React.FC = () => {
     const { t } = useTranslation();
+    const { step1Output, step2Input, step2Output, decimalPlaces } =
+        useFanStore();
 
     return (
         <>
@@ -119,7 +107,7 @@ export const SectionGeneralCoeffs: React.FC<SectionGeneralCoeffsProps> = ({
                         </>
                     }
                     value={formatNumber(step2Output.am, decimalPlaces)}
-                    unit=""
+                    unit="[m²]"
                 />
             )}
         </>

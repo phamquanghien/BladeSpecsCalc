@@ -1,25 +1,21 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useFanStore } from '../../../store/useFanStore';
 import { formatNumber } from '../../../utils/format';
-import { calculateStep4Boundary } from '../../../math/step4';
 
 export const Step4BoundaryTable: React.FC = () => {
     const { t } = useTranslation();
-    const { step3Output, decimalPlaces } = useFanStore();
-
-    // Tính toán dữ liệu d_ij độc lập qua hàm math
-    const boundaryData = useMemo(() => {
-        return calculateStep4Boundary(step3Output);
-    }, [step3Output]);
+    const { step4Output, decimalPlaces } = useFanStore();
 
     if (
-        !step3Output ||
-        !step3Output.sections ||
-        step3Output.sections.length === 0
+        !step4Output ||
+        !step4Output.sections ||
+        step4Output.sections.length === 0
     ) {
         return null;
     }
+
+    const { sections } = step4Output;
 
     return (
         <div className="mt-4">
@@ -30,8 +26,8 @@ export const Step4BoundaryTable: React.FC = () => {
                 </span>
             </h6>
 
-            {boundaryData.map((secBound) => {
-                const i = secBound.sectionIndex;
+            {sections.map((sec) => {
+                const i = sec.sectionIndex;
                 return (
                     <div
                         key={i}
@@ -52,7 +48,7 @@ export const Step4BoundaryTable: React.FC = () => {
                                             #
                                         </th>
                                         {/* Các cột sau từ 1 đến 16 */}
-                                        {secBound.boundaries.map((b) => (
+                                        {sec.boundaries.map((b) => (
                                             <th key={b.jIndex}>{b.jIndex}</th>
                                         ))}
                                     </tr>
@@ -63,7 +59,7 @@ export const Step4BoundaryTable: React.FC = () => {
                                         <th className="fw-bold text-start bg-light">
                                             &delta;<sub>{i}j</sub>
                                         </th>
-                                        {secBound.boundaries.map((b) => (
+                                        {sec.boundaries.map((b) => (
                                             <td key={b.jIndex}>
                                                 <div className="fw-bold text-primary">
                                                     {formatNumber(
@@ -79,7 +75,7 @@ export const Step4BoundaryTable: React.FC = () => {
                                         <th className="fw-bold text-start bg-light">
                                             d<sub>{i}j</sub>
                                         </th>
-                                        {secBound.boundaries.map((b) => (
+                                        {sec.boundaries.map((b) => (
                                             <td key={b.jIndex}>
                                                 <div className="fw-bold text-success">
                                                     {formatNumber(
@@ -95,7 +91,7 @@ export const Step4BoundaryTable: React.FC = () => {
                                         <th className="fw-bold text-start bg-light">
                                             a<sub>{i}j</sub>
                                         </th>
-                                        {secBound.boundaries.map((b) => (
+                                        {sec.boundaries.map((b) => (
                                             <td key={b.jIndex}>
                                                 <div className="fw-bold text-dark">
                                                     {formatNumber(
@@ -111,7 +107,7 @@ export const Step4BoundaryTable: React.FC = () => {
                                         <th className="fw-bold text-start bg-light">
                                             b<sub>{i}j</sub>
                                         </th>
-                                        {secBound.boundaries.map((b) => (
+                                        {sec.boundaries.map((b) => (
                                             <td key={b.jIndex}>
                                                 <div className="fw-bold text-danger">
                                                     {formatNumber(
@@ -127,7 +123,7 @@ export const Step4BoundaryTable: React.FC = () => {
                                         <th className="fw-bold text-start bg-light">
                                             h<sub>{i}j</sub>
                                         </th>
-                                        {secBound.boundaries.map((b) => (
+                                        {sec.boundaries.map((b) => (
                                             <td key={b.jIndex}>
                                                 <div className="fw-bold text-info">
                                                     {formatNumber(

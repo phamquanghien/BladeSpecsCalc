@@ -1,22 +1,16 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useFanStore } from '../../../store/useFanStore';
 import { formatNumber } from '../../../utils/format';
-import { calculateStep4 } from '../../../math/step4';
 
 export const Step4DistributionTable: React.FC = () => {
     const { t } = useTranslation();
-    const { step3Output, step4Input, decimalPlaces } = useFanStore();
-
-    // Thực hiện tính toán thông qua hàm math
-    const step4Output = useMemo(() => {
-        return calculateStep4(step4Input, step3Output);
-    }, [step4Input, step3Output]);
+    const { step4Output, decimalPlaces } = useFanStore();
 
     if (
-        !step3Output ||
-        !step3Output.sections ||
-        step3Output.sections.length === 0
+        !step4Output ||
+        !step4Output.sections ||
+        step4Output.sections.length === 0
     ) {
         return (
             <div className="alert alert-warning mt-3">
@@ -25,6 +19,8 @@ export const Step4DistributionTable: React.FC = () => {
             </div>
         );
     }
+
+    const { sections } = step4Output;
 
     return (
         <div className="mt-4">
@@ -37,8 +33,8 @@ export const Step4DistributionTable: React.FC = () => {
                 />
             </h6>
 
-            {step4Output.sectionsDistribution.map((secDist) => {
-                const i = secDist.sectionIndex;
+            {sections.map((sec) => {
+                const i = sec.sectionIndex;
 
                 return (
                     <div
@@ -58,7 +54,7 @@ export const Step4DistributionTable: React.FC = () => {
                                         <th className="fw-bold text-start">
                                             STT
                                         </th>
-                                        {secDist.points.map((pt) => (
+                                        {sec.points.map((pt) => (
                                             <th key={pt.sIndex}>
                                                 {pt.sIndex === 16
                                                     ? `s=${pt.sIndex}`
@@ -73,7 +69,7 @@ export const Step4DistributionTable: React.FC = () => {
                                         <th className="fw-bold text-start bg-light">
                                             x<sub>{i}k</sub>
                                         </th>
-                                        {secDist.points.map((pt) => (
+                                        {sec.points.map((pt) => (
                                             <td key={pt.sIndex}>
                                                 <div className="fw-bold text-primary">
                                                     {formatNumber(
@@ -90,7 +86,7 @@ export const Step4DistributionTable: React.FC = () => {
                                         <th className="fw-bold text-start bg-light">
                                             y<sub>{i}k</sub>
                                         </th>
-                                        {secDist.points.map((pt) => (
+                                        {sec.points.map((pt) => (
                                             <td key={pt.sIndex}>
                                                 <div className="fw-bold text-success">
                                                     {formatNumber(
@@ -107,7 +103,7 @@ export const Step4DistributionTable: React.FC = () => {
                                         <th className="fw-bold text-start bg-light">
                                             &xi;<sub>{i}j</sub>
                                         </th>
-                                        {secDist.points.map((pt) => (
+                                        {sec.points.map((pt) => (
                                             <td key={pt.sIndex}>
                                                 <div className="fw-bold text-dark">
                                                     {formatNumber(

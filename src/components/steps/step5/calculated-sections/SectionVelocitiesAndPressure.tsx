@@ -1,21 +1,14 @@
+// src/components/steps/step5/calculated-sections/SectionVelocitiesAndPressure.tsx
+
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { formatNumber } from '../../../../utils/format';
 import { CalculatedDataRow } from './CalculatedDataRow';
 import { useFanStore } from '../../../../store/useFanStore';
 
-type FanStoreState = ReturnType<typeof useFanStore.getState>;
-
-interface SectionVelocitiesAndPressureProps {
-    step2Output: FanStoreState['step2Output'];
-    step3Output: FanStoreState['step3Output'];
-    decimalPlaces: number;
-}
-
-export const SectionVelocitiesAndPressure: React.FC<
-    SectionVelocitiesAndPressureProps
-> = ({ step2Output, step3Output, decimalPlaces }) => {
+export const SectionVelocitiesAndPressure: React.FC = () => {
     const { t } = useTranslation();
+    const { step2Output, step3Output, decimalPlaces } = useFanStore();
 
     const sections = step3Output?.sections || [];
 

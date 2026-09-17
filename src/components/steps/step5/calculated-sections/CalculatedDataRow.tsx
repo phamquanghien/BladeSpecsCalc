@@ -21,10 +21,10 @@ export const CalculatedDataRow: React.FC<CalculatedDataRowProps> = ({
     isSubHeader = false,
     colSpan,
 }) => {
-    // Dạng dòng tiêu đề phụ (A., B.) hoặc tiêu đề gộp
+    // 1. Dạng dòng tiêu đề phụ (A., B., I., II.)
     if (isSubHeader) {
         return (
-            <tr className="fw-bold">
+            <tr className="fw-bold bg-light">
                 <td className="text-center">{stt}</td>
                 <td colSpan={colSpan || 4} className="text-start">
                     {label}
@@ -33,18 +33,18 @@ export const CalculatedDataRow: React.FC<CalculatedDataRowProps> = ({
         );
     }
 
-    // Dạng dòng tiêu đề xanh (Mục 1, 2, 3, 4...)
+    // 2. Dạng dòng tiêu đề xanh (Mục 1, 2, 3, 4...)
     if (isHeaderRow) {
-        // Nếu có truyền colSpan (ví dụ colSpan={4} cho các mục tiêu đề không có giá trị như Mục 2, 3)
+        const headerClass = 'fw-bold bg-primary text-white';
+
+        // Nếu có truyền colSpan (ví dụ colSpan={4} kết hợp 1 ô STT = 5 ô)
         if (colSpan) {
             return (
                 <tr>
-                    <td className="text-center fw-bold bg-primary text-white">
-                        {stt}
-                    </td>
+                    <td className={`text-center ${headerClass}`}>{stt}</td>
                     <td
                         colSpan={colSpan}
-                        className="fw-bold bg-primary text-white text-start"
+                        className={`text-start ${headerClass}`}
                     >
                         {label}
                     </td>
@@ -52,29 +52,19 @@ export const CalculatedDataRow: React.FC<CalculatedDataRowProps> = ({
             );
         }
 
-        // Nếu không truyền colSpan (như Mục 1, 4 có đầy đủ symbol, value, unit)
+        // Nếu không truyền colSpan (đầy đủ 5 cột)
         return (
             <tr>
-                <td className="text-center fw-bold bg-primary text-white">
-                    {stt}
-                </td>
-                <td className="fw-bold bg-primary text-white text-start">
-                    {label}
-                </td>
-                <td className="text-center fw-bold bg-primary text-white">
-                    {symbol}
-                </td>
-                <td className="text-center fw-bold bg-primary text-white">
-                    {value}
-                </td>
-                <td className="text-center fw-bold bg-primary text-white">
-                    {unit}
-                </td>
+                <td className={`text-center ${headerClass}`}>{stt}</td>
+                <td className={`text-start ${headerClass}`}>{label}</td>
+                <td className={`text-center ${headerClass}`}>{symbol}</td>
+                <td className={`text-center ${headerClass}`}>{value}</td>
+                <td className={`text-center ${headerClass}`}>{unit}</td>
             </tr>
         );
     }
 
-    // Dòng dữ liệu thông thường
+    // 3. Dòng dữ liệu chi tiết thông thường
     return (
         <tr>
             <td className="text-center">{stt}</td>

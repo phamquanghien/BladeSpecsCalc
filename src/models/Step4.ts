@@ -1,12 +1,12 @@
 export interface Step4Input {
     materialName: string; // Vật liệu làm cánh quạt
-    E: number;            // Mô men đàn hồi [MPa]
+    E: number;            // Mô đun đàn hồi [MPa]
     sigmaKcp: number;     // Ứng suất kéo cho phép σ_k,cp [MPa]
     sigmaUcp: number;     // Ứng suất uốn cho phép σ_u,cp [MPa]
     rhoMaterial: number;  // Khối lượng riêng của vật liệu P [Kg/m3]
 }
 
-// Điểm tọa độ và góc tại từng nấc s (từ 0 đến 16)
+// 1. Điểm tọa độ và góc tại từng nấc s (từ 0 đến 16)
 export interface DistributionPointData {
     sIndex: number;    // Chỉ số nấc s (0 đến 16)
     xCoeff: number;    // Hệ số x
@@ -16,14 +16,27 @@ export interface DistributionPointData {
     xiIj: number;      // \xi_ij = (\xiCoeff * \vartheta_i) / 100 (tại s=16 là Li)
 }
 
-// Dữ liệu phân bố cho từng mặt cắt i
-export interface SectionDistributionData {
+// 2. Điểm biên Boundary (j từ 1 đến 16)
+export interface BoundaryPointData {
+    jIndex: number;    // Chỉ số j (từ 1 đến 16)
+    dij: number;       // d_ij = y_i,j + y_i,j+1
+    deltaIj: number;   // \delta_ij = \xi_i,j+1 - \xi_i,j
+    aij: number;       // a_ij = 2 * (Ri + (d_ij / 2) * sin(delta_ij / 2))
+    bij: number;       // b_ij = 2 * (Ri - (d_ij / 2) * sin(delta_ij / 2))
+    hij: number;       // h_ij = delta_ij
+}
+
+// 3. Dữ liệu tổng hợp tính toán cho từng mặt cắt i (tương đương RingSectionData bên Step3)
+export interface SectionStep4Data {
     sectionIndex: number;
     Li: number;
     varthetaI: number;
-    points: DistributionPointData[];
+    points: DistributionPointData[];  // Mảng 17 điểm phân bố
+    boundaries: BoundaryPointData[];  // Mảng 16 đoạn biên
+    Ai: number;                       // Diện tích mặt cắt A_i
 }
 
+// 4. Kết quả đầu ra tổng thể của Step 4 (tương đương Step3Output)
 export interface Step4Output {
-    sectionsDistribution: SectionDistributionData[];
+    sections: SectionStep4Data[];
 }

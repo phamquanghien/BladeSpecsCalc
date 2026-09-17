@@ -1,21 +1,15 @@
+// src/components/steps/step5/calculated-sections/SectionAngles.tsx
+
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { formatNumber } from '../../../../utils/format';
 import { CalculatedDataRow } from './CalculatedDataRow';
 import { useFanStore } from '../../../../store/useFanStore';
 
-type FanStoreState = ReturnType<typeof useFanStore.getState>;
-
-interface SectionAnglesProps {
-    step3Output: FanStoreState['step3Output'];
-    decimalPlaces: number;
-}
-
-export const SectionAngles: React.FC<SectionAnglesProps> = ({
-    step3Output,
-    decimalPlaces,
-}) => {
+export const SectionAngles: React.FC = () => {
     const { t } = useTranslation();
+    const { step3Output, decimalPlaces } = useFanStore();
+
     const sections = step3Output?.sections || [];
 
     if (!step3Output || sections.length === 0) return null;

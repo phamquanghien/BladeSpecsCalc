@@ -1,24 +1,21 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useFanStore } from '../../../store/useFanStore';
 import { formatNumber } from '../../../utils/format';
-import { calculateStep4Area } from '../../../math/step4';
 
 export const Step4AreaTable: React.FC = () => {
     const { t } = useTranslation();
-    const { step3Output, decimalPlaces } = useFanStore();
-
-    const areaData = useMemo(() => {
-        return calculateStep4Area(step3Output);
-    }, [step3Output]);
+    const { step4Output, decimalPlaces } = useFanStore();
 
     if (
-        !step3Output ||
-        !step3Output.sections ||
-        step3Output.sections.length === 0
+        !step4Output ||
+        !step4Output.sections ||
+        step4Output.sections.length === 0
     ) {
         return null;
     }
+
+    const { sections } = step4Output;
 
     return (
         <div className="mt-4">
@@ -36,13 +33,13 @@ export const Step4AreaTable: React.FC = () => {
                     <table className="table table-bordered align-middle text-center mb-0 text-nowrap small">
                         <thead className="table-light">
                             <tr>
-                                {/* Dòng 1: Cột đầu tiên là A_i, các cột sau chạy từ 1 đến số vành khăn */}
+                                {/* Dòng 1: Cột đầu tiên là A_i, các cột sau chạy từ 1 đến số mặt cắt */}
                                 <th className="fw-bold text-start bg-light">
                                     A<sub>i</sub>
                                 </th>
-                                {areaData.map((item) => (
-                                    <th key={item.sectionIndex}>
-                                        {item.sectionIndex}
+                                {sections.map((sec) => (
+                                    <th key={sec.sectionIndex}>
+                                        {sec.sectionIndex}
                                     </th>
                                 ))}
                             </tr>
@@ -53,11 +50,11 @@ export const Step4AreaTable: React.FC = () => {
                                 <td className="fw-bold text-start bg-light">
                                     <span>{t('step4.value')}</span>
                                 </td>
-                                {areaData.map((item) => (
-                                    <td key={item.sectionIndex}>
+                                {sections.map((sec) => (
+                                    <td key={sec.sectionIndex}>
                                         <div className="fw-bold text-primary">
                                             {formatNumber(
-                                                item.Ai,
+                                                sec.Ai,
                                                 decimalPlaces,
                                             )}
                                         </div>

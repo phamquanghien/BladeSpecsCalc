@@ -1,26 +1,32 @@
 import type { FanPreset } from '../models/FanPreset';
 import type { Step2Output } from '../models/Step2';
 import type { Step3Output } from './step3';
-import type { Step4Input } from '../models/Step4';
+import type { Step4Input, Step4Output } from '../models/Step4';
 import type { Step5ReportData } from '../models/Step5';
-import { calculateStep4Area } from './step4';
 
 export const generateStep5Report = (
     step1Input: FanPreset | null,
     step2Output: Step2Output | null,
     step3Output: Step3Output | null,
-    step4Input: Step4Input | null
+    step4Input: Step4Input | null,
+    step4Output?: Step4Output | null
 ): Step5ReportData | null => {
     if (!step1Input || !step2Output || !step3Output || !step4Input) {
         return null;
     }
 
-    const areaData = calculateStep4Area(step3Output);
+    // Lấy thông tin mặt cắt trực tiếp từ step4Output.sections
+    const step4Sections = step4Output?.sections || [];
 
     const sectionsSummary = step3Output.sections.map((sec, idx) => {
-        const areaInfo = areaData.find((a) => a.sectionIndex === sec.sectionIndex);
+        const secIndex = sec.sectionIndex || idx + 1;
+        
+        // Tìm thông tin diện tích Ai tương ứng từ step4Output
+        const sec4 = step4Sections.find((s) => s.sectionIndex === secIndex);
+        const Ai = sec4?.Ai ?? 0;
+
         return {
-            sectionIndex: sec.sectionIndex || idx + 1,
+            sectionIndex: secIndex,
             Di: sec.Di,
             ui: sec.ui,
             w1i: sec.w1i,
@@ -29,7 +35,7 @@ export const generateStep5Report = (
             beta2i: sec.beta2i,
             gammaI: sec.gammaI,
             Li: sec.Li,
-            Ai: areaInfo ? areaInfo.Ai : 0,
+            Ai,
         };
     });
 

@@ -9,8 +9,12 @@ export const Step4Inputs: React.FC = () => {
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, type } = e.target;
-        const val =
-            type === 'number' ? (value === '' ? 0 : parseFloat(value)) : value;
+
+        let val: string | number = value;
+        if (type === 'number') {
+            val = value === '' ? 0 : parseFloat(value);
+        }
+
         updateStep4Field(name as keyof Step4Input, val);
     };
 
@@ -67,7 +71,7 @@ export const Step4Inputs: React.FC = () => {
                                 type="number"
                                 className="form-control fw-bold"
                                 name="E"
-                                value={step4Input.E || ''}
+                                value={step4Input.E === 0 ? '' : step4Input.E}
                                 onChange={handleInputChange}
                             />
                             <span className="input-group-text bg-light text-muted">
@@ -96,7 +100,11 @@ export const Step4Inputs: React.FC = () => {
                                 type="number"
                                 className="form-control fw-bold"
                                 name="sigmaKcp"
-                                value={step4Input.sigmaKcp || ''}
+                                value={
+                                    step4Input.sigmaKcp === 0
+                                        ? ''
+                                        : step4Input.sigmaKcp
+                                }
                                 onChange={handleInputChange}
                                 step="0.1"
                             />
@@ -126,7 +134,11 @@ export const Step4Inputs: React.FC = () => {
                                 type="number"
                                 className="form-control fw-bold"
                                 name="sigmaUcp"
-                                value={step4Input.sigmaUcp || ''}
+                                value={
+                                    step4Input.sigmaUcp === 0
+                                        ? ''
+                                        : step4Input.sigmaUcp
+                                }
                                 onChange={handleInputChange}
                                 step="0.1"
                             />
@@ -152,7 +164,11 @@ export const Step4Inputs: React.FC = () => {
                                 type="number"
                                 className="form-control fw-bold"
                                 name="rhoMaterial"
-                                value={step4Input.rhoMaterial || ''}
+                                value={
+                                    step4Input.rhoMaterial === 0
+                                        ? ''
+                                        : step4Input.rhoMaterial
+                                }
                                 onChange={handleInputChange}
                             />
                             <span className="input-group-text bg-light text-muted">
