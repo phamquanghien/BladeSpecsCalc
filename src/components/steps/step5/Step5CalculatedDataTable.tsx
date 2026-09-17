@@ -6,6 +6,7 @@ import { SectionVelocitiesAndPressure } from './calculated-sections/SectionVeloc
 import { SectionAngles } from './calculated-sections/SectionAngles';
 import { SectionBladeGeometry } from './calculated-sections/SectionBladeGeometry';
 import { SectionBladeThickness } from './calculated-sections/SectionBladeThickness';
+import { SectionStrengthCheck } from './calculated-sections/SectionStrengthCheck';
 
 export const Step5CalculatedDataTable: React.FC = () => {
     const { t } = useTranslation();
@@ -61,6 +62,8 @@ export const Step5CalculatedDataTable: React.FC = () => {
 
                     {/* Mục 17: Phân bố chiều dầy */}
                     <SectionBladeThickness />
+
+                    <SectionStrengthCheck />
                 </tbody>
             </table>
         </div>

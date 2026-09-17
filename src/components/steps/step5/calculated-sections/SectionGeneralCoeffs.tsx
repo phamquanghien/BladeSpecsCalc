@@ -1,5 +1,3 @@
-// src/components/steps/step5/calculated-sections/SectionGeneralCoeffs.tsx
-
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { formatNumber } from '../../../../utils/format';
