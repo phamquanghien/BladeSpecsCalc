@@ -42,6 +42,10 @@ export interface SectionStep4Data {
     Ai: number;                       // Diện tích mặt cắt A_i
     xpsi: number;     // Trọng tâm X'_{s,i}
     ypsi: number;     // Trọng tâm Y'_{s,i}
+    Jxi: number;
+    Jyi: number;
+    Wxi: number;
+    Wyi: number;
 }
 
 // 4. Kết quả đầu ra tổng thể của Step 4 (tương đương Step3Output)

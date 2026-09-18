@@ -33,7 +33,7 @@ export const calculateStep4 = (
         const Li = sec.Li;
         const varthetaI = sec.varthetaI;
         const Ri = sec.Ri;
-        const alpha2i = sec.alpha2i;
+        const gammaI = sec.gammaI;
         const sectionIndex = sec.sectionIndex || idx + 1;
         const phi1iDeg = 90 - varthetaI / 2;
         const etaIDeg = 90 + varthetaI / 2;
@@ -63,6 +63,8 @@ export const calculateStep4 = (
         let sumYpsi = 0;
         let sumJxpij = 0;
         let sumJYpij = 0;
+        let eyiMax = 0
+        let exiMax = 0;
 
         for (let j = 1; j <= 16; j++) {
             const xiCurrent = points[j - 1].xiIj;
@@ -122,10 +124,12 @@ export const calculateStep4 = (
             const Jupvpij = Juvij + Aij * uoi * voi;
 
             //xem lại trong công thức xem alphai có phải là alpha2i không
-            const twoAlphaRad = ((2 * alpha2i) * Math.PI) / 180;
-            const Jxpij = (Jupij + Jvpij) / 2 +  ((Jupij - Jvpij) / 2) * Math.cos(twoAlphaRad) - Jupvpij * Math.sin(twoAlphaRad);
-            const Jypij = (Jupij + Jvpij) / 2 + ((Jupij - Jvpij) / 2) * Math.cos(twoAlphaRad) + Jupvpij * Math.sin(twoAlphaRad);
+            const gammaIRad = (gammaI * Math.PI) / 180;
+            const cos2Gamma = Math.cos(2 * gammaIRad);
+            const sin2Gamma = Math.sin(2 * gammaIRad);
 
+            const Jxpij = (Jupij + Jvpij) / 2 + ((Jupij - Jvpij) / 2) * cos2Gamma - Jupvpij * sin2Gamma;
+            const Jypij = (Jupij + Jvpij) / 2 - ((Jupij - Jvpij) / 2) * cos2Gamma + Jupvpij * sin2Gamma;
             sumJxpij += Jxpij;
             sumJYpij += Jypij;
 
@@ -142,8 +146,22 @@ export const calculateStep4 = (
         const ypsi = Ai > 0 ? sumYpsi / Ai : 0;
         const Jxpi = sumJxpij;
         const Jypi = sumJYpij;
-        const Jxi = Jxpi + (Math.pow(ypsi,2) * Ri);
-        const Jyi = Jypi + (Math.pow(xpsi, 2) * Ri);
+        const Jxi = Jxpi + (Math.pow(ypsi,2) * Ai);
+        const Jyi = Jypi + (Math.pow(xpsi, 2) * Ai);
+
+        boundaries.forEach((b) => {
+            // Tọa độ của điểm j so với trọng tâm chính tâm S_i
+            const xj = b.xpij - xpsi;
+            const yj = b.ypij - ypsi;
+
+            const absX = Math.abs(xj);
+            const absY = Math.abs(yj);
+
+            if (absX > exiMax) exiMax = absX;
+            if (absY > eyiMax) eyiMax = absY;
+        });
+        const Wxi = eyiMax > 0 ? Jxi / eyiMax : 0;
+        const Wyi = exiMax > 0 ? Jyi / exiMax : 0;
 
         return {
             sectionIndex,
@@ -151,7 +169,7 @@ export const calculateStep4 = (
             varthetaI,
             points,
             boundaries,
-            Ai, xpsi, ypsi, Jxi, Jyi
+            Ai, xpsi, ypsi, Jxi, Jyi, Wxi, Wyi
         };
     });
 

@@ -70,7 +70,7 @@ export const SectionStrengthCheck: React.FC = () => {
                                     J<sub>x</sub>
                                 </>
                             }
-                            value=""
+                            value={formatNumber(sec.Jxi, decimalPlaces)}
                             unit="[cm⁴]"
                         />
                         <CalculatedDataRow
@@ -80,7 +80,7 @@ export const SectionStrengthCheck: React.FC = () => {
                                     J<sub>y</sub>
                                 </>
                             }
-                            value=""
+                            value={formatNumber(sec.Jyi, decimalPlaces)}
                             unit="[cm⁴]"
                         />
                         <CalculatedDataRow
@@ -90,7 +90,7 @@ export const SectionStrengthCheck: React.FC = () => {
                                     W<sub>x</sub>
                                 </>
                             }
-                            value=""
+                            value={formatNumber(sec.Wxi, decimalPlaces)}
                             unit="[cm³]"
                         />
                         <CalculatedDataRow
@@ -100,7 +100,7 @@ export const SectionStrengthCheck: React.FC = () => {
                                     W<sub>y</sub>
                                 </>
                             }
-                            value=""
+                            value={formatNumber(sec.Wyi, decimalPlaces)}
                             unit="[cm³]"
                         />
                     </React.Fragment>
