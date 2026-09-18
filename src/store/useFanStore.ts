@@ -81,11 +81,12 @@ const computeStep3Helper = (
 // 🟢 Bổ sung helper tính toán Step 4
 const computeStep4Helper = (
   step4Input: Step4Input,
-  step3Output: Step3Output | null
+  step3Output: Step3Output | null,
+  step2Output: Step2Output | null
 ): Step4Output | null => {
   if (!step3Output) return null;
   try {
-    return calculateStep4(step4Input, step3Output);
+    return calculateStep4(step4Input, step3Output, step2Output);
   } catch (error: unknown) {
     console.error('Lỗi tính toán Step 4:', error);
     return null;
@@ -105,7 +106,7 @@ const initialStep2Input: Step2Input = {
 const initialStep1Output = computeStep1Helper(initialPreset);
 const initialStep2Output = computeStep2Helper(initialPreset, initialStep2Input);
 const initialStep3Output = computeStep3Helper(initialPreset, initialStep2Output);
-const initialStep4Output = computeStep4Helper(defaultStep4Input, initialStep3Output);
+const initialStep4Output = computeStep4Helper(defaultStep4Input, initialStep3Output, initialStep2Output);
 
 export const useFanStore = create<FanStoreState>((set, get) => ({
   // Cấu hình UI
@@ -128,7 +129,7 @@ export const useFanStore = create<FanStoreState>((set, get) => ({
     newEpsilons[index] = value;
 
     const s3Out = computeStep3Helper(step1Input, step2Output, newEpsilons, userDeltaGamma1IInputs);
-    const s4Out = computeStep4Helper(step4Input, s3Out);
+    const s4Out = computeStep4Helper(step4Input, s3Out, step2Output);
 
     set({
       userEpsilonInputs: newEpsilons,
@@ -145,7 +146,7 @@ export const useFanStore = create<FanStoreState>((set, get) => ({
     newDeltaGamma1I[index] = value;
 
     const s3Out = computeStep3Helper(step1Input, step2Output, userEpsilonInputs, newDeltaGamma1I);
-    const s4Out = computeStep4Helper(step4Input, s3Out);
+    const s4Out = computeStep4Helper(step4Input, s3Out, step2Output);
 
     set({
       userDeltaGamma1IInputs: newDeltaGamma1I,
@@ -159,8 +160,8 @@ export const useFanStore = create<FanStoreState>((set, get) => ({
   step4Output: initialStep4Output,
 
   setStep4Input: (input) => {
-    const { step3Output } = get();
-    const s4Out = computeStep4Helper(input, step3Output);
+    const { step3Output, step2Output } = get();
+    const s4Out = computeStep4Helper(input, step3Output, step2Output);
     set({
       step4Input: input,
       step4Output: s4Out,
@@ -168,12 +169,12 @@ export const useFanStore = create<FanStoreState>((set, get) => ({
   },
 
   updateStep4Field: (field, value) => {
-    const { step3Output } = get();
+    const { step3Output, step2Output } = get();
     const updatedStep4Input = {
       ...get().step4Input,
       [field]: value,
     };
-    const s4Out = computeStep4Helper(updatedStep4Input, step3Output);
+    const s4Out = computeStep4Helper(updatedStep4Input, step3Output, step2Output);
 
     set({
       step4Input: updatedStep4Input,
@@ -189,7 +190,7 @@ export const useFanStore = create<FanStoreState>((set, get) => ({
     const s1Out = computeStep1Helper(input);
     const s2Out = computeStep2Helper(input, step2Input);
     const s3Out = computeStep3Helper(input, s2Out, get().userEpsilonInputs, get().userDeltaGamma1IInputs);
-    const s4Out = computeStep4Helper(step4Input, s3Out);
+    const s4Out = computeStep4Helper(step4Input, s3Out, s2Out);
 
     set({
       step1Input: input,
@@ -211,7 +212,7 @@ export const useFanStore = create<FanStoreState>((set, get) => ({
     const s1Out = computeStep1Helper(updatedInput);
     const s2Out = computeStep2Helper(updatedInput, step2Input);
     const s3Out = computeStep3Helper(updatedInput, s2Out, get().userEpsilonInputs, get().userDeltaGamma1IInputs);
-    const s4Out = computeStep4Helper(step4Input, s3Out);
+    const s4Out = computeStep4Helper(step4Input, s3Out, s2Out);
 
     set({
       step1Input: updatedInput,
@@ -229,7 +230,7 @@ export const useFanStore = create<FanStoreState>((set, get) => ({
 
     const s2Out = computeStep2Helper(step1Input, updatedStep2);
     const s3Out = computeStep3Helper(step1Input, s2Out, get().userEpsilonInputs, get().userDeltaGamma1IInputs);
-    const s4Out = computeStep4Helper(step4Input, s3Out);
+    const s4Out = computeStep4Helper(step4Input, s3Out, s2Out);
 
     set({
       step2Input: updatedStep2,

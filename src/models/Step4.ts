@@ -28,6 +28,8 @@ export interface BoundaryPointData {
     eij: number;       // Khoảng cách trọng tâm hình thang e_ij
     xpij: number;      // X'_ij
     ypij: number;
+    Juij: number; Jvij: number; Juvij: number; voi: number; uoi: number; Jupij: number; Jvpij: number; Jupvpij: number;
+    Jxpij: number; Jypij: number;
 }
 
 // 3. Dữ liệu tổng hợp tính toán cho từng mặt cắt i (tương đương RingSectionData bên Step3)
