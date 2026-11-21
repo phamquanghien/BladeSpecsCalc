@@ -211,7 +211,7 @@ export const SectionStrengthCheck: React.FC = () => {
                         σ<sub>kf</sub>
                     </>
                 }
-                value="15.036"
+                value="65.06"
                 unit="[MPa]"
             />
             <CalculatedDataRow
