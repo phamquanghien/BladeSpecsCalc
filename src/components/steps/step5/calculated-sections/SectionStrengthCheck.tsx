@@ -119,7 +119,7 @@ export const SectionStrengthCheck: React.FC = () => {
                         F<sub>c</sub>
                     </>
                 }
-                value=""
+                value="2.321171E+09"
                 unit="[N]"
             />
             <CalculatedDataRow
@@ -129,7 +129,7 @@ export const SectionStrengthCheck: React.FC = () => {
                         σ<sub>kf</sub>
                     </>
                 }
-                value=""
+                value="15.036"
                 unit="[MPa]"
             />
             <CalculatedDataRow
@@ -139,13 +139,13 @@ export const SectionStrengthCheck: React.FC = () => {
                         &Delta;<sub>b</sub>
                     </>
                 }
-                value=""
+                value="0.014"
                 unit="[mm]"
             />
             <CalculatedDataRow
                 label={t('step5.part20.content4')}
                 symbol="-"
-                value=""
+                value="Đạt"
                 unit=""
             />
             <CalculatedDataRow
@@ -161,7 +161,7 @@ export const SectionStrengthCheck: React.FC = () => {
                         M<sub>uu</sub>
                     </>
                 }
-                value=""
+                value="83.15194"
                 unit="[Nm]"
             />
             <CalculatedDataRow
@@ -171,7 +171,7 @@ export const SectionStrengthCheck: React.FC = () => {
                         M<sub>ua</sub>
                     </>
                 }
-                value=""
+                value="18.68428"
                 unit="[Nm]"
             />
             <CalculatedDataRow
@@ -181,7 +181,7 @@ export const SectionStrengthCheck: React.FC = () => {
                         M<sub>u</sub>
                     </>
                 }
-                value=""
+                value="85.22527"
                 unit="[Nm]"
             />
             <CalculatedDataRow
@@ -191,7 +191,7 @@ export const SectionStrengthCheck: React.FC = () => {
                         M<sub>ux</sub>
                     </>
                 }
-                value=""
+                value="66.38669"
                 unit="[Nm]"
             />
             <CalculatedDataRow
@@ -201,23 +201,23 @@ export const SectionStrengthCheck: React.FC = () => {
                         M<sub>uy</sub>
                     </>
                 }
-                value=""
+                value="-53.443"
                 unit="[Nm]"
             />
             <CalculatedDataRow
                 label={t('step5.part21.content6')}
                 symbol={
                     <>
-                        σ<sub>uf</sub>
+                        σ<sub>kf</sub>
                     </>
                 }
-                value=""
+                value="15.036"
                 unit="[MPa]"
             />
             <CalculatedDataRow
                 label={t('step5.part21.content7')}
                 symbol="-"
-                value=""
+                value="Đạt"
                 unit=""
             />
         </>

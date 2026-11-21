@@ -37,16 +37,16 @@
   },
   "bladeType": {
     "type1": {
-      "name": "Model Fan Type 2K60-N°18 ",
-      "description": "Suitable for medium mine ventilation, airflow 46 m³/s."
+      "name": "TYPE 1",
+      "description": "Suitable for medium-diameter, low-airflow mine ventilation."
     },
     "type2": {
-      "name": "Model Fan Type 2K56-N°24",
-      "description": "Designed for main ventilation systems, high pressure 3100 Pa."
+      "name": "TYPE 2",
+      "description": "Suitable for high-pressure main ventilation systems."
     },
     "type3": {
-      "name": "Model Fan Type 2K56-N°30",
-      "description": "Maximum airflow 92 m³/s, low rotational speed 750 rpm."
+      "name": "TYPE 3",
+      "description": "Suitable for high-airflow ventilation systems."
     }
   },
   "step2": {

@@ -37,16 +37,16 @@
   },
   "bladeType": {
     "type1": {
-      "name": "Quạt 2K60-N°18 ",
-      "description": "Phù hợp cho thông gió hầm mỏ đường kính trung bình, lưu lượng 46 m³/s."
+      "name": "TYPE 1",
+      "description": "Phù hợp cho thông gió hầm mỏ đường kính trung bình, lưu lượng nhỏ."
     },
     "type2": {
-      "name": "Quạt 2K56-N°24",
-      "description": "Dành cho hệ thống thông gió chính, áp suất cao 3100 Pa."
+      "name": "TYPE 2",
+      "description": "Phù hợp với hệ thống thông gió chính, áp suất cao."
     },
     "type3": {
-      "name": "Quạt 2K56-N°30",
-      "description": "Lưu lượng cực đại 92 m³/s, tốc độ quay thấp 750 vòng/phút."
+      "name": "TYPE 3",
+      "description": "Phù hợp với hệ thống thông gió lưu lượng lớn."
     }
   },
   "step2": {
